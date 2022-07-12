@@ -79,3 +79,13 @@ Planet(
     starSystemSize: Vector2(100, 100),
     imageFilename: 'jupiter1.jpeg'
 );
+
+var planet3Hard =
+Planet(
+    gravity: downGravityHard,
+    planetShapes: [_planet3PlanetShape1, _planet3PlanetShape2],
+    planetExits: [SurroundPlanetExitComponent()],
+    starSystemPosition: Vector2(200, 600),
+    starSystemSize: Vector2(100, 100),
+    imageFilename: 'jupiter1.jpeg'
+);

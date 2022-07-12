@@ -77,3 +77,12 @@ Planet(
     starSystemSize: Vector2(120, 120),
     imageFilename: 'mimas1.jpeg');
 
+var planet6Hard =
+Planet(
+    gravity: downGravityHard,
+    planetShapes: [_planet6PlanetShape1, _planet6PlanetShape2],
+    planetExits: [SurroundPlanetExitComponent()],
+    starSystemPosition: Vector2(850, 100),
+    starSystemSize: Vector2(120, 120),
+    imageFilename: 'mimas1.jpeg');
+

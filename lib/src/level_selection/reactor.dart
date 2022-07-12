@@ -57,3 +57,13 @@ Planet(
   imageFilename: 'saturn1.jpeg',
 );
 
+var reactorHard =
+Planet(
+  gravity: planetCenterGravityHard,
+  planetShapes: [_reactorPlanetShape],
+  planetExits: [SurroundPlanetExitComponent()],
+  starSystemPosition: Vector2(200, 900),
+  starSystemSize: Vector2(240, 120),
+  imageFilename: 'saturn1.jpeg',
+);
+
