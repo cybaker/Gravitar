@@ -113,3 +113,17 @@ Planet(
     starSystemSize: Vector2(90, 90),
     imageFilename: 'mercury1.jpeg'
 );
+
+var planet9Hard =
+Planet(
+    gravity: downGravityHard,
+    planetShapes: [
+      _planetShape9LargeA, _planetShape9LargeB, _planetShape9LargeC, _planetShape9LargeD,
+      _planetShape9SmallA, _planetShape9SmallB, _planetShape9SmallC, _planetShape9SmallD,
+      _planetShape9SmallE, _planetShape9SmallF, _planetShape9SmallG,
+    ],
+    planetExits: [SurroundPlanetExitComponent()],
+    starSystemPosition: Vector2(100, 100),
+    starSystemSize: Vector2(90, 90),
+    imageFilename: 'mercury1.jpeg'
+);

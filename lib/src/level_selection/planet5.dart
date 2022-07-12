@@ -52,3 +52,12 @@ Planet(
     starSystemSize: Vector2(90, 90),
     imageFilename: 'planet5.jpeg');
 
+var planet5Hard =
+Planet(
+    gravity: downGravityHard,
+    planetShapes: [_planet5PlanetShape],
+    planetExits: [SurroundPlanetExitComponent()],
+    starSystemPosition: Vector2(850, 500),
+    starSystemSize: Vector2(90, 90),
+    imageFilename: 'planet5.jpeg');
+

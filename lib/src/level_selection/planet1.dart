@@ -78,3 +78,11 @@ var planet1Easy = Planet(
     starSystemPosition: Vector2(300, 100),
     starSystemSize: Vector2(60, 60),
     imageFilename: 'planet1.png');
+
+var planet1Hard = Planet(
+    gravity: planetCenterGravityHard,
+    planetShapes: [_planet1PlanetShape],
+    planetExits: [SurroundPlanetExitComponent()],
+    starSystemPosition: Vector2(300, 100),
+    starSystemSize: Vector2(60, 60),
+    imageFilename: 'planet1.png');

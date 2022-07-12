@@ -30,8 +30,11 @@ var playerEasy = PlayerProperties(playerBulletFireLifetimeSecs: 3, playerBulletR
 var basicEnemyBaseProperties = EnemyBaseProperties(
   averageFireTimeSec: 0.5,
 );
-var easyEnemyBaseProperties = EnemyBaseProperties(
+var enemyBasePropertiesEasy = EnemyBaseProperties(
   averageFireTimeSec: 1.0,
+);
+var enemyBasePropertiesHard = EnemyBaseProperties(
+  averageFireTimeSec: 1.25,
 );
 
 var basicEnemyShipProperties = EnemyShipProperties(
@@ -42,18 +45,22 @@ var basicEnemyShipProperties = EnemyShipProperties(
 
 var fuelDepotPropertiesEasy = FuelDepotProperties(fuelIncreasePerDepot: 2500);
 var fuelDepotPropertiesNormal = FuelDepotProperties(fuelIncreasePerDepot: 1000);
+var fuelDepotPropertiesHard = FuelDepotProperties(fuelIncreasePerDepot: 750);
 
 var downGravity = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.4);
 var downGravityEasy = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.1);
+var downGravityHard = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.7);
 
 /// Starts at upper left, 1000 Wide by 750 Height
 var planetCenterGravity = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.4);
 var planetCenterGravityEasy = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.1);
+var planetCenterGravityHard = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.7);
 
 var starSystemCenterGravity = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.4);
 var starSystemCenterGravityEasy = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.1);
+var starSystemCenterGravityHard = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.7);
 
-StarSystem starSystem1 = StarSystem(
+StarSystem starSystemNormal = StarSystem(
   gravity: starSystemCenterGravity,
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
@@ -77,32 +84,161 @@ StarSystem starSystem1 = StarSystem(
   fuelDepotProperties: fuelDepotPropertiesNormal,
 );
 
-StarSystem starSystemEasy = StarSystem(
+StarSystem starSystemEasyEasy = StarSystem(
+  gravity: starSystemCenterGravityEasy,
+  startWarpInPosition: Vector2(500, 50),
+  starImageFilename: 'star_image.jpeg',
+  planets: [
+    planet2Easy,
+    planet8Easy,
+    planet9Easy,
+    planet10Easy,
+  ],
+  playerProperties: playerEasy,
+  basicEnemyProperties: enemyBasePropertiesEasy,
+  shipEnemyProperties: basicEnemyShipProperties,
+  fuelDepotProperties: fuelDepotPropertiesEasy,
+);
+
+StarSystem starSystemEasyNormal = StarSystem(
   gravity: starSystemCenterGravityEasy,
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
   planets: [
     planet1Easy,
-    planet2Easy,
     planet3Easy,
-    reactorEasy
+    planet4Easy,
+    planet5Easy,
+    planet6Easy,
   ],
   playerProperties: playerEasy,
-  basicEnemyProperties: easyEnemyBaseProperties,
+  basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
 );
 
+StarSystem starSystemEasyChallenge = StarSystem(
+  gravity: starSystemCenterGravityEasy,
+  startWarpInPosition: Vector2(500, 50),
+  starImageFilename: 'star_image.jpeg',
+  planets: [
+    planet7Easy,
+    planet11Easy,
+    reactorEasy
+  ],
+  playerProperties: playerEasy,
+  basicEnemyProperties: enemyBasePropertiesEasy,
+  shipEnemyProperties: basicEnemyShipProperties,
+  fuelDepotProperties: fuelDepotPropertiesEasy,
+);
+
+StarSystem starSystemNormalEasy = StarSystem(
+  gravity: starSystemCenterGravity,
+  startWarpInPosition: Vector2(500, 50),
+  starImageFilename: 'star_image.jpeg',
+  planets: [
+    planet2,
+    planet8,
+    planet9,
+    planet10,
+  ],
+  playerProperties: playerEasy,
+  basicEnemyProperties: enemyBasePropertiesEasy,
+  shipEnemyProperties: basicEnemyShipProperties,
+  fuelDepotProperties: fuelDepotPropertiesEasy,
+);
+
+StarSystem starSystemNormalNormal = StarSystem(
+  gravity: starSystemCenterGravity,
+  startWarpInPosition: Vector2(500, 50),
+  starImageFilename: 'star_image.jpeg',
+  planets: [
+    planet1,
+    planet3,
+    planet4,
+    planet5,
+    planet6,
+  ],
+  playerProperties: playerEasy,
+  basicEnemyProperties: enemyBasePropertiesEasy,
+  shipEnemyProperties: basicEnemyShipProperties,
+  fuelDepotProperties: fuelDepotPropertiesEasy,
+);
+
+StarSystem starSystemNormalChallenge = StarSystem(
+  gravity: starSystemCenterGravity,
+  startWarpInPosition: Vector2(500, 50),
+  starImageFilename: 'star_image.jpeg',
+  planets: [
+    planet7,
+    planet11,
+    reactor
+  ],
+  playerProperties: playerEasy,
+  basicEnemyProperties: enemyBasePropertiesEasy,
+  shipEnemyProperties: basicEnemyShipProperties,
+  fuelDepotProperties: fuelDepotPropertiesEasy,
+);
+
+StarSystem starSystemHardEasy = StarSystem(
+  gravity: starSystemCenterGravityHard,
+  startWarpInPosition: Vector2(500, 50),
+  starImageFilename: 'star_image.jpeg',
+  planets: [
+    planet2Hard,
+    planet8Hard,
+    planet9Hard,
+    planet10Hard,
+  ],
+  playerProperties: playerEasy,
+  basicEnemyProperties: enemyBasePropertiesEasy,
+  shipEnemyProperties: basicEnemyShipProperties,
+  fuelDepotProperties: fuelDepotPropertiesEasy,
+);
+
+StarSystem starSystemHardNormal = StarSystem(
+  gravity: starSystemCenterGravityHard,
+  startWarpInPosition: Vector2(500, 50),
+  starImageFilename: 'star_image.jpeg',
+  planets: [
+    planet1Hard,
+    planet3Hard,
+    planet4Hard,
+    planet5Hard,
+    planet6Hard,
+  ],
+  playerProperties: playerEasy,
+  basicEnemyProperties: enemyBasePropertiesEasy,
+  shipEnemyProperties: basicEnemyShipProperties,
+  fuelDepotProperties: fuelDepotPropertiesEasy,
+);
+
+StarSystem starSystemHardChallenge = StarSystem(
+  gravity: starSystemCenterGravityHard,
+  startWarpInPosition: Vector2(500, 50),
+  starImageFilename: 'star_image.jpeg',
+  planets: [
+    planet7Hard,
+    planet11Hard,
+    reactorHard
+  ],
+  playerProperties: playerEasy,
+  basicEnemyProperties: enemyBasePropertiesEasy,
+  shipEnemyProperties: basicEnemyShipProperties,
+  fuelDepotProperties: fuelDepotPropertiesEasy,
+);
+
+
 var gameLevels = [
   GameUniverse(
     level: 1,
-    name: 'Easy',
-    difficulty: 5,
+    name: 'Beginner - training',
+    difficulty: 1,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 2000,
 
-    starSystems: [starSystemEasy],
+    starSystems: [starSystemEasyEasy],
 
     // TODO: When ready, change these achievement IDs.
     // You configure this in App Store Connect.
@@ -112,13 +248,125 @@ var gameLevels = [
   ),
   GameUniverse(
     level: 2,
-    name: 'Medium',
-    difficulty: 10,
+    name: 'Beginner - normal',
+    difficulty: 2,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 10000,
 
-    starSystems: [starSystem1],
+    starSystems: [starSystemEasyNormal],
+
+    // TODO: When ready, change these achievement IDs.
+    // You configure this in App Store Connect.
+    achievementIdIOS: 'first_win',
+    // You get this string when you configure an achievement in Play Console.
+    achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+  ),
+  GameUniverse(
+    level: 3,
+    name: 'Beginner - harder',
+    difficulty: 3,
+    cameraZoomedInDimension: 500,
+    playfieldDimension: 1000,
+    extraLifeThreshold: 10000,
+
+    starSystems: [starSystemEasyChallenge],
+
+    // TODO: When ready, change these achievement IDs.
+    // You configure this in App Store Connect.
+    achievementIdIOS: 'first_win',
+    // You get this string when you configure an achievement in Play Console.
+    achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+  ),
+  GameUniverse(
+    level: 4,
+    name: 'Ensign - easy',
+    difficulty: 3,
+    cameraZoomedInDimension: 500,
+    playfieldDimension: 1000,
+    extraLifeThreshold: 10000,
+
+    starSystems: [starSystemNormalEasy],
+
+    // TODO: When ready, change these achievement IDs.
+    // You configure this in App Store Connect.
+    achievementIdIOS: 'first_win',
+    // You get this string when you configure an achievement in Play Console.
+    achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+  ),
+  GameUniverse(
+    level: 5,
+    name: 'Ensign - normal',
+    difficulty: 3,
+    cameraZoomedInDimension: 500,
+    playfieldDimension: 1000,
+    extraLifeThreshold: 10000,
+
+    starSystems: [starSystemNormalNormal],
+
+    // TODO: When ready, change these achievement IDs.
+    // You configure this in App Store Connect.
+    achievementIdIOS: 'first_win',
+    // You get this string when you configure an achievement in Play Console.
+    achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+  ),
+  GameUniverse(
+    level: 6,
+    name: 'Ensign - harder',
+    difficulty: 3,
+    cameraZoomedInDimension: 500,
+    playfieldDimension: 1000,
+    extraLifeThreshold: 10000,
+
+    starSystems: [starSystemNormalChallenge],
+
+    // TODO: When ready, change these achievement IDs.
+    // You configure this in App Store Connect.
+    achievementIdIOS: 'first_win',
+    // You get this string when you configure an achievement in Play Console.
+    achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+  ),
+  GameUniverse(
+    level: 7,
+    name: 'Commander - easy',
+    difficulty: 3,
+    cameraZoomedInDimension: 500,
+    playfieldDimension: 1000,
+    extraLifeThreshold: 10000,
+
+    starSystems: [starSystemHardEasy],
+
+    // TODO: When ready, change these achievement IDs.
+    // You configure this in App Store Connect.
+    achievementIdIOS: 'first_win',
+    // You get this string when you configure an achievement in Play Console.
+    achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+  ),
+  GameUniverse(
+    level: 8,
+    name: 'Commander - normal',
+    difficulty: 3,
+    cameraZoomedInDimension: 500,
+    playfieldDimension: 1000,
+    extraLifeThreshold: 10000,
+
+    starSystems: [starSystemHardNormal],
+
+    // TODO: When ready, change these achievement IDs.
+    // You configure this in App Store Connect.
+    achievementIdIOS: 'first_win',
+    // You get this string when you configure an achievement in Play Console.
+    achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+  ),
+  GameUniverse(
+    level: 9,
+    name: 'Commander - hard',
+    difficulty: 3,
+    cameraZoomedInDimension: 500,
+    playfieldDimension: 1000,
+    extraLifeThreshold: 10000,
+
+    starSystems: [starSystemHardChallenge],
 
     // TODO: When ready, change these achievement IDs.
     // You configure this in App Store Connect.

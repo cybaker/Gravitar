@@ -94,3 +94,13 @@ Planet(
   imageFilename: 'neptune1.jpeg',
 );
 
+var planet11Hard =
+Planet(
+  gravity: downGravityHard,
+  planetShapes: [_planet11PlanetShape],
+  planetExits: [SurroundPlanetExitComponent()],
+  starSystemPosition: Vector2(800, 900),
+  starSystemSize: Vector2(120, 120),
+  imageFilename: 'neptune1.jpeg',
+);
+
