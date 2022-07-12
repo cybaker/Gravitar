@@ -39,7 +39,7 @@ void main() {
     expect(find.text('Select level'), findsOneWidget);
 
     // Tap top level.
-    await tester.tap(find.text('Easy'));
+    await tester.tap(find.textContaining('Beginner').first);
     // await tester.pumpAndSettle();
 
     // Find the first level's text.
