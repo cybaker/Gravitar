@@ -23,9 +23,9 @@ class PlayerProperties {
 
   PlayerProperties({
     this.playerThrust = 2,
-    this.playerThrustConsumption = 1,
-    this.playerFireConsumption = 1,
-    this.playerShieldConsumption = 1,
+    this.playerThrustConsumption = 5,
+    this.playerFireConsumption = 5,
+    this.playerShieldConsumption = 10,
     this.playerBulletFireLifetimeSecs = 2,
     this.playerBulletSpeed = 150,
     this.playerBulletReloadSecs = 0.2,

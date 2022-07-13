@@ -24,8 +24,9 @@ import '../game/model/gravity.dart';
 import '../game/model/star_system.dart';
 import '../game/player/player.dart';
 
-var playerDefault = PlayerProperties();
-var playerEasy = PlayerProperties(playerBulletFireLifetimeSecs: 3, playerBulletReloadSecs: 0.1);
+var playerNormal = PlayerProperties(playerThrust: 3, playerBulletFireLifetimeSecs: 3, playerBulletReloadSecs: 0.18);
+var playerEasy = PlayerProperties(playerBulletFireLifetimeSecs: 4, playerBulletReloadSecs: 0.1);
+var playerHard = PlayerProperties(playerThrust: 4, playerBulletFireLifetimeSecs: 2.2, playerBulletReloadSecs: 0.25);
 
 var basicEnemyBaseProperties = EnemyBaseProperties(
   averageFireTimeSec: 0.5,
@@ -47,16 +48,16 @@ var fuelDepotPropertiesEasy = FuelDepotProperties(fuelIncreasePerDepot: 2500);
 var fuelDepotPropertiesNormal = FuelDepotProperties(fuelIncreasePerDepot: 1000);
 var fuelDepotPropertiesHard = FuelDepotProperties(fuelIncreasePerDepot: 750);
 
-var downGravity = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.4);
+var downGravity = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.3);
 var downGravityEasy = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.1);
 var downGravityHard = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.7);
 
 /// Starts at upper left, 1000 Wide by 750 Height
-var planetCenterGravity = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.4);
+var planetCenterGravity = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.3);
 var planetCenterGravityEasy = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.1);
 var planetCenterGravityHard = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.7);
 
-var starSystemCenterGravity = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.4);
+var starSystemCenterGravity = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.3);
 var starSystemCenterGravityEasy = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.1);
 var starSystemCenterGravityHard = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.7);
 
@@ -78,7 +79,7 @@ StarSystem starSystemNormal = StarSystem(
     planet11,
     reactor
   ],
-  playerProperties: playerDefault,
+  playerProperties: playerNormal,
   basicEnemyProperties: basicEnemyBaseProperties,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesNormal,
@@ -142,7 +143,7 @@ StarSystem starSystemNormalEasy = StarSystem(
     planet9,
     planet10,
   ],
-  playerProperties: playerEasy,
+  playerProperties: playerNormal,
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
@@ -159,7 +160,7 @@ StarSystem starSystemNormalNormal = StarSystem(
     planet5,
     planet6,
   ],
-  playerProperties: playerEasy,
+  playerProperties: playerNormal,
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
@@ -174,7 +175,7 @@ StarSystem starSystemNormalChallenge = StarSystem(
     planet11,
     reactor
   ],
-  playerProperties: playerEasy,
+  playerProperties: playerNormal,
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
@@ -190,7 +191,7 @@ StarSystem starSystemHardEasy = StarSystem(
     planet9Hard,
     planet10Hard,
   ],
-  playerProperties: playerEasy,
+  playerProperties: playerHard,
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
@@ -207,7 +208,7 @@ StarSystem starSystemHardNormal = StarSystem(
     planet5Hard,
     planet6Hard,
   ],
-  playerProperties: playerEasy,
+  playerProperties: playerHard,
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
@@ -222,7 +223,7 @@ StarSystem starSystemHardChallenge = StarSystem(
     planet11Hard,
     reactorHard
   ],
-  playerProperties: playerEasy,
+  playerProperties: playerHard,
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
@@ -281,7 +282,7 @@ var gameLevels = [
   GameUniverse(
     level: 4,
     name: 'Ensign - easy',
-    difficulty: 3,
+    difficulty: 4,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 10000,
@@ -297,7 +298,7 @@ var gameLevels = [
   GameUniverse(
     level: 5,
     name: 'Ensign - normal',
-    difficulty: 3,
+    difficulty: 5,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 10000,
@@ -313,7 +314,7 @@ var gameLevels = [
   GameUniverse(
     level: 6,
     name: 'Ensign - harder',
-    difficulty: 3,
+    difficulty: 6,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 10000,
@@ -329,7 +330,7 @@ var gameLevels = [
   GameUniverse(
     level: 7,
     name: 'Commander - easy',
-    difficulty: 3,
+    difficulty: 7,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 10000,
@@ -345,7 +346,7 @@ var gameLevels = [
   GameUniverse(
     level: 8,
     name: 'Commander - normal',
-    difficulty: 3,
+    difficulty: 8,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 10000,
@@ -361,7 +362,7 @@ var gameLevels = [
   GameUniverse(
     level: 9,
     name: 'Commander - hard',
-    difficulty: 3,
+    difficulty: 9,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 10000,
