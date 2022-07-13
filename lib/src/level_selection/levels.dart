@@ -67,9 +67,9 @@ StarSystem starSystemEasyEasy = StarSystem(
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
   planets: [
-    planet2Easy,
-    planet8Easy,
-    planet9Easy,
+    // planet2Easy,
+    // planet8Easy,
+    // planet9Easy,
     planet10Easy,
   ],
   playerProperties: playerEasy,

@@ -25,6 +25,8 @@ class GameState extends ChangeNotifier{
   var _PLAYER_LIVES = 6;
   var extraLifeTarget = 0;
 
+  Duration? duration;
+
   late final ValueNotifier<int> remainingLives = ValueNotifier<int>(_PLAYER_LIVES);
   late final ValueNotifier<double> score = ValueNotifier<double>(0);
   late final ValueNotifier<double> remainingFuel = ValueNotifier<double>(10000);

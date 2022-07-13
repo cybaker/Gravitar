@@ -135,8 +135,10 @@ class PlanetViewState extends State<PlanetView> {
     await Future<void>.delayed(_celebrationDuration);
     if (!mounted) return;
 
+    _playerGame.gameState.duration = DateTime.now().difference(_startOfPlay);
+
     GoRouter.of(context).pop();
-    GoRouter.of(context).go('/play/won', extra: {'score': score});
+    GoRouter.of(context).go('/play/won', extra: {'game': _playerGame});
   }
 
   Future<void> _playerExitedUniverse() async {
