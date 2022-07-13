@@ -281,7 +281,7 @@ var gameLevels = [
   GameUniverse(
     level: 4,
     name: 'Ensign - easy',
-    difficulty: 3,
+    difficulty: 4,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 10000,
@@ -297,7 +297,7 @@ var gameLevels = [
   GameUniverse(
     level: 5,
     name: 'Ensign - normal',
-    difficulty: 3,
+    difficulty: 5,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 10000,
@@ -313,7 +313,7 @@ var gameLevels = [
   GameUniverse(
     level: 6,
     name: 'Ensign - harder',
-    difficulty: 3,
+    difficulty: 6,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 10000,
@@ -329,7 +329,7 @@ var gameLevels = [
   GameUniverse(
     level: 7,
     name: 'Commander - easy',
-    difficulty: 3,
+    difficulty: 7,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 10000,
@@ -345,7 +345,7 @@ var gameLevels = [
   GameUniverse(
     level: 8,
     name: 'Commander - normal',
-    difficulty: 3,
+    difficulty: 8,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 10000,
@@ -361,7 +361,7 @@ var gameLevels = [
   GameUniverse(
     level: 9,
     name: 'Commander - hard',
-    difficulty: 3,
+    difficulty: 9,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 10000,
