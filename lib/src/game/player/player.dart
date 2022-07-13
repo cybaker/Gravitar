@@ -99,11 +99,6 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
     gameRef.cameraZoom();
   }
 
-  addFuel() {
-    var fuelProperties = gameRef.gameState.currentStarSystem.fuelDepotProperties;
-    gameRef.remainingFuel.value += fuelProperties.fuelIncreasePerDepot;
-  }
-
   void _updateFireTimeout(double dt) {
     fireTimeout -= dt;
   }
@@ -136,18 +131,18 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   }
 
   _thrustShip(double rotation, double thrust) {
-    final newThrust = Vector2(cos(rotation - halfPi) * thrust, sin(rotation - halfPi) * thrust);
-    final total = velocity + newThrust;
-    if (total.x * total.x + total.y * total.y < 200 * 200) {
-      // maximum speed
-      velocity = total;
-    }
-    _thrustConsumePower();
-    _showThrust(true);
+      final newThrust = Vector2(cos(rotation - halfPi) * thrust, sin(rotation - halfPi) * thrust);
+      final total = velocity + newThrust;
+      if (total.x * total.x + total.y * total.y < 200 * 200) {
+        // maximum speed
+        velocity = total;
+      }
+      _thrustConsumePower();
+      _showThrust(true);
   }
 
   _thrustConsumePower() {
-    gameRef.remainingFuel.value -= properties.playerThrustConsumption;
+    gameRef.gameState.addFuel(-properties.playerThrustConsumption);
   }
 
   _handleKeyPresses() {
@@ -170,6 +165,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
     }
 
     _showShield(gameRef.pressedKeySet.contains(LogicalKeyboardKey.space));
+
   }
 
   _showShield(bool shield) {
@@ -199,9 +195,8 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
     }
   }
 
-
   _shieldConsumePower() {
-    gameRef.remainingFuel.value -= properties.playerShieldConsumption;
+    gameRef.gameState.addFuel(-properties.playerShieldConsumption);
   }
 
   _showThrust(bool thrust) {
@@ -239,7 +234,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   }
 
   _fireConsumePower() {
-    gameRef.remainingFuel.value -= properties.playerFireConsumption;
+    gameRef.gameState.addFuel(-properties.playerFireConsumption);
   }
 
   int thrustThrottleCount = 0; // just throttling the thrust playing not every frame

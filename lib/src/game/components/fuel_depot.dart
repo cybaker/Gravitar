@@ -51,7 +51,7 @@ class FuelDepotComponent  extends SegmentComponent with CollisionCallbacks {
     if (other is PlayerShield) {
       gameRef.remove(this);
       if (fuelRemaining > 0) { // prevent multiple shields consuming multiple times
-        gameRef.singlePlayer.addFuel();
+        gameRef.gameState.addFuel(gameRef.gameState.currentStarSystem.fuelDepotProperties.fuelIncreasePerDepot);
         fuelRemaining = 0;
       }
       gameRef.audio.playSfx(SfxType.fuelScooped);

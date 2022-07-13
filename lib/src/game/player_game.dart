@@ -45,9 +45,6 @@ class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection {
   late Player singlePlayer = Player(); // Global only one player
   late Vector2 planetPlayerEntryPoint = Vector2(universe.playfieldDimension * playerEntersAtX, universe.playfieldDimension * playerEntersAtY);
 
-  late final ValueNotifier<double> remainingFuel = ValueNotifier<double>(10000);
-  late final ValueNotifier<bool> missionAccomplished = ValueNotifier<bool>(false);
-
   @override
   Future<void>? onLoad() async {
     await super.onLoad();
@@ -123,7 +120,7 @@ class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection {
   void enemyDestroyed() async {
     gameState.currentPlanet.numEnemies--;
     if (gameState.currentPlanet.numEnemies <= 0) {
-      missionAccomplished.value = true;
+      gameState.missionAccomplished.value = true;
     }
   }
 
