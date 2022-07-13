@@ -27,16 +27,12 @@ import '../game/player/player.dart';
 var playerNormal = PlayerProperties(playerThrust: 3, playerBulletFireLifetimeSecs: 3, playerBulletReloadSecs: 0.18);
 var playerEasy = PlayerProperties(playerBulletFireLifetimeSecs: 4, playerBulletReloadSecs: 0.1);
 var playerHard = PlayerProperties(playerThrust: 4, playerBulletFireLifetimeSecs: 2.2, playerBulletReloadSecs: 0.25);
+var playerInsane = PlayerProperties(playerThrust: 8, playerBulletFireLifetimeSecs: 2.2, playerBulletReloadSecs: 0.25);
 
-var basicEnemyBaseProperties = EnemyBaseProperties(
-  averageFireTimeSec: 0.5,
-);
-var enemyBasePropertiesEasy = EnemyBaseProperties(
-  averageFireTimeSec: 1.0,
-);
-var enemyBasePropertiesHard = EnemyBaseProperties(
-  averageFireTimeSec: 1.25,
-);
+var basicEnemyBaseProperties = EnemyBaseProperties(averageFireTimeSec: 0.5,);
+var enemyBasePropertiesEasy = EnemyBaseProperties(averageFireTimeSec: 1.0,);
+var enemyBasePropertiesHard = EnemyBaseProperties(averageFireTimeSec: 0.4,);
+var enemyBasePropertiesInsane = EnemyBaseProperties(averageFireTimeSec: 0.2,);
 
 var basicEnemyShipProperties = EnemyShipProperties(
   enemyShipAverageSpawnTimeSec: 10,
@@ -47,43 +43,24 @@ var basicEnemyShipProperties = EnemyShipProperties(
 var fuelDepotPropertiesEasy = FuelDepotProperties(fuelIncreasePerDepot: 2500);
 var fuelDepotPropertiesNormal = FuelDepotProperties(fuelIncreasePerDepot: 1000);
 var fuelDepotPropertiesHard = FuelDepotProperties(fuelIncreasePerDepot: 750);
+var fuelDepotPropertiesInsane = FuelDepotProperties(fuelIncreasePerDepot: 1000);
 
 var downGravity = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.3);
 var downGravityEasy = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.1);
 var downGravityHard = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.7);
+var downGravityInsane = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 1.2);
 
 /// Starts at upper left, 1000 Wide by 750 Height
 var planetCenterGravity = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.3);
 var planetCenterGravityEasy = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.1);
 var planetCenterGravityHard = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.7);
+var planetCenterGravityInsane = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 1.2);
 
 var starSystemCenterGravity = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.3);
 var starSystemCenterGravityEasy = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.1);
 var starSystemCenterGravityHard = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.7);
+var starSystemCenterGravityInsane = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 1.2);
 
-StarSystem starSystemNormal = StarSystem(
-  gravity: starSystemCenterGravity,
-  startWarpInPosition: Vector2(500, 50),
-  starImageFilename: 'star_image.jpeg',
-  planets: [
-    planet1,
-    planet2,
-    planet3,
-    planet4,
-    planet5,
-    planet6,
-    planet7,
-    planet8,
-    planet9,
-    planet10,
-    planet11,
-    reactor
-  ],
-  playerProperties: playerNormal,
-  basicEnemyProperties: basicEnemyBaseProperties,
-  shipEnemyProperties: basicEnemyShipProperties,
-  fuelDepotProperties: fuelDepotPropertiesNormal,
-);
 
 StarSystem starSystemEasyEasy = StarSystem(
   gravity: starSystemCenterGravityEasy,
@@ -229,6 +206,30 @@ StarSystem starSystemHardChallenge = StarSystem(
   fuelDepotProperties: fuelDepotPropertiesEasy,
 );
 
+StarSystem starSystemInsane = StarSystem(
+  gravity: starSystemCenterGravityInsane,
+  startWarpInPosition: Vector2(500, 50),
+  starImageFilename: 'star_image.jpeg',
+  planets: [
+    planet1Insane,
+    planet2Insane,
+    planet3Insane,
+    planet4Insane,
+    planet5Insane,
+    planet6Insane,
+    planet7Insane,
+    planet8Insane,
+    planet9Insane,
+    planet10Insane,
+    planet11Insane,
+    reactorInsane
+  ],
+  playerProperties: playerInsane,
+  basicEnemyProperties: enemyBasePropertiesInsane,
+  shipEnemyProperties: basicEnemyShipProperties,
+  fuelDepotProperties: fuelDepotPropertiesInsane,
+);
+
 
 var gameLevels = [
   GameUniverse(
@@ -368,6 +369,22 @@ var gameLevels = [
     extraLifeThreshold: 10000,
 
     starSystems: [starSystemHardChallenge],
+
+    // TODO: When ready, change these achievement IDs.
+    // You configure this in App Store Connect.
+    achievementIdIOS: 'first_win',
+    // You get this string when you configure an achievement in Play Console.
+    achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+  ),
+  GameUniverse(
+    level: 10,
+    name: 'Admiral - insane',
+    difficulty: 10,
+    cameraZoomedInDimension: 500,
+    playfieldDimension: 1000,
+    extraLifeThreshold: 10000,
+
+    starSystems: [starSystemInsane],
 
     // TODO: When ready, change these achievement IDs.
     // You configure this in App Store Connect.
