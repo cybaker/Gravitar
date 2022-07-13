@@ -6,6 +6,7 @@ import 'package:Gravitar/src/game/components/segment_component.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
+import 'package:flutter/foundation.dart';
 
 import '../player/player_shield.dart';
 
@@ -28,6 +29,8 @@ List<Vector2> _fuelDepotShape = [
 
 class FuelDepotComponent  extends SegmentComponent with CollisionCallbacks {
 
+  late var fuelRemaining = gameRef.gameState.currentStarSystem.fuelDepotProperties.fuelIncreasePerDepot;
+
   FuelDepotComponent({this.anchorLength = 0.5})
       : super(shapeVertices: _fuelDepotShape, relativeAnchorLength: anchorLength);
 
@@ -48,7 +51,10 @@ class FuelDepotComponent  extends SegmentComponent with CollisionCallbacks {
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is PlayerShield) {
       gameRef.remove(this);
-      gameRef.singlePlayer.addFuel();
+      if (fuelRemaining > 0) { // prevent multiple shields consuming multiple times
+        gameRef.singlePlayer.addFuel();
+        fuelRemaining = 0;
+      }
       gameRef.audio.playSfx(SfxType.fuelScooped);
     }
     super.onCollision(intersectionPoints, other);
