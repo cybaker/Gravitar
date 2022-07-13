@@ -29,7 +29,7 @@ var playerEasy = PlayerProperties(playerBulletFireLifetimeSecs: 4, playerBulletR
 var playerHard = PlayerProperties(playerThrust: 4, playerBulletFireLifetimeSecs: 2.2, playerBulletReloadSecs: 0.25);
 var playerInsane = PlayerProperties(playerThrust: 8, playerBulletFireLifetimeSecs: 2.2, playerBulletReloadSecs: 0.25);
 
-var basicEnemyBaseProperties = EnemyBaseProperties(averageFireTimeSec: 0.5,);
+var enemyBaseProperties = EnemyBaseProperties(averageFireTimeSec: 0.5,);
 var enemyBasePropertiesEasy = EnemyBaseProperties(averageFireTimeSec: 1.0,);
 var enemyBasePropertiesHard = EnemyBaseProperties(averageFireTimeSec: 0.4,);
 var enemyBasePropertiesInsane = EnemyBaseProperties(averageFireTimeSec: 0.2,);
@@ -40,10 +40,10 @@ var basicEnemyShipProperties = EnemyShipProperties(
   enemyShipSpeed: 20,
 );
 
-var fuelDepotPropertiesEasy = FuelDepotProperties(fuelIncreasePerDepot: 2500);
-var fuelDepotPropertiesNormal = FuelDepotProperties(fuelIncreasePerDepot: 1000);
-var fuelDepotPropertiesHard = FuelDepotProperties(fuelIncreasePerDepot: 750);
-var fuelDepotPropertiesInsane = FuelDepotProperties(fuelIncreasePerDepot: 1000);
+var fuelDepotPropertiesEasy = FuelDepotProperties(fuelIncreasePerDepot: 1500);
+var fuelDepotPropertiesNormal = FuelDepotProperties(fuelIncreasePerDepot: 2000);
+var fuelDepotPropertiesHard = FuelDepotProperties(fuelIncreasePerDepot: 3000);
+var fuelDepotPropertiesInsane = FuelDepotProperties(fuelIncreasePerDepot: 4000);
 
 var downGravity = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.3);
 var downGravityEasy = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.1);
