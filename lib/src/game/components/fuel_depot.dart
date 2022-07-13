@@ -6,7 +6,6 @@ import 'package:Gravitar/src/game/components/segment_component.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
-import 'package:flutter/foundation.dart';
 
 import '../player/player_shield.dart';
 
