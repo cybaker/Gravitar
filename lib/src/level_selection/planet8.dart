@@ -85,3 +85,12 @@ Planet(
     starSystemSize: Vector2(85, 85),
     imageFilename: 'jupiter3.jpeg');
 
+var planet8Insane =
+Planet(
+    gravity: planetCenterGravityInsane,
+    planetShapes: [_planet8PlanetShape],
+    planetExits: [SurroundPlanetExitComponent()],
+    starSystemPosition: Vector2(500, 800),
+    starSystemSize: Vector2(85, 85),
+    imageFilename: 'jupiter3.jpeg');
+

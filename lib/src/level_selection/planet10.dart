@@ -57,3 +57,12 @@ Planet(
     starSystemSize: Vector2(60, 60),
     imageFilename: 'jupiter4.jpeg');
 
+var planet10Insane =
+Planet(
+    gravity: downGravityInsane,
+    planetShapes: [_planet10PlanetShape],
+    planetExits: [SurroundPlanetExitComponent()],
+    starSystemPosition: Vector2(100, 750),
+    starSystemSize: Vector2(60, 60),
+    imageFilename: 'jupiter4.jpeg');
+
