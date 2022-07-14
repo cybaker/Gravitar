@@ -105,9 +105,16 @@ class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
       _fireTimeBurst();
     } else if (this.randomPercentOfTime(10)) {
       _fireAngleSpread();
+    } else if (this.randomPercentOfTime(50)) {
+      _fireRandomAngle();
     } else {
       _fireBullet(playerAngle);
     }
+  }
+
+  void _fireRandomAngle() {
+    var randomAngle = this.randomFromTo(0, pi);
+    _fireBullet((randomAngle + angle - pi/2) % 2*pi);
   }
 
   void _fireAngleSpread() {
@@ -117,18 +124,18 @@ class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
   }
 
   void _fireTimeBurst() {
-    async.Timer(Duration(milliseconds: 100), _fireOne);
-    async.Timer(Duration(milliseconds: 200), _fireOne);
-    async.Timer(Duration(milliseconds: 300), _fireOne);
+    async.Timer(Duration(milliseconds: 100), _fireAtPlayer);
+    async.Timer(Duration(milliseconds: 200), _fireAtPlayer);
+    async.Timer(Duration(milliseconds: 300), _fireAtPlayer);
   }
 
-  _fireOne() {
+  _fireAtPlayer() {
     _fireBullet(playerAngle);
   }
 
   _fireBullet(double playerAngle) {
     // debugPrint('Distance to player = ${this.distance(gameRef.singlePlayer)}');
-    final bulletVector = unitVectorToAngle(playerAngle, properties.bulletSpeed); // aim directly at player
+    final bulletVector = vectorAtAngle(playerAngle, properties.bulletSpeed); // aim directly at player
     gameRef.add(EnemyBullet(
         radius: 1,
         velocityVector: bulletVector,
@@ -159,7 +166,7 @@ class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
       atan2(gameRef.singlePlayer.position.x - firingPosition.x,
         gameRef.singlePlayer.position.y - firingPosition.y);
 
-  Vector2 unitVectorToAngle(double angle, double length) {
+  Vector2 vectorAtAngle(double angle, double length) {
     return Vector2(length*sin(angle), length*cos(angle));
   }
 }

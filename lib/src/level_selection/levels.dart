@@ -24,13 +24,13 @@ import '../game/model/gravity.dart';
 import '../game/model/star_system.dart';
 import '../game/player/player.dart';
 
-var playerNormal = PlayerProperties(playerThrust: 3, playerBulletFireLifetimeSecs: 3, playerBulletReloadSecs: 0.18);
 var playerEasy = PlayerProperties(playerBulletFireLifetimeSecs: 4, playerBulletReloadSecs: 0.1);
+var playerNormal = PlayerProperties(playerThrust: 3, playerBulletFireLifetimeSecs: 3, playerBulletReloadSecs: 0.18);
 var playerHard = PlayerProperties(playerThrust: 4, playerBulletFireLifetimeSecs: 2.2, playerBulletReloadSecs: 0.25);
 var playerInsane = PlayerProperties(playerThrust: 8, playerBulletFireLifetimeSecs: 2.2, playerBulletReloadSecs: 0.25);
 
-var enemyBaseProperties = EnemyBaseProperties(averageFireTimeSec: 0.5,);
 var enemyBasePropertiesEasy = EnemyBaseProperties(averageFireTimeSec: 1.0,);
+var enemyBasePropertiesNormal = EnemyBaseProperties(averageFireTimeSec: 0.5,);
 var enemyBasePropertiesHard = EnemyBaseProperties(averageFireTimeSec: 0.4,);
 var enemyBasePropertiesInsane = EnemyBaseProperties(averageFireTimeSec: 0.2,);
 
@@ -40,23 +40,23 @@ var basicEnemyShipProperties = EnemyShipProperties(
   enemyShipSpeed: 20,
 );
 
-var fuelDepotPropertiesEasy = FuelDepotProperties(fuelIncreasePerDepot: 1500);
+var fuelDepotPropertiesEasy = FuelDepotProperties(fuelIncreasePerDepot: 2500);
 var fuelDepotPropertiesNormal = FuelDepotProperties(fuelIncreasePerDepot: 2000);
 var fuelDepotPropertiesHard = FuelDepotProperties(fuelIncreasePerDepot: 3000);
 var fuelDepotPropertiesInsane = FuelDepotProperties(fuelIncreasePerDepot: 4000);
 
-var downGravity = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.3);
+var downGravityNormal = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.3);
 var downGravityEasy = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.1);
 var downGravityHard = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.7);
 var downGravityInsane = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 1.2);
 
 /// Starts at upper left, 1000 Wide by 750 Height
-var planetCenterGravity = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.3);
+var planetCenterGravityNormal = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.3);
 var planetCenterGravityEasy = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.1);
 var planetCenterGravityHard = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.7);
 var planetCenterGravityInsane = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 1.2);
 
-var starSystemCenterGravity = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.3);
+var starSystemCenterGravityNormal = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.3);
 var starSystemCenterGravityEasy = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.1);
 var starSystemCenterGravityHard = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.7);
 var starSystemCenterGravityInsane = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 1.2);
@@ -111,7 +111,7 @@ StarSystem starSystemEasyChallenge = StarSystem(
 );
 
 StarSystem starSystemNormalEasy = StarSystem(
-  gravity: starSystemCenterGravity,
+  gravity: starSystemCenterGravityNormal,
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
   planets: [
@@ -127,7 +127,7 @@ StarSystem starSystemNormalEasy = StarSystem(
 );
 
 StarSystem starSystemNormalNormal = StarSystem(
-  gravity: starSystemCenterGravity,
+  gravity: starSystemCenterGravityNormal,
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
   planets: [
@@ -144,7 +144,7 @@ StarSystem starSystemNormalNormal = StarSystem(
 );
 
 StarSystem starSystemNormalChallenge = StarSystem(
-  gravity: starSystemCenterGravity,
+  gravity: starSystemCenterGravityNormal,
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
   planets: [

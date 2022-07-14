@@ -99,7 +99,7 @@ PlanetShape _planet2PlanetShape4 = PlanetShape(offset: Vector2(24, 700), segment
 
 var planet2 =
 Planet(
-    gravity: downGravity,
+    gravity: downGravityNormal,
     planetShapes: [_planet2PlanetShape1, _planet2PlanetShape2, _planet2PlanetShape3, _planet2PlanetShape4, ],
     planetExits: [SurroundPlanetExitComponent()],
     starSystemPosition: Vector2(700, 200),

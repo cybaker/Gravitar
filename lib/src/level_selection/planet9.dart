@@ -88,7 +88,7 @@ PlanetShape _planetShape9SmallG = PlanetShape(offset: Vector2(677, 700), segment
 
 var planet9 =
 Planet(
-    gravity: downGravity,
+    gravity: downGravityNormal,
     planetShapes: [
       _planetShape9LargeA, _planetShape9LargeB, _planetShape9LargeC, _planetShape9LargeD,
       _planetShape9SmallA, _planetShape9SmallB, _planetShape9SmallC, _planetShape9SmallD,

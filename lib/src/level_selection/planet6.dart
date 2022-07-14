@@ -61,7 +61,7 @@ PlanetShape _planet6PlanetShape2 = PlanetShape(offset: _planet6SegmentsOffset2, 
 
 var planet6 =
 Planet(
-    gravity: downGravity,
+    gravity: downGravityNormal,
     planetShapes: [_planet6PlanetShape1, _planet6PlanetShape2],
     planetExits: [SurroundPlanetExitComponent()],
     starSystemPosition: Vector2(850, 100),
