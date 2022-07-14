@@ -22,24 +22,24 @@ import 'player_thrust.dart';
 class PlayerProperties {
 
   PlayerProperties({
-    this.playerThrust = 2,
-    this.playerThrustConsumption = 2.5,
-    this.playerFireConsumption = 5,
-    this.playerShieldConsumption = 10,
-    this.playerBulletFireLifetimeSecs = 2,
-    this.playerBulletSpeed = 150,
-    this.playerBulletReloadSecs = 0.2,
-    this.playerBulletDamageToEnemy = 1,
+    this.thrust = 2,
+    this.thrustConsumption = 2.5,
+    this.fireBulletConsumption = 4,
+    this.shieldConsumption = 6,
+    this.bulletFireLifetimeSecs = 3,
+    this.bulletSpeed = 150,
+    this.bulletReloadSecs = 0.2,
+    this.bulletDamageToEnemy = 1,
   });
 
-  final double playerThrust;
-  final double playerThrustConsumption;
-  final double playerFireConsumption;
-  final double playerShieldConsumption;
-  final double playerBulletFireLifetimeSecs;
-  final double playerBulletSpeed;
-  final double playerBulletReloadSecs;
-  final double playerBulletDamageToEnemy;
+  final double thrust;
+  final double thrustConsumption;
+  final double fireBulletConsumption;
+  final double shieldConsumption;
+  final double bulletFireLifetimeSecs;
+  final double bulletSpeed;
+  final double bulletReloadSecs;
+  final double bulletDamageToEnemy;
 }
 
 List<Vector2> _playerShape = [
@@ -142,7 +142,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   }
 
   _thrustConsumePower() {
-    gameRef.gameState.addFuel(-properties.playerThrustConsumption);
+    gameRef.gameState.addFuel(-properties.thrustConsumption);
   }
 
   _handleKeyPresses() {
@@ -155,7 +155,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
     }
 
     if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.arrowUp)) {
-      _thrustShip(angle, gameRef.singlePlayer.properties.playerThrust);
+      _thrustShip(angle, gameRef.singlePlayer.properties.thrust);
     } else {
       _showThrust(false);
     }
@@ -196,7 +196,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   }
 
   _shieldConsumePower() {
-    gameRef.gameState.addFuel(-properties.playerShieldConsumption);
+    gameRef.gameState.addFuel(-properties.shieldConsumption);
   }
 
   _showThrust(bool thrust) {
@@ -222,11 +222,11 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
     final nosePoint = Vector2(-2, -2);
     gameRef.add(Bullet(
         radius: 2,
-        velocityVector: velocity + shipDirection * properties.playerBulletSpeed,
+        velocityVector: velocity + shipDirection * properties.bulletSpeed,
         initialPosition: position + nosePoint,
-        timeToLive: properties.playerBulletFireLifetimeSecs));
+        timeToLive: properties.bulletFireLifetimeSecs));
 
-    fireTimeout = properties.playerBulletReloadSecs;
+    fireTimeout = properties.bulletReloadSecs;
 
     _fireConsumePower();
 
@@ -234,7 +234,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   }
 
   _fireConsumePower() {
-    gameRef.gameState.addFuel(-properties.playerFireConsumption);
+    gameRef.gameState.addFuel(-properties.fireBulletConsumption);
   }
 
   int thrustThrottleCount = 0; // just throttling the thrust playing not every frame
