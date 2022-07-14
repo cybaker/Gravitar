@@ -103,6 +103,8 @@ class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection {
     audio.playSfx(SfxType.enemyDestroyed);
     if (gameState.loseLife() > 0) {
       respawnInPlanet();
+    } else {
+      exitPlanet();
     }
   }
 

@@ -2,6 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:Gravitar/src/game/components/reactor.dart';
 import 'package:flame/game.dart';
 
 import 'planet1.dart';
@@ -61,6 +62,8 @@ var starSystemCenterGravityEasy = Gravity(gravityCenter: Vector2(500, 500), grav
 var starSystemCenterGravityHard = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.7);
 var starSystemCenterGravityInsane = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 1.2);
 
+var reactorPropertiesEasy = ReactorProperties();
+
 
 StarSystem starSystemEasyEasy = StarSystem(
   gravity: starSystemCenterGravityEasy,
@@ -76,6 +79,7 @@ StarSystem starSystemEasyEasy = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemEasyNormal = StarSystem(
@@ -93,6 +97,7 @@ StarSystem starSystemEasyNormal = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemEasyChallenge = StarSystem(
@@ -100,14 +105,15 @@ StarSystem starSystemEasyChallenge = StarSystem(
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
   planets: [
-    planet7Easy,
-    planet11Easy,
+    // planet7Easy,
+    // planet11Easy,
     reactorEasy
   ],
   playerProperties: playerEasy,
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemNormalEasy = StarSystem(
@@ -124,6 +130,7 @@ StarSystem starSystemNormalEasy = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemNormalNormal = StarSystem(
@@ -141,6 +148,7 @@ StarSystem starSystemNormalNormal = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemNormalChallenge = StarSystem(
@@ -156,6 +164,7 @@ StarSystem starSystemNormalChallenge = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemHardEasy = StarSystem(
@@ -172,6 +181,7 @@ StarSystem starSystemHardEasy = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemHardNormal = StarSystem(
@@ -189,6 +199,7 @@ StarSystem starSystemHardNormal = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemHardChallenge = StarSystem(
@@ -204,6 +215,7 @@ StarSystem starSystemHardChallenge = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemInsane = StarSystem(
@@ -228,6 +240,7 @@ StarSystem starSystemInsane = StarSystem(
   basicEnemyProperties: enemyBasePropertiesInsane,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesInsane,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 
@@ -240,7 +253,7 @@ var gameLevels = [
     playfieldDimension: 1000,
     extraLifeThreshold: 2000,
 
-    starSystems: [starSystemEasyEasy],
+    starSystems: [starSystemEasyChallenge],
 
     // TODO: When ready, change these achievement IDs.
     // You configure this in App Store Connect.

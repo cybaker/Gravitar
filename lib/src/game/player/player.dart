@@ -1,8 +1,5 @@
 import 'dart:math';
 
-import 'package:Gravitar/src/game/components/planet_exit.dart';
-import 'package:Gravitar/src/game/components/planet_sprite.dart';
-import 'package:Gravitar/src/game/components/star_sprite.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
@@ -11,6 +8,9 @@ import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
 
 import '../../audio/sounds.dart';
+import '../components/planet_exit.dart';
+import '../components/planet_sprite.dart';
+import '../components/star_sprite.dart';
 import '../components/base_enemy.dart';
 import '../components/bullet.dart';
 import '../components/planet_polygon.dart';

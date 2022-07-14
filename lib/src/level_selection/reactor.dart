@@ -1,3 +1,4 @@
+import 'package:Gravitar/src/game/components/reactor.dart';
 import 'package:flame/components.dart';
 
 import '../game/components/base_enemy.dart';
@@ -20,7 +21,7 @@ List<PlanetSegment> _planetSegmentsReactor = [
   PlanetSegment(positionEnd: Vector2(332, 290), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(519, 488), segmentComponents: [EnemyBaseComponent(anchorLength: 0.15)]),
   PlanetSegment(positionEnd: Vector2(643, 488), segmentComponents: []),
-  PlanetSegment(positionEnd: Vector2(707, 433), segmentComponents: [EnemyBaseComponent()]),
+  PlanetSegment(positionEnd: Vector2(707, 433), segmentComponents: [ReactorComponent()]),
   PlanetSegment(positionEnd: Vector2(638, 350), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(525, 350), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(471, 283), segmentComponents: []),
