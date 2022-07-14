@@ -23,7 +23,7 @@ class PlayerProperties {
 
   PlayerProperties({
     this.playerThrust = 2,
-    this.playerThrustConsumption = 5,
+    this.playerThrustConsumption = 2.5,
     this.playerFireConsumption = 5,
     this.playerShieldConsumption = 10,
     this.playerBulletFireLifetimeSecs = 2,

@@ -40,7 +40,7 @@ var basicEnemyShipProperties = EnemyShipProperties(
   enemyShipSpeed: 20,
 );
 
-var fuelDepotPropertiesEasy = FuelDepotProperties(fuelIncreasePerDepot: 2500);
+var fuelDepotPropertiesEasy = FuelDepotProperties(fuelIncreasePerDepot: 2000);
 var fuelDepotPropertiesNormal = FuelDepotProperties(fuelIncreasePerDepot: 2000);
 var fuelDepotPropertiesHard = FuelDepotProperties(fuelIncreasePerDepot: 3000);
 var fuelDepotPropertiesInsane = FuelDepotProperties(fuelIncreasePerDepot: 4000);
@@ -67,9 +67,9 @@ StarSystem starSystemEasyEasy = StarSystem(
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
   planets: [
-    // planet2Easy,
-    // planet8Easy,
-    // planet9Easy,
+    planet2Easy,
+    planet8Easy,
+    planet9Easy,
     planet10Easy,
   ],
   playerProperties: playerEasy,
