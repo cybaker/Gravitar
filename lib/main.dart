@@ -11,6 +11,7 @@ import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
+import 'src/game/player_game.dart';
 import 'src/ads/ads_controller.dart';
 import 'src/app_lifecycle/app_lifecycle.dart';
 import 'src/audio/audio_controller.dart';
@@ -154,11 +155,11 @@ class GravitarApp extends StatelessWidget {
                     path: 'won',
                     pageBuilder: (context, state) {
                       final map = state.extra! as Map<String, dynamic>;
-                      final score = map['score'] as Score;
+                      final game = map['game'] as PlayerGame;
 
                       return buildMyTransition(
                         child: WinLevelScreen(
-                          score: score,
+                          game: game,
                           key: const Key('win level'),
                         ),
                         color: context.watch<Palette>().backgroundPlaySession,

@@ -45,7 +45,7 @@ class EnemyShip extends EnemyBaseComponent {
   void move(double dt) {
     moveTimeout -= dt;
     if (_canChangeDirection) {
-      moveVector = unitVectorToAngle(playerAngle, gameRef.gameState.currentStarSystem.shipEnemyProperties.enemyShipSpeed);
+      moveVector = vectorAtAngle(playerAngle, gameRef.gameState.currentStarSystem.shipEnemyProperties.enemyShipSpeed);
       moveTimeout = moveTimeout;
     }
     position = position + moveVector * dt;

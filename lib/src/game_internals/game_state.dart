@@ -22,11 +22,15 @@ class GameState extends ChangeNotifier{
 
   late StarSystem currentStarSystem;
   late Planet currentPlanet;
-  var PLAYER_LIVES = 6;
+  var _PLAYER_LIVES = 6;
   var extraLifeTarget = 0;
 
-  late final ValueNotifier<int> remainingLives = ValueNotifier<int>(PLAYER_LIVES);
+  Duration? duration;
+
+  late final ValueNotifier<int> remainingLives = ValueNotifier<int>(_PLAYER_LIVES);
   late final ValueNotifier<double> score = ValueNotifier<double>(0);
+  late final ValueNotifier<double> remainingFuel = ValueNotifier<double>(10000);
+  late final ValueNotifier<bool> missionAccomplished = ValueNotifier<bool>(false);
 
   GameState({required this.onUniverseExit, required this.onStarSystemExit, required this.onPlanetExit, required this.universe}) {
     currentStarSystem = universe.starSystems[0];
@@ -40,6 +44,14 @@ class GameState extends ChangeNotifier{
       exitPlanet();
     }
     return remainingLives.value;
+  }
+
+  addFuel(double amount) {
+    if (remainingFuel.value > 0) {
+      remainingFuel.value += amount;
+    } else {
+      exitPlanet();
+    }
   }
 
   void addScoreAndBumpLives(int points) {

@@ -135,8 +135,10 @@ class PlanetViewState extends State<PlanetView> {
     await Future<void>.delayed(_celebrationDuration);
     if (!mounted) return;
 
+    _playerGame.gameState.duration = DateTime.now().difference(_startOfPlay);
+
     GoRouter.of(context).pop();
-    GoRouter.of(context).go('/play/won', extra: {'score': score});
+    GoRouter.of(context).go('/play/won', extra: {'game': _playerGame});
   }
 
   Future<void> _playerExitedUniverse() async {
@@ -163,7 +165,7 @@ class PlanetViewState extends State<PlanetView> {
   Future<void> _playerExitedPlanet() async {
     debugPrint('PlanetView.playerExitedPlanet');
 
-    if (_gameState.remainingLives.value <= 0) {
+    if (_gameState.remainingLives.value <= 0 || _gameState.remainingFuel.value <= 0) {
       _playerLost();
     } else {
       playerReenterExistingStarSystem();
@@ -194,14 +196,14 @@ class PlanetViewState extends State<PlanetView> {
   }
 
   void playerReenterExistingStarSystem() {
-    _playerGame.missionAccomplished.value = false;
+    _playerGame.gameState.missionAccomplished.value = false;
     _gameState.currentStarSystem.currentWarpInPosition = _gameState.currentPlanet.numEnemies == 0 ?
       _gameState.currentPlanet.starSystemPosition : _gameState.currentStarSystem.startWarpInPosition;
     _playerGame.loadStarSystem();
   }
 
   void enterPlanet() {
-    _playerGame.missionAccomplished.value = false;
+    _playerGame.gameState.missionAccomplished.value = false;
     _playerGame.loadPlanet();
   }
 }

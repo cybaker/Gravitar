@@ -23,6 +23,13 @@ class Score {
 
     // The lower the time to beat the level, the higher the score.
     score *= 10000 ~/ (duration.inSeconds.abs() + 1);
+
+    // More remaining fuel, more score
+    score += game.gameState.remainingFuel.value;
+
+    // More remaining lives, more score
+    score += 1000 * game.gameState.remainingLives.value;
+
     return Score._(score.toInt(), duration, game.universe.level);
   }
 

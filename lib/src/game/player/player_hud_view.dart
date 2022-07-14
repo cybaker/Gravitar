@@ -42,7 +42,7 @@ class PlayerHudView extends StatelessWidget {
 
   ValueListenableBuilder<bool> missionStatusWidget(Palette palette) {
     return ValueListenableBuilder<bool>(
-      valueListenable: playerGame.missionAccomplished,
+      valueListenable: playerGame.gameState.missionAccomplished,
       builder: (context, value, child) {
         if (value) return Text(
           'Mission Accomplished',
@@ -69,7 +69,7 @@ class PlayerHudView extends StatelessWidget {
 
   ValueListenableBuilder<double> fuelWidget(Palette palette) {
     return ValueListenableBuilder<double>(
-        valueListenable: playerGame.remainingFuel,
+        valueListenable: playerGame.gameState.remainingFuel,
         builder: (context, value, child) {
           return Text(
             'Fuel: ${value.toInt()}',

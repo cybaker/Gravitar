@@ -17,7 +17,7 @@ class AlienFactory extends Component
 
   double futureSpawnTime = 0;
 
-  double get randomSpawnTime => basicEnemyBaseProperties.averageFireTimeSec*(0.5 + Random().nextDouble());
+  double get randomSpawnTime => enemyBasePropertiesNormal.averageFireTimeSec*(0.5 + Random().nextDouble());
 
   @override
   Future<void> onLoad() async {

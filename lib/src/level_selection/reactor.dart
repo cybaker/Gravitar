@@ -39,7 +39,7 @@ PlanetShape _reactorPlanetShape = PlanetShape(offset: Vector2(0, 100), segments:
 
 var reactor =
 Planet(
-    gravity: planetCenterGravity,
+    gravity: planetCenterGravityNormal,
     planetShapes: [_reactorPlanetShape],
     planetExits: [SurroundPlanetExitComponent()],
     starSystemPosition: Vector2(200, 900),
