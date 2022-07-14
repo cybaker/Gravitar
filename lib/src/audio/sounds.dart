@@ -24,12 +24,13 @@ List<String> soundTypeToFilename(SfxType type) {
 /// Allows control over loudness of different SFX types.
 double soundTypeToVolume(SfxType type) {
   switch (type) {
+    case SfxType.thrust:
+      return 0.2;
     case SfxType.bullet:
     case SfxType.buttonTap:
       return 0.7;
     case SfxType.enemyBullet:
     case SfxType.shield:
-    case SfxType.thrust:
       return 0.4;
     case SfxType.fuelScooped:
     case SfxType.enemyDestroyed:

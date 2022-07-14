@@ -74,7 +74,7 @@ Planet(
     gravity: downGravityNormal,
     planetShapes: [_planet7PlanetShape1, _planet7PlanetShape2],
     planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(800, 900),
+    starSystemPosition: Vector2(500, 900),
     starSystemSize: Vector2(50, 50),
     imageFilename: 'io1.jpeg');
 

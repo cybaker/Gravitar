@@ -24,10 +24,10 @@ import '../game/model/gravity.dart';
 import '../game/model/star_system.dart';
 import '../game/player/player.dart';
 
-var playerEasy = PlayerProperties(playerBulletFireLifetimeSecs: 4, playerBulletReloadSecs: 0.1);
-var playerNormal = PlayerProperties(playerThrust: 3, playerBulletFireLifetimeSecs: 3, playerBulletReloadSecs: 0.18);
-var playerHard = PlayerProperties(playerThrust: 4, playerBulletFireLifetimeSecs: 2.2, playerBulletReloadSecs: 0.25);
-var playerInsane = PlayerProperties(playerThrust: 8, playerBulletFireLifetimeSecs: 2.2, playerBulletReloadSecs: 0.25);
+var playerEasy = PlayerProperties(bulletFireLifetimeSecs: 4, bulletReloadSecs: 0.1);
+var playerNormal = PlayerProperties(thrust: 3, bulletFireLifetimeSecs: 3, bulletReloadSecs: 0.18);
+var playerHard = PlayerProperties(thrust: 4, thrustConsumption: 2, bulletFireLifetimeSecs: 2.5, bulletReloadSecs: 0.25);
+var playerInsane = PlayerProperties(thrust: 8, thrustConsumption: 1.5, bulletFireLifetimeSecs: 2.5, bulletReloadSecs: 0.25);
 
 var enemyBasePropertiesEasy = EnemyBaseProperties(averageFireTimeSec: 1.0,);
 var enemyBasePropertiesNormal = EnemyBaseProperties(averageFireTimeSec: 0.5,);
@@ -40,7 +40,7 @@ var basicEnemyShipProperties = EnemyShipProperties(
   enemyShipSpeed: 20,
 );
 
-var fuelDepotPropertiesEasy = FuelDepotProperties(fuelIncreasePerDepot: 2500);
+var fuelDepotPropertiesEasy = FuelDepotProperties(fuelIncreasePerDepot: 2000);
 var fuelDepotPropertiesNormal = FuelDepotProperties(fuelIncreasePerDepot: 2000);
 var fuelDepotPropertiesHard = FuelDepotProperties(fuelIncreasePerDepot: 3000);
 var fuelDepotPropertiesInsane = FuelDepotProperties(fuelIncreasePerDepot: 4000);
@@ -67,9 +67,9 @@ StarSystem starSystemEasyEasy = StarSystem(
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
   planets: [
-    // planet2Easy,
-    // planet8Easy,
-    // planet9Easy,
+    planet2Easy,
+    planet8Easy,
+    planet9Easy,
     planet10Easy,
   ],
   playerProperties: playerEasy,
