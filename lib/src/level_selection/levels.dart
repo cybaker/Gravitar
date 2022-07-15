@@ -42,9 +42,9 @@ var basicEnemyShipProperties = EnemyShipProperties(
 );
 
 var fuelDepotPropertiesEasy = FuelDepotProperties(fuelIncreasePerDepot: 2000);
-var fuelDepotPropertiesNormal = FuelDepotProperties(fuelIncreasePerDepot: 2000);
-var fuelDepotPropertiesHard = FuelDepotProperties(fuelIncreasePerDepot: 3000);
-var fuelDepotPropertiesInsane = FuelDepotProperties(fuelIncreasePerDepot: 4000);
+var fuelDepotPropertiesNormal = FuelDepotProperties(fuelIncreasePerDepot: 3000);
+var fuelDepotPropertiesHard = FuelDepotProperties(fuelIncreasePerDepot: 4000);
+var fuelDepotPropertiesInsane = FuelDepotProperties(fuelIncreasePerDepot: 5000);
 
 var downGravityNormal = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.3);
 var downGravityEasy = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.1);
@@ -63,7 +63,6 @@ var starSystemCenterGravityHard = Gravity(gravityCenter: Vector2(500, 500), grav
 var starSystemCenterGravityInsane = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 1.2);
 
 var reactorPropertiesEasy = ReactorProperties();
-
 
 StarSystem starSystemEasyEasy = StarSystem(
   gravity: starSystemCenterGravityEasy,
@@ -104,11 +103,7 @@ StarSystem starSystemEasyChallenge = StarSystem(
   gravity: starSystemCenterGravityEasy,
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
-  planets: [
-    planet7Easy,
-    planet11Easy,
-    reactorEasy
-  ],
+  planets: [planet7Easy, planet11Easy, reactorEasy],
   playerProperties: playerEasy,
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
@@ -155,11 +150,7 @@ StarSystem starSystemNormalChallenge = StarSystem(
   gravity: starSystemCenterGravityNormal,
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
-  planets: [
-    planet7,
-    planet11,
-    reactor
-  ],
+  planets: [planet7, planet11, reactor],
   playerProperties: playerNormal,
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
@@ -206,11 +197,7 @@ StarSystem starSystemHardChallenge = StarSystem(
   gravity: starSystemCenterGravityHard,
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
-  planets: [
-    planet7Hard,
-    planet11Hard,
-    reactorHard
-  ],
+  planets: [planet7Hard, planet11Hard, reactorHard],
   playerProperties: playerHard,
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
@@ -243,7 +230,6 @@ StarSystem starSystemInsane = StarSystem(
   reactorProperties: reactorPropertiesEasy,
 );
 
-
 var gameLevels = [
   GameUniverse(
     level: 1,
@@ -252,7 +238,6 @@ var gameLevels = [
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 2000,
-
 
     starSystems: [starSystemEasyEasy],
 
@@ -268,7 +253,7 @@ var gameLevels = [
     difficulty: 2,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
-    extraLifeThreshold: 10000,
+    extraLifeThreshold: 2000,
 
     starSystems: [starSystemEasyNormal],
 
@@ -284,7 +269,7 @@ var gameLevels = [
     difficulty: 3,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
-    extraLifeThreshold: 10000,
+    extraLifeThreshold: 2000,
 
     starSystems: [starSystemEasyChallenge],
 
@@ -300,7 +285,7 @@ var gameLevels = [
     difficulty: 4,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
-    extraLifeThreshold: 10000,
+    extraLifeThreshold: 4000,
 
     starSystems: [starSystemNormalEasy],
 
@@ -316,7 +301,7 @@ var gameLevels = [
     difficulty: 5,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
-    extraLifeThreshold: 10000,
+    extraLifeThreshold: 4000,
 
     starSystems: [starSystemNormalNormal],
 
@@ -332,7 +317,7 @@ var gameLevels = [
     difficulty: 6,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
-    extraLifeThreshold: 10000,
+    extraLifeThreshold: 4000,
 
     starSystems: [starSystemNormalChallenge],
 
@@ -348,7 +333,7 @@ var gameLevels = [
     difficulty: 7,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
-    extraLifeThreshold: 10000,
+    extraLifeThreshold: 5000,
 
     starSystems: [starSystemHardEasy],
 
@@ -364,7 +349,7 @@ var gameLevels = [
     difficulty: 8,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
-    extraLifeThreshold: 10000,
+    extraLifeThreshold: 5000,
 
     starSystems: [starSystemHardNormal],
 
@@ -380,7 +365,7 @@ var gameLevels = [
     difficulty: 9,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
-    extraLifeThreshold: 10000,
+    extraLifeThreshold: 5000,
 
     starSystems: [starSystemHardChallenge],
 
@@ -393,10 +378,10 @@ var gameLevels = [
   GameUniverse(
     level: 10,
     name: 'Admiral - insane',
-    difficulty: 10,
+    difficulty: 100,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
-    extraLifeThreshold: 10000,
+    extraLifeThreshold: 5000,
 
     starSystems: [starSystemInsane],
 
