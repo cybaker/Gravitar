@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
+import 'package:flame/particles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
@@ -113,7 +114,8 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is EnemyBaseComponent ||
         other is PlanetPolygon ||
-        other is StarSprite) {
+        other is StarSprite ||
+        other is SingleChildParticle ) {
       _log.info(() => 'Player destroyed by $other');
       damageShip();
     } else if (other is PlanetExitComponent) {

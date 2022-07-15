@@ -84,12 +84,8 @@ class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
     gameRef.remove(this);
     gameRef.audio.playSfx(SfxType.enemyDestroyed);
     gameRef.gameState.addScoreAndBumpLives(properties.pointsPerEnemy.toInt());
-    _addExplosion();
-    gameRef.enemyDestroyed();
-  }
-
-  _addExplosion() {
     gameRef.add(shipExplosion(position));
+    gameRef.enemyDestroyed();
   }
 
   _fireTimerTick(double dt) {

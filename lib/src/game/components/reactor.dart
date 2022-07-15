@@ -6,12 +6,13 @@ import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
 
 import '../../../src/audio/sounds.dart';
+import 'explosion.dart';
 import 'segment_component.dart';
 import 'bullet.dart';
 
 class ReactorProperties {
   ReactorProperties({
-    this.countdownSeconds = 20,
+    this.countdownSeconds = 10,
   });
 
   final double countdownSeconds;
@@ -79,14 +80,20 @@ class ReactorComponent  extends SegmentComponent with CollisionCallbacks {
   }
 
   void oneSecondExpired() {
-    remainingSeconds < 0 ? loseALife() :  countdownTick();
+    remainingSeconds <= 0 ? countdownExpired() :  countdownTick();
   }
 
-  void loseALife() {
+  void countdownExpired() {
+    gameRef.remove(this);
+    gameRef.add(reactorExplosion(position));
+  }
+
+  void countdownExpired1() {
     gameRef.playerHit();
     countDown = false;
     remainingSeconds = countdownSeconds;
   }
+
 
   int get countdownSeconds => gameRef.gameState.currentStarSystem.reactorProperties.countdownSeconds.toInt();
 

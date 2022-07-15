@@ -2,7 +2,6 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:Gravitar/src/game/components/reactor.dart';
 import 'package:flame/game.dart';
 
 import 'planet1.dart';
@@ -18,6 +17,7 @@ import 'planet10.dart';
 import 'planet11.dart';
 import 'reactor.dart';
 
+import '../game/components/reactor.dart';
 import '../game/components/fuel_depot.dart';
 import '../game/components/base_enemy.dart';
 import '../game/components/enemy_ship.dart';
@@ -105,8 +105,8 @@ StarSystem starSystemEasyChallenge = StarSystem(
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
   planets: [
-    // planet7Easy,
-    // planet11Easy,
+    planet7Easy,
+    planet11Easy,
     reactorEasy
   ],
   playerProperties: playerEasy,
@@ -253,7 +253,8 @@ var gameLevels = [
     playfieldDimension: 1000,
     extraLifeThreshold: 2000,
 
-    starSystems: [starSystemEasyChallenge],
+
+    starSystems: [starSystemEasyEasy],
 
     // TODO: When ready, change these achievement IDs.
     // You configure this in App Store Connect.

@@ -7,6 +7,15 @@ import '../extensions/generic.dart';
 /// explosives detonating after an object is destroyed
 ///
 
+ParticleSystemComponent reactorExplosion(Vector2 position) => ParticleSystemComponent(
+  particle: TranslatedParticle(
+    lifespan: 6,
+    offset: position,
+    child: hugeExplosion,
+  ),
+  priority: 4,
+);
+
 ParticleSystemComponent planetExplosion(Vector2 position) => ParticleSystemComponent(
       particle: TranslatedParticle(
         lifespan: 3,
@@ -39,6 +48,8 @@ Particle get smallExplosion => baseExplosion(6, 10, 1);
 Particle get mediumExplosion => baseExplosion(10, 20, 3);
 
 Particle get largeExplosion => baseExplosion(20, 50, 5);
+
+Particle get hugeExplosion => baseExplosion(300, 200, 10);
 
 Particle baseExplosion(int count, double boxSize, int particleMaxSize) {
   Vector2 cellSize = Vector2(boxSize, boxSize);
