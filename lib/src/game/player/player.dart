@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
-import 'package:flame/particles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
@@ -132,6 +131,10 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
     gameRef.playerHit();
   }
 
+  pushAwayFrom(Vector2 position, double magnitude) {
+    velocity += unitVectorToVector(position) * -magnitude;
+  }
+
   _thrustShip(double rotation, double thrust) {
       final newThrust = Vector2(cos(rotation - halfPi) * thrust, sin(rotation - halfPi) * thrust);
       final total = velocity + newThrust;
@@ -250,9 +253,15 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
 
   Gravity get gravity => gameRef.getGravity();
 
-  double get angleToGravity => atan2(gravity.gravityCenter.x - position.x, gravity.gravityCenter.y - position.y);
+  double angleToVector(Vector2 vector) {
+    return atan2(vector.x - position.x, vector.y - position.y);
+  }
 
-  Vector2 get unitVectorToGravity => Vector2(sin(angleToGravity), cos(angleToGravity));
+  Vector2 unitVectorToVector(Vector2 vector) {
+    return Vector2(sin(angleToVector(vector)), cos(angleToVector(vector)));
+  }
+
+  Vector2 get unitVectorToGravity => unitVectorToVector(gravity.gravityCenter);
 
   Vector2 get vectorToGravity => unitVectorToGravity * gravity.gravityAmount;
 }

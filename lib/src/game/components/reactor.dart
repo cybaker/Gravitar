@@ -6,6 +6,7 @@ import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
 
 import '../../../src/audio/sounds.dart';
+import 'circle_explosion.dart';
 import 'explosion.dart';
 import 'segment_component.dart';
 import 'bullet.dart';
@@ -85,15 +86,10 @@ class ReactorComponent  extends SegmentComponent with CollisionCallbacks {
 
   void countdownExpired() {
     gameRef.remove(this);
+    gameRef.enemyDestroyed();
     gameRef.add(reactorExplosion(position));
+    gameRef.add(ExpandingCircle(expandSpeed: 2.5, initialPosition: position, secondsToLive: 4));
   }
-
-  void countdownExpired1() {
-    gameRef.playerHit();
-    countDown = false;
-    remainingSeconds = countdownSeconds;
-  }
-
 
   int get countdownSeconds => gameRef.gameState.currentStarSystem.reactorProperties.countdownSeconds.toInt();
 
@@ -102,5 +98,18 @@ class ReactorComponent  extends SegmentComponent with CollisionCallbacks {
     textComponent.text = remainingSeconds.toString();
     tickCount = 1;
     gameRef.audio.playSfx(SfxType.buttonTap);
+    togglePaint();
+  }
+
+  togglePaint() {
+    if (remainingSeconds.isEven) {
+      paint = const PaletteEntry(Color(0x806666FF)).paint()
+        ..style = PaintingStyle.fill
+        ..strokeWidth = 6;
+    } else {
+      paint = const PaletteEntry(Color(0xFFFF2222)).paint()
+        ..style = PaintingStyle.fill
+        ..strokeWidth = 6;
+    }
   }
 }
