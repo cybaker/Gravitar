@@ -47,7 +47,7 @@ class ReactorComponent  extends SegmentComponent with CollisionCallbacks {
 
     anchor = Anchor.bottomCenter;
 
-    paint = PaletteEntry(Color(0xFF6666FF)).paint()
+    paint = const PaletteEntry(Color(0xFF6666FF)).paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 6;
     await add(PolygonHitbox(vertices));
@@ -71,6 +71,7 @@ class ReactorComponent  extends SegmentComponent with CollisionCallbacks {
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Bullet) {
       countDown = true;
+      gameRef.audio.playSfx(SfxType.buttonTap);
     }
     super.onCollision(intersectionPoints, other);
   }
@@ -89,6 +90,8 @@ class ReactorComponent  extends SegmentComponent with CollisionCallbacks {
     gameRef.enemyDestroyed();
     gameRef.add(reactorExplosion(position));
     gameRef.add(ExpandingCircle(expandSpeed: 2.5, initialPosition: position, secondsToLive: 4));
+    countDown = false;
+    remainingSeconds = countdownSeconds;
   }
 
   int get countdownSeconds => gameRef.gameState.currentStarSystem.reactorProperties.countdownSeconds.toInt();
