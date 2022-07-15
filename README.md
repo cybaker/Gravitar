@@ -10,11 +10,13 @@ This link launches a web app in your browser.
 
 [Launch the web app](https://cybaker.github.io/Gravitar/)
 
-The game has some levels of play: Normal gravity, Negative gravity, Normal gravity invisible, Negative gravity invisible
-Each level consists of a star system with planets each of which need to be conquered. A level has fixed player and enemy properties like fire rate, gravity pull, etc.
-In a planet there is ground, enemy bases, and fuel depots.
+The game has some levels of increasingly challenging play.
+Each level consists of a star system with planets each of which need to be conquered by defeating all enemies.
+In a planet there are ground, enemy bases, and fuel depots.
+Fly your space ship but avoid hitting ground, enemy bases, and the reactor.
+Use your shield / tractor beam to collect fuel and avoid hits by enemies.
+Your space ship consumes fuel when maneuvering, firing, and shielding. Keep collecting fuel.
 
-Tap play, select a level, and fly your ship to collect fuel and destroy enemy bases.
 Use the arrow keys for movement:
 - turn left (left arrow).
 - turn right (right arrow).
@@ -22,7 +24,8 @@ Use the arrow keys for movement:
 - fire (F)
 - shield and fuel tractor beam (spacebar).
 
-![Screenshot](https://github.com/cybaker/Gravitar/blob/main/assets/docs/screenshot.jpg)
+![Screenshot](https://github.com/cybaker/Gravitar/blob/main/assets/docs/dueling.jpg)
+![Screenshot](https://github.com/cybaker/Gravitar/blob/main/assets/docs/starsystem.jpg)
 
 # Development
 

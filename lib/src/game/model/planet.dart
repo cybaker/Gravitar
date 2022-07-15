@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:Gravitar/src/game/components/base_enemy.dart';
 import 'package:Gravitar/src/game/components/planet_exit.dart';
 import 'package:Gravitar/src/game/components/planet_polygon.dart';
+import 'package:Gravitar/src/game/components/reactor.dart';
 import 'package:flame/components.dart';
 
 import '../components/segment_component.dart';
@@ -58,7 +59,7 @@ class Planet {
           // angle and position from last point to the end point.
           setComponentPosition(startOfLine, segment.positionEnd, planetShape.offset, component);
           components.add(component);
-          if (component is EnemyBaseComponent) numberEnemies++;
+          if (component is EnemyBaseComponent || component is ReactorComponent) numberEnemies++;
         });
         startOfLine = segment.positionEnd; // track last position
       });

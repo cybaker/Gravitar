@@ -1,8 +1,5 @@
 import 'dart:math';
 
-import 'package:Gravitar/src/game/components/planet_exit.dart';
-import 'package:Gravitar/src/game/components/planet_sprite.dart';
-import 'package:Gravitar/src/game/components/star_sprite.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
@@ -11,6 +8,9 @@ import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
 
 import '../../audio/sounds.dart';
+import '../components/planet_exit.dart';
+import '../components/planet_sprite.dart';
+import '../components/star_sprite.dart';
 import '../components/base_enemy.dart';
 import '../components/bullet.dart';
 import '../components/planet_polygon.dart';
@@ -113,7 +113,8 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is EnemyBaseComponent ||
         other is PlanetPolygon ||
-        other is StarSprite) {
+        other is StarSprite ||
+        other is SingleChildParticle ) {
       _log.info(() => 'Player destroyed by $other');
       damageShip();
     } else if (other is PlanetExitComponent) {
@@ -128,6 +129,10 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
 
   damageShip() {
     gameRef.playerHit();
+  }
+
+  pushAwayFrom(Vector2 position, double magnitude) {
+    velocity += unitVectorToVector(position) * -magnitude;
   }
 
   _thrustShip(double rotation, double thrust) {
@@ -248,9 +253,15 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
 
   Gravity get gravity => gameRef.getGravity();
 
-  double get angleToGravity => atan2(gravity.gravityCenter.x - position.x, gravity.gravityCenter.y - position.y);
+  double angleToVector(Vector2 vector) {
+    return atan2(vector.x - position.x, vector.y - position.y);
+  }
 
-  Vector2 get unitVectorToGravity => Vector2(sin(angleToGravity), cos(angleToGravity));
+  Vector2 unitVectorToVector(Vector2 vector) {
+    return Vector2(sin(angleToVector(vector)), cos(angleToVector(vector)));
+  }
+
+  Vector2 get unitVectorToGravity => unitVectorToVector(gravity.gravityCenter);
 
   Vector2 get vectorToGravity => unitVectorToGravity * gravity.gravityAmount;
 }

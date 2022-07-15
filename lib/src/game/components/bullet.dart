@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:Gravitar/src/game/components/planet_polygon.dart';
+import 'package:Gravitar/src/game/components/reactor.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
@@ -33,6 +34,7 @@ class Bullet extends CircleComponent with HasGameRef<PlayerGame>, CollisionCallb
   @override
   void onCollision(Set<Vector2> points, PositionComponent other) {
     if (other is EnemyBaseComponent) hitEnemy(other);
+    if (other is ReactorComponent) gameRef.remove(this);
     if (other is PlanetPolygon) explode();
     super.onCollision(points, other);
   }

@@ -3,6 +3,7 @@ import 'package:Gravitar/src/game/components/planet_sprite.dart';
 import 'package:Gravitar/src/game/components/star_sprite.dart';
 import 'package:flame/components.dart';
 
+import '../components/reactor.dart';
 import 'gravity.dart';
 import 'planet.dart';
 import '../components/base_enemy.dart';
@@ -25,6 +26,7 @@ class StarSystem {
     required this.basicEnemyProperties,
     required this.shipEnemyProperties,
     required this.fuelDepotProperties,
+    required this.reactorProperties,
   });
 
   final Gravity gravity;
@@ -35,6 +37,7 @@ class StarSystem {
   final EnemyBaseProperties basicEnemyProperties;
   final EnemyShipProperties shipEnemyProperties;
   final FuelDepotProperties fuelDepotProperties;
+  final ReactorProperties reactorProperties;
 
   late Vector2 currentWarpInPosition = startWarpInPosition;
 

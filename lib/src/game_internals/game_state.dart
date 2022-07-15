@@ -40,9 +40,6 @@ class GameState extends ChangeNotifier{
 
   int loseLife() {
     remainingLives.value--;
-    if (remainingLives.value <= 0) {
-      exitPlanet();
-    }
     return remainingLives.value;
   }
 

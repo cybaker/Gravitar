@@ -17,6 +17,7 @@ import 'planet10.dart';
 import 'planet11.dart';
 import 'reactor.dart';
 
+import '../game/components/reactor.dart';
 import '../game/components/fuel_depot.dart';
 import '../game/components/base_enemy.dart';
 import '../game/components/enemy_ship.dart';
@@ -61,6 +62,8 @@ var starSystemCenterGravityEasy = Gravity(gravityCenter: Vector2(500, 500), grav
 var starSystemCenterGravityHard = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.7);
 var starSystemCenterGravityInsane = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 1.2);
 
+var reactorPropertiesEasy = ReactorProperties();
+
 
 StarSystem starSystemEasyEasy = StarSystem(
   gravity: starSystemCenterGravityEasy,
@@ -76,6 +79,7 @@ StarSystem starSystemEasyEasy = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemEasyNormal = StarSystem(
@@ -93,6 +97,7 @@ StarSystem starSystemEasyNormal = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemEasyChallenge = StarSystem(
@@ -108,6 +113,7 @@ StarSystem starSystemEasyChallenge = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemNormalEasy = StarSystem(
@@ -124,6 +130,7 @@ StarSystem starSystemNormalEasy = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemNormalNormal = StarSystem(
@@ -141,6 +148,7 @@ StarSystem starSystemNormalNormal = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemNormalChallenge = StarSystem(
@@ -156,6 +164,7 @@ StarSystem starSystemNormalChallenge = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemHardEasy = StarSystem(
@@ -172,6 +181,7 @@ StarSystem starSystemHardEasy = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemHardNormal = StarSystem(
@@ -189,6 +199,7 @@ StarSystem starSystemHardNormal = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemHardChallenge = StarSystem(
@@ -204,6 +215,7 @@ StarSystem starSystemHardChallenge = StarSystem(
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 StarSystem starSystemInsane = StarSystem(
@@ -228,6 +240,7 @@ StarSystem starSystemInsane = StarSystem(
   basicEnemyProperties: enemyBasePropertiesInsane,
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesInsane,
+  reactorProperties: reactorPropertiesEasy,
 );
 
 
@@ -239,6 +252,7 @@ var gameLevels = [
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 2000,
+
 
     starSystems: [starSystemEasyEasy],
 
