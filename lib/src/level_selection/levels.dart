@@ -254,7 +254,7 @@ var gameLevels = [
     extraLifeThreshold: 2000,
 
 
-    starSystems: [starSystemEasyChallenge],
+    starSystems: [starSystemEasyEasy],
 
     // TODO: When ready, change these achievement IDs.
     // You configure this in App Store Connect.
