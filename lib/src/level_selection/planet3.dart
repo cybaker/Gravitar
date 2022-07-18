@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 import '../game/components/base_enemy.dart';
 import '../game/components/fuel_depot.dart';
 import '../game/components/planet_exit.dart';
+import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
@@ -60,42 +61,24 @@ List<PlanetSegment> _planetSegments3part2 = [
 PlanetShape _planet3PlanetShape1 = PlanetShape(offset: Vector2(57, 588), segments: _planetSegments3part1);
 PlanetShape _planet3PlanetShape2 = PlanetShape(offset: Vector2(719, 506), segments: _planetSegments3part2);
 
-var planet3 =
-Planet(
-    gravity: downGravityNormal,
-    planetShapes: [_planet3PlanetShape1, _planet3PlanetShape2],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(200, 600),
-    starSystemSize: Vector2(100, 100),
-    imageFilename: 'jupiter1.jpeg'
-);
+class _Planet3 extends Planet {
+  final Gravity gravity;
 
-var planet3Easy =
-Planet(
-    gravity: downGravityEasy,
-    planetShapes: [_planet3PlanetShape1, _planet3PlanetShape2],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(200, 600),
-    starSystemSize: Vector2(100, 100),
-    imageFilename: 'jupiter1.jpeg'
-);
+  _Planet3(this.gravity)
+      : super(
+      gravity: gravity,
+      planetShapes: [_planet3PlanetShape1, _planet3PlanetShape2],
+      planetExits: [SurroundPlanetExitComponent()],
+      starSystemPosition: Vector2(200, 600),
+      starSystemSize: Vector2(100, 100),
+      imageFilename: 'jupiter1.jpeg'
+  );
+}
 
-var planet3Hard =
-Planet(
-    gravity: downGravityHard,
-    planetShapes: [_planet3PlanetShape1, _planet3PlanetShape2],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(200, 600),
-    starSystemSize: Vector2(100, 100),
-    imageFilename: 'jupiter1.jpeg'
-);
+var planet3Easy = _Planet3(downGravityEasy,);
 
-var planet3Insane =
-Planet(
-    gravity: downGravityInsane,
-    planetShapes: [_planet3PlanetShape1, _planet3PlanetShape2],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(200, 600),
-    starSystemSize: Vector2(100, 100),
-    imageFilename: 'jupiter1.jpeg'
-);
+var planet3Normal = _Planet3(downGravityNormal,);
+
+var planet3Hard = _Planet3(downGravityHard,);
+
+var planet3Insane = _Planet3(downGravityInsane,);

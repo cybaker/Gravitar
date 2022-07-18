@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 import '../game/components/base_enemy.dart';
 import '../game/components/fuel_depot.dart';
 import '../game/components/planet_exit.dart';
+import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
@@ -97,38 +98,23 @@ PlanetShape _planet2PlanetShape2 = PlanetShape(offset: Vector2(317, 532), segmen
 PlanetShape _planet2PlanetShape3 = PlanetShape(offset: Vector2(519, 532), segments: _planetSegments2part3);
 PlanetShape _planet2PlanetShape4 = PlanetShape(offset: Vector2(24, 700), segments: _planetSegments2part4);
 
-var planet2 =
-Planet(
-    gravity: downGravityNormal,
-    planetShapes: [_planet2PlanetShape1, _planet2PlanetShape2, _planet2PlanetShape3, _planet2PlanetShape4, ],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(700, 200),
-    starSystemSize: Vector2(80, 80),
-    imageFilename: 'planet2.png');
+class _Planet2 extends Planet {
+  final Gravity gravity;
 
-var planet2Easy =
-Planet(
-    gravity: downGravityEasy,
-    planetShapes: [_planet2PlanetShape1, _planet2PlanetShape2, _planet2PlanetShape3, _planet2PlanetShape4, ],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(700, 200),
-    starSystemSize: Vector2(80, 80),
-    imageFilename: 'planet2.png');
+  _Planet2(this.gravity)
+      : super(
+      gravity: gravity,
+      planetShapes: [_planet2PlanetShape1, _planet2PlanetShape2, _planet2PlanetShape3, _planet2PlanetShape4, ],
+      planetExits: [SurroundPlanetExitComponent()],
+      starSystemPosition: Vector2(700, 200),
+      starSystemSize: Vector2(80, 80),
+      imageFilename: 'planet2.png');
+}
 
-var planet2Hard =
-Planet(
-    gravity: downGravityHard,
-    planetShapes: [_planet2PlanetShape1, _planet2PlanetShape2, _planet2PlanetShape3, _planet2PlanetShape4, ],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(700, 200),
-    starSystemSize: Vector2(80, 80),
-    imageFilename: 'planet2.png');
+var planet2Easy = _Planet2(downGravityEasy,);
 
-var planet2Insane =
-Planet(
-    gravity: downGravityInsane,
-    planetShapes: [_planet2PlanetShape1, _planet2PlanetShape2, _planet2PlanetShape3, _planet2PlanetShape4, ],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(700, 200),
-    starSystemSize: Vector2(80, 80),
-    imageFilename: 'planet2.png');
+var planet2Normal = _Planet2(downGravityNormal,);
+
+var planet2Hard = _Planet2(downGravityHard,);
+
+var planet2Insane = _Planet2(downGravityInsane,);

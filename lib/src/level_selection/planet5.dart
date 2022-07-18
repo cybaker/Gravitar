@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 import '../game/components/base_enemy.dart';
 import '../game/components/fuel_depot.dart';
 import '../game/components/planet_exit.dart';
+import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
@@ -34,39 +35,24 @@ List<PlanetSegment> _planetSegments5 = [
 
 PlanetShape _planet5PlanetShape = PlanetShape(offset: _planet5SegmentsOffset, segments: _planetSegments5);
 
-var planet5 =
-Planet(
-    gravity: downGravityNormal,
-    planetShapes: [_planet5PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(850, 500),
-    starSystemSize: Vector2(90, 90),
-    imageFilename: 'planet5.jpeg');
+class _Planet5 extends Planet {
+  final Gravity gravity;
 
-var planet5Easy =
-Planet(
-    gravity: downGravityEasy,
-    planetShapes: [_planet5PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(850, 500),
-    starSystemSize: Vector2(90, 90),
-    imageFilename: 'planet5.jpeg');
+  _Planet5(this.gravity)
+      : super(
+      gravity: gravity,
+      planetShapes: [_planet5PlanetShape],
+      planetExits: [SurroundPlanetExitComponent()],
+      starSystemPosition: Vector2(850, 500),
+      starSystemSize: Vector2(90, 90),
+      imageFilename: 'planet5.jpeg'
+  );
+}
 
-var planet5Hard =
-Planet(
-    gravity: downGravityHard,
-    planetShapes: [_planet5PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(850, 500),
-    starSystemSize: Vector2(90, 90),
-    imageFilename: 'planet5.jpeg');
+var planet5Easy = _Planet5(downGravityEasy,);
 
-var planet5Insane =
-Planet(
-    gravity: downGravityInsane,
-    planetShapes: [_planet5PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(850, 500),
-    starSystemSize: Vector2(90, 90),
-    imageFilename: 'planet5.jpeg');
+var planet5Normal = _Planet5(downGravityNormal,);
 
+var planet5Hard = _Planet5(downGravityHard,);
+
+var planet5Insane = _Planet5(downGravityInsane,);

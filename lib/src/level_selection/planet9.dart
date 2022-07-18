@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 import '../game/components/base_enemy.dart';
 import '../game/components/fuel_depot.dart';
 import '../game/components/planet_exit.dart';
+import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
@@ -77,7 +78,6 @@ List<PlanetSegment> _planet9Small4 = [
   PlanetSegment(positionEnd: Vector2(0, 0), segmentComponents: [EnemyBaseComponent()]),
 ];
 
-
 PlanetShape _planetShape9SmallA = PlanetShape(offset: Vector2(327, 472), segments: _planet9Small1);
 PlanetShape _planetShape9SmallB = PlanetShape(offset: Vector2(633, 472), segments: _planet9Small2);
 PlanetShape _planetShape9SmallC = PlanetShape(offset: Vector2(146, 568), segments: _planet9Small3);
@@ -86,58 +86,28 @@ PlanetShape _planetShape9SmallE = PlanetShape(offset: Vector2(365, 700), segment
 PlanetShape _planetShape9SmallF = PlanetShape(offset: Vector2(495, 700), segments: _planet9Small4);
 PlanetShape _planetShape9SmallG = PlanetShape(offset: Vector2(677, 700), segments: _planet9Small4);
 
-var planet9 =
-Planet(
-    gravity: downGravityNormal,
-    planetShapes: [
-      _planetShape9LargeA, _planetShape9LargeB, _planetShape9LargeC, _planetShape9LargeD,
-      _planetShape9SmallA, _planetShape9SmallB, _planetShape9SmallC, _planetShape9SmallD,
-      _planetShape9SmallE, _planetShape9SmallF, _planetShape9SmallG,
-    ],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(100, 100),
-    starSystemSize: Vector2(90, 90),
-    imageFilename: 'mercury1.jpeg'
-);
+class _Planet9 extends Planet {
+  final Gravity gravity;
 
-var planet9Easy =
-Planet(
-    gravity: downGravityEasy,
-    planetShapes: [
-      _planetShape9LargeA, _planetShape9LargeB, _planetShape9LargeC, _planetShape9LargeD,
-      _planetShape9SmallA, _planetShape9SmallB, _planetShape9SmallC, _planetShape9SmallD,
-      _planetShape9SmallE, _planetShape9SmallF, _planetShape9SmallG,
-    ],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(100, 100),
-    starSystemSize: Vector2(90, 90),
-    imageFilename: 'mercury1.jpeg'
-);
+  _Planet9(this.gravity)
+      : super(
+      gravity: gravity,
+      planetShapes: [
+        _planetShape9LargeA, _planetShape9LargeB, _planetShape9LargeC, _planetShape9LargeD,
+        _planetShape9SmallA, _planetShape9SmallB, _planetShape9SmallC, _planetShape9SmallD,
+        _planetShape9SmallE, _planetShape9SmallF, _planetShape9SmallG,
+      ],
+      planetExits: [SurroundPlanetExitComponent()],
+      starSystemPosition: Vector2(100, 100),
+      starSystemSize: Vector2(90, 90),
+      imageFilename: 'mercury1.jpeg'
+  );
+}
 
-var planet9Hard =
-Planet(
-    gravity: downGravityHard,
-    planetShapes: [
-      _planetShape9LargeA, _planetShape9LargeB, _planetShape9LargeC, _planetShape9LargeD,
-      _planetShape9SmallA, _planetShape9SmallB, _planetShape9SmallC, _planetShape9SmallD,
-      _planetShape9SmallE, _planetShape9SmallF, _planetShape9SmallG,
-    ],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(100, 100),
-    starSystemSize: Vector2(90, 90),
-    imageFilename: 'mercury1.jpeg'
-);
+var planet9Easy = _Planet9(downGravityEasy,);
 
-var planet9Insane =
-Planet(
-    gravity: downGravityInsane,
-    planetShapes: [
-      _planetShape9LargeA, _planetShape9LargeB, _planetShape9LargeC, _planetShape9LargeD,
-      _planetShape9SmallA, _planetShape9SmallB, _planetShape9SmallC, _planetShape9SmallD,
-      _planetShape9SmallE, _planetShape9SmallF, _planetShape9SmallG,
-    ],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(100, 100),
-    starSystemSize: Vector2(90, 90),
-    imageFilename: 'mercury1.jpeg'
-);
+var planet9Normal = _Planet9(downGravityNormal,);
+
+var planet9Hard = _Planet9(downGravityHard,);
+
+var planet9Insane = _Planet9(downGravityInsane,);

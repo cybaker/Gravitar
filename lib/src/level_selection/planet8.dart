@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 import '../game/components/base_enemy.dart';
 import '../game/components/fuel_depot.dart';
 import '../game/components/planet_exit.dart';
+import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
@@ -58,39 +59,24 @@ List<PlanetSegment> _planet8Segment = [
 
 PlanetShape _planet8PlanetShape = PlanetShape(offset: _planet8SegmentsOffset, segments: _planet8Segment);
 
-var planet8 =
-Planet(
-    gravity: planetCenterGravityNormal,
-    planetShapes: [_planet8PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(500, 800),
-    starSystemSize: Vector2(85, 85),
-    imageFilename: 'jupiter3.jpeg');
+class _Planet8 extends Planet {
+  final Gravity gravity;
 
-var planet8Easy =
-Planet(
-    gravity: planetCenterGravityEasy,
-    planetShapes: [_planet8PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(500, 800),
-    starSystemSize: Vector2(85, 85),
-    imageFilename: 'jupiter3.jpeg');
+  _Planet8(this.gravity)
+      : super(
+      gravity: gravity,
+      planetShapes: [_planet8PlanetShape],
+      planetExits: [SurroundPlanetExitComponent()],
+      starSystemPosition: Vector2(500, 800),
+      starSystemSize: Vector2(85, 85),
+      imageFilename: 'jupiter3.jpeg'
+  );
+}
 
-var planet8Hard =
-Planet(
-    gravity: planetCenterGravityHard,
-    planetShapes: [_planet8PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(500, 800),
-    starSystemSize: Vector2(85, 85),
-    imageFilename: 'jupiter3.jpeg');
+var planet8Easy = _Planet8(downGravityEasy,);
 
-var planet8Insane =
-Planet(
-    gravity: planetCenterGravityInsane,
-    planetShapes: [_planet8PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(500, 800),
-    starSystemSize: Vector2(85, 85),
-    imageFilename: 'jupiter3.jpeg');
+var planet8Normal = _Planet8(downGravityNormal,);
 
+var planet8Hard = _Planet8(downGravityHard,);
+
+var planet8Insane = _Planet8(downGravityInsane,);
