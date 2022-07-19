@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 import '../game/components/base_enemy.dart';
 import '../game/components/fuel_depot.dart';
 import '../game/components/planet_exit.dart';
+import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
@@ -55,38 +56,32 @@ List<PlanetSegment> _planetSegments4 = [
 
 PlanetShape _planet4PlanetShape = PlanetShape(offset: _planet4SegmentsOffset, segments: _planetSegments4);
 
-var planet4 =
-Planet(
-    gravity: planetCenterGravityNormal,
-    planetShapes: [_planet4PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(200, 300),
-    starSystemSize: Vector2(60, 60),
-    imageFilename: 'planet4.jpeg');
+class _Planet4 extends Planet {
+  final Gravity gravity;
 
-var planet4Easy =
-Planet(
-    gravity: planetCenterGravityEasy,
-    planetShapes: [_planet4PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(200, 300),
-    starSystemSize: Vector2(60, 60),
-    imageFilename: 'planet4.jpeg');
+  _Planet4(this.gravity)
+      : super(
+      gravity: gravity,
+      planetShapes: [_planet4PlanetShape],
+      planetExits: [SurroundPlanetExitComponent()],
+      starSystemPosition: Vector2(200, 300),
+      starSystemSize: Vector2(60, 60),
+      imageFilename: 'planet4.jpeg'
+  );
+}
 
-var planet4Hard =
-Planet(
-    gravity: planetCenterGravityHard,
-    planetShapes: [_planet4PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(200, 300),
-    starSystemSize: Vector2(60, 60),
-    imageFilename: 'planet4.jpeg');
+var planet4Easy = _Planet4(centerGravityEasy,);
 
-var planet4Insane =
-Planet(
-    gravity: planetCenterGravityInsane,
-    planetShapes: [_planet4PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(200, 300),
-    starSystemSize: Vector2(60, 60),
-    imageFilename: 'planet4.jpeg');
+var planet4Normal = _Planet4(centerGravityNormal,);
+
+var planet4Hard = _Planet4(centerGravityHard,);
+
+var planet4Insane = _Planet4(centerGravityInsane,);
+
+var planet4EasyReverse = _Planet4(centerGravityEasyReverse,);
+
+var planet4NormalReverse = _Planet4(centerGravityNormalReverse,);
+
+var planet4HardReverse = _Planet4(centerGravityHardReverse,);
+
+var planet4InsaneReverse = _Planet4(centerGravityInsaneReverse,);

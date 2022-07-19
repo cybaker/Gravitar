@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 import '../game/components/base_enemy.dart';
 import '../game/components/fuel_depot.dart';
 import '../game/components/planet_exit.dart';
+import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
@@ -59,39 +60,32 @@ Vector2 _planet6SegmentsOffset2 = Vector2(450, 300);
 PlanetShape _planet6PlanetShape1 = PlanetShape(offset: _planet6SegmentsOffset1, segments: _planet6Segments1);
 PlanetShape _planet6PlanetShape2 = PlanetShape(offset: _planet6SegmentsOffset2, segments: _planet6Segments2);
 
-var planet6 =
-Planet(
-    gravity: downGravityNormal,
-    planetShapes: [_planet6PlanetShape1, _planet6PlanetShape2],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(850, 100),
-    starSystemSize: Vector2(120, 120),
-    imageFilename: 'mimas1.jpeg');
+class _Planet6 extends Planet {
+  final Gravity gravity;
 
-var planet6Easy =
-Planet(
-    gravity: downGravityEasy,
-    planetShapes: [_planet6PlanetShape1, _planet6PlanetShape2],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(850, 100),
-    starSystemSize: Vector2(120, 120),
-    imageFilename: 'mimas1.jpeg');
+  _Planet6(this.gravity)
+      : super(
+      gravity: gravity,
+      planetShapes: [_planet6PlanetShape1, _planet6PlanetShape2],
+      planetExits: [SurroundPlanetExitComponent()],
+      starSystemPosition: Vector2(850, 100),
+      starSystemSize: Vector2(120, 120),
+      imageFilename: 'mimas1.jpeg'
+  );
+}
 
-var planet6Hard =
-Planet(
-    gravity: downGravityHard,
-    planetShapes: [_planet6PlanetShape1, _planet6PlanetShape2],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(850, 100),
-    starSystemSize: Vector2(120, 120),
-    imageFilename: 'mimas1.jpeg');
+var planet6Easy = _Planet6(downGravityEasy,);
 
-var planet6Insane =
-Planet(
-    gravity: downGravityInsane,
-    planetShapes: [_planet6PlanetShape1, _planet6PlanetShape2],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(850, 100),
-    starSystemSize: Vector2(120, 120),
-    imageFilename: 'mimas1.jpeg');
+var planet6Normal = _Planet6(downGravityNormal,);
 
+var planet6Hard = _Planet6(downGravityHard,);
+
+var planet6Insane = _Planet6(downGravityInsane,);
+
+var planet6EasyReverse = _Planet6(upGravityEasy,);
+
+var planet6NormalReverse = _Planet6(upGravityNormal,);
+
+var planet6HardReverse = _Planet6(upGravityHard,);
+
+var planet6InsaneReverse = _Planet6(upGravityInsane,);

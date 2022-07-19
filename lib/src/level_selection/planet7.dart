@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 import '../game/components/base_enemy.dart';
 import '../game/components/fuel_depot.dart';
 import '../game/components/planet_exit.dart';
+import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
@@ -69,39 +70,32 @@ Vector2 _planet7SegmentsOffset2 = Vector2(69, 400);
 PlanetShape _planet7PlanetShape1 = PlanetShape(offset: _planet7SegmentsOffset1, segments: _planet7Segments1);
 PlanetShape _planet7PlanetShape2 = PlanetShape(offset: _planet7SegmentsOffset2, segments: _planet7Segments2);
 
-var planet7 =
-Planet(
-    gravity: downGravityNormal,
-    planetShapes: [_planet7PlanetShape1, _planet7PlanetShape2],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(500, 900),
-    starSystemSize: Vector2(50, 50),
-    imageFilename: 'io1.jpeg');
+class _Planet7 extends Planet {
+  final Gravity gravity;
 
-var planet7Easy =
-Planet(
-    gravity: downGravityEasy,
-    planetShapes: [_planet7PlanetShape1, _planet7PlanetShape2],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(500, 900),
-    starSystemSize: Vector2(50, 50),
-    imageFilename: 'io1.jpeg');
+  _Planet7(this.gravity)
+    : super(
+      gravity: gravity,
+      planetShapes: [_planet7PlanetShape1, _planet7PlanetShape2],
+      planetExits: [SurroundPlanetExitComponent()],
+      starSystemPosition: Vector2(500, 900),
+      starSystemSize: Vector2(50, 50),
+      imageFilename: 'io1.jpeg');
+}
 
-var planet7Hard =
-Planet(
-    gravity: downGravityHard,
-    planetShapes: [_planet7PlanetShape1, _planet7PlanetShape2],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(500, 900),
-    starSystemSize: Vector2(50, 50),
-    imageFilename: 'io1.jpeg');
+var planet7Easy = _Planet7(downGravityEasy,);
 
-var planet7Insane =
-Planet(
-    gravity: downGravityInsane,
-    planetShapes: [_planet7PlanetShape1, _planet7PlanetShape2],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(500, 900),
-    starSystemSize: Vector2(50, 50),
-    imageFilename: 'io1.jpeg');
+var planet7Normal = _Planet7(downGravityNormal,);
+
+var planet7Hard = _Planet7(downGravityHard,);
+
+var planet7Insane = _Planet7(downGravityInsane,);
+
+var planet7EasyReverse = _Planet7(upGravityEasy,);
+
+var planet7NormalReverse = _Planet7(upGravityNormal,);
+
+var planet7HardReverse = _Planet7(upGravityHard,);
+
+var planet7InsaneReverse = _Planet7(upGravityInsane,);
 

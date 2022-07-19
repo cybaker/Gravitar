@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 
 import '../game/components/base_enemy.dart';
 import '../game/components/planet_exit.dart';
+import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
@@ -38,42 +39,32 @@ List<PlanetSegment> _planetSegmentsReactor = [
 
 PlanetShape _reactorPlanetShape = PlanetShape(offset: Vector2(0, 100), segments: _planetSegmentsReactor);
 
-var reactor =
-Planet(
-    gravity: planetCenterGravityNormal,
-    planetShapes: [_reactorPlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(200, 900),
-    starSystemSize: Vector2(240, 120),
-    imageFilename: 'saturn1.jpeg',
-);
+class _Reactor extends Planet {
+  final Gravity gravity;
 
-var reactorEasy =
-Planet(
-  gravity: planetCenterGravityEasy,
-  planetShapes: [_reactorPlanetShape],
-  planetExits: [SurroundPlanetExitComponent()],
-  starSystemPosition: Vector2(200, 900),
-  starSystemSize: Vector2(240, 120),
-  imageFilename: 'saturn1.jpeg',
-);
+  _Reactor(this.gravity)
+      : super(
+      gravity: gravity,
+      planetShapes: [_reactorPlanetShape],
+      planetExits: [SurroundPlanetExitComponent()],
+      starSystemPosition: Vector2(200, 900),
+      starSystemSize: Vector2(240, 120),
+      imageFilename: 'saturn1.jpeg'
+  );
+}
 
-var reactorHard =
-Planet(
-  gravity: planetCenterGravityHard,
-  planetShapes: [_reactorPlanetShape],
-  planetExits: [SurroundPlanetExitComponent()],
-  starSystemPosition: Vector2(200, 900),
-  starSystemSize: Vector2(240, 120),
-  imageFilename: 'saturn1.jpeg',
-);
+var reactorEasy = _Reactor(centerGravityEasy,);
 
-var reactorInsane =
-Planet(
-  gravity: planetCenterGravityInsane,
-  planetShapes: [_reactorPlanetShape],
-  planetExits: [SurroundPlanetExitComponent()],
-  starSystemPosition: Vector2(200, 900),
-  starSystemSize: Vector2(240, 120),
-  imageFilename: 'saturn1.jpeg',
-);
+var reactorNormal = _Reactor(centerGravityNormal,);
+
+var reactorHard = _Reactor(centerGravityHard,);
+
+var reactorInsane = _Reactor(centerGravityInsane,);
+
+var reactorEasyReverse = _Reactor(centerGravityEasyReverse,);
+
+var reactorNormalReverse = _Reactor(centerGravityNormalReverse,);
+
+var reactorHardReverse = _Reactor(centerGravityHardReverse,);
+
+var reactorInsaneReverse = _Reactor(centerGravityInsaneReverse,);
