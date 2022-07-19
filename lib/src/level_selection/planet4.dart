@@ -70,10 +70,18 @@ class _Planet4 extends Planet {
   );
 }
 
-var planet4Easy = _Planet4(downGravityEasy,);
+var planet4Easy = _Planet4(centerGravityEasy,);
 
-var planet4Normal = _Planet4(downGravityNormal,);
+var planet4Normal = _Planet4(centerGravityNormal,);
 
-var planet4Hard = _Planet4(downGravityHard,);
+var planet4Hard = _Planet4(centerGravityHard,);
 
-var planet4Insane = _Planet4(downGravityInsane,);
+var planet4Insane = _Planet4(centerGravityInsane,);
+
+var planet4EasyReverse = _Planet4(centerGravityEasyReverse,);
+
+var planet4NormalReverse = _Planet4(centerGravityNormalReverse,);
+
+var planet4HardReverse = _Planet4(centerGravityHardReverse,);
+
+var planet4InsaneReverse = _Planet4(centerGravityInsaneReverse,);

@@ -51,17 +51,17 @@ class LevelSelectionScreen extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  for (final level in gameLevels)
+                  for (final universe in gameLevels)
                     ListTile(
-                      enabled: playerProgress.highestLevelReached >= level.level - 1,
+                      enabled: playerProgress.highestLevelReached >= universe.level - 1,
                       onTap: () {
                         final audioController = context.read<AudioController>();
                         audioController.playSfx(SfxType.buttonTap);
 
-                        GoRouter.of(context).go('/play/session/${level.level}');
+                        GoRouter.of(context).go('/play/session/${universe.level}');
                       },
-                      leading: Text(level.level.toString(), style: enabledDisabledStyle(playerProgress, level, palette)),
-                      title: Text('${level.name}', style: enabledDisabledStyle(playerProgress, level, palette)),
+                      leading: Text(universe.level.toString(), style: enabledDisabledStyle(playerProgress.highestLevelReached, universe.level, palette)),
+                      title: Text('${universe.name}', style: enabledDisabledStyle(playerProgress.highestLevelReached, universe.level, palette)),
                     )
                 ],
               ),
@@ -78,8 +78,7 @@ class LevelSelectionScreen extends StatelessWidget {
     );
   }
 
-  TextStyle enabledDisabledStyle(PlayerProgress playerProgress, GameUniverse level, Palette palette) {
-    return playerProgress.highestLevelReached >= level.level - 1 ?
-                        palette.subtitle : palette.subtitleDisabled;
+  TextStyle enabledDisabledStyle(int highestLevelReached, int level, Palette palette) {
+    return highestLevelReached >= level - 1 ? palette.subtitle : palette.subtitleDisabled;
   }
 }

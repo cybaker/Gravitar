@@ -73,10 +73,18 @@ class _Planet8 extends Planet {
   );
 }
 
-var planet8Easy = _Planet8(downGravityEasy,);
+var planet8Easy = _Planet8(centerGravityEasy,);
 
-var planet8Normal = _Planet8(downGravityNormal,);
+var planet8Normal = _Planet8(centerGravityNormal,);
 
-var planet8Hard = _Planet8(downGravityHard,);
+var planet8Hard = _Planet8(centerGravityHard,);
 
-var planet8Insane = _Planet8(downGravityInsane,);
+var planet8Insane = _Planet8(centerGravityInsane,);
+
+var planet8EasyReverse = _Planet8(centerGravityEasyReverse,);
+
+var planet8NormalReverse = _Planet8(centerGravityNormalReverse,);
+
+var planet8HardReverse = _Planet8(centerGravityHardReverse,);
+
+var planet8InsaneReverse = _Planet8(centerGravityInsaneReverse,);

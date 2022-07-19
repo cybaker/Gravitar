@@ -52,3 +52,11 @@ var planet10Normal = _Planet10(downGravityNormal,);
 var planet10Hard = _Planet10(downGravityHard,);
 
 var planet10Insane = _Planet10(downGravityInsane,);
+
+var planet10EasyReverse = _Planet10(upGravityEasy,);
+
+var planet10NormalReverse = _Planet10(upGravityNormal,);
+
+var planet10HardReverse = _Planet10(upGravityHard,);
+
+var planet10InsaneReverse = _Planet10(upGravityInsane,);

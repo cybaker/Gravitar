@@ -53,10 +53,18 @@ class _Reactor extends Planet {
   );
 }
 
-var reactorEasy = _Reactor(downGravityEasy,);
+var reactorEasy = _Reactor(centerGravityEasy,);
 
-var reactorNormal = _Reactor(downGravityNormal,);
+var reactorNormal = _Reactor(centerGravityNormal,);
 
-var reactorHard = _Reactor(downGravityHard,);
+var reactorHard = _Reactor(centerGravityHard,);
 
-var reactorInsane = _Reactor(downGravityInsane,);
+var reactorInsane = _Reactor(centerGravityInsane,);
+
+var reactorEasyReverse = _Reactor(centerGravityEasyReverse,);
+
+var reactorNormalReverse = _Reactor(centerGravityNormalReverse,);
+
+var reactorHardReverse = _Reactor(centerGravityHardReverse,);
+
+var reactorInsaneReverse = _Reactor(centerGravityInsaneReverse,);

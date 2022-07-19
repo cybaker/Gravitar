@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 import '../game/components/base_enemy.dart';
 import '../game/components/fuel_depot.dart';
 import '../game/components/planet_exit.dart';
+import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
@@ -62,35 +63,33 @@ List<PlanetSegment> _planetSegments1 = [
 
 PlanetShape _planet1PlanetShape = PlanetShape(offset: _planet1SegmentsOffset, segments: _planetSegments1);
 
-var planet1Easy = Planet(
-    gravity: planetCenterGravityEasy,
-    planetShapes: [_planet1PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(300, 100),
-    starSystemSize: Vector2(60, 60),
-    imageFilename: 'planet1.png');
+class _Planet1 extends Planet {
+  final Gravity gravity;
 
-var planet1Normal =
-Planet(
-    gravity: planetCenterGravityNormal,
-    planetShapes: [_planet1PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(300, 100),
-    starSystemSize: Vector2(60, 60),
-    imageFilename: 'planet1.png');
+  _Planet1(this.gravity)
+      : super(
+      gravity: gravity,
+      planetShapes: [_planet1PlanetShape],
+      planetExits: [SurroundPlanetExitComponent()],
+      starSystemPosition: Vector2(300, 100),
+      starSystemSize: Vector2(60, 60),
+      imageFilename: 'planet1.png'
+  );
+}
 
-var planet1Hard = Planet(
-    gravity: planetCenterGravityHard,
-    planetShapes: [_planet1PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(300, 100),
-    starSystemSize: Vector2(60, 60),
-    imageFilename: 'planet1.png');
+var planet1Easy = _Planet1(centerGravityEasy,);
 
-var planet1Insane = Planet(
-    gravity: planetCenterGravityInsane,
-    planetShapes: [_planet1PlanetShape],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(300, 100),
-    starSystemSize: Vector2(60, 60),
-    imageFilename: 'planet1.png');
+
+var planet1Normal = _Planet1(centerGravityNormal,);
+
+var planet1Hard = _Planet1(centerGravityHard,);
+
+var planet1Insane = _Planet1(centerGravityInsane,);
+
+var planet1EasyReverse = _Planet1(centerGravityEasyReverse,);
+
+var planet1NormalReverse = _Planet1(centerGravityNormalReverse,);
+
+var planet1HardReverse = _Planet1(centerGravityHardReverse,);
+
+var planet1InsaneReverse = _Planet1(centerGravityInsaneReverse,);

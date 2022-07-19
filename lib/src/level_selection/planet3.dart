@@ -77,8 +77,17 @@ class _Planet3 extends Planet {
 
 var planet3Easy = _Planet3(downGravityEasy,);
 
+
 var planet3Normal = _Planet3(downGravityNormal,);
 
 var planet3Hard = _Planet3(downGravityHard,);
 
 var planet3Insane = _Planet3(downGravityInsane,);
+
+var planet3EasyReverse = _Planet3(upGravityEasy,);
+
+var planet3NormalReverse = _Planet3(upGravityNormal,);
+
+var planet3HardReverse = _Planet3(upGravityHard,);
+
+var planet3InsaneReverse = _Planet3(upGravityInsane,);

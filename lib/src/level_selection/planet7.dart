@@ -91,3 +91,11 @@ var planet7Hard = _Planet7(downGravityHard,);
 
 var planet7Insane = _Planet7(downGravityInsane,);
 
+var planet7EasyReverse = _Planet7(upGravityEasy,);
+
+var planet7NormalReverse = _Planet7(upGravityNormal,);
+
+var planet7HardReverse = _Planet7(upGravityHard,);
+
+var planet7InsaneReverse = _Planet7(upGravityInsane,);
+

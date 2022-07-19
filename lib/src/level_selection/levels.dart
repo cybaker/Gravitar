@@ -51,15 +51,18 @@ var downGravityEasy = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount
 var downGravityHard = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.7);
 var downGravityInsane = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 1.2);
 var upGravityNormal = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: -0.3);
-var upwnGravityEasy = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: -0.1);
+var upGravityEasy = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: -0.1);
 var upGravityHard = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: -0.7);
 var upGravityInsane = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: -1.2);
 
-/// Starts at upper left, 1000 Wide by 750 Height
-var planetCenterGravityNormal = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.3);
-var planetCenterGravityEasy = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.1);
-var planetCenterGravityHard = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.7);
-var planetCenterGravityInsane = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 1.2);
+var centerGravityEasy = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.1);
+var centerGravityNormal = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.3);
+var centerGravityHard = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.7);
+var centerGravityInsane = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 1.2);
+var centerGravityEasyReverse = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: -0.1);
+var centerGravityNormalReverse = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: -0.3);
+var centerGravityHardReverse = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: -0.7);
+var centerGravityInsaneReverse = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: -1.2);
 
 var starSystemCenterGravityEasy = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.1);
 var starSystemCenterGravityNormal = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.3);
@@ -73,19 +76,19 @@ var starSystemCenterGravityInsaneReverse = Gravity(gravityCenter: Vector2(500, 5
 
 var reactorPropertiesEasy = ReactorProperties();
 
-var _starSystemEasyPlanets = [
-  planet1Easy,
-  planet2Easy,
-  planet3Easy,
-  planet4Easy,
-  planet5Easy,
-  planet6Easy,
-  planet7Easy,
-  planet8Easy,
-  planet9Easy,
-  planet10Easy,
-  planet11Easy,
-  reactorEasy
+var _starSystemEasyPlanetsReverse = [
+  planet1EasyReverse,
+  planet2EasyReverse,
+  planet3EasyReverse,
+  planet4EasyReverse,
+  planet5EasyReverse,
+  planet6EasyReverse,
+  planet7EasyReverse,
+  planet8EasyReverse,
+  planet9EasyReverse,
+  planet10EasyReverse,
+  planet11EasyReverse,
+  reactorEasyReverse
 ];
 
 var _starSystemNormalPlanets = [
@@ -103,6 +106,21 @@ var _starSystemNormalPlanets = [
   reactorNormal
 ];
 
+var _starSystemNormalPlanetsReverse = [
+  planet1NormalReverse,
+  planet2NormalReverse,
+  planet3NormalReverse,
+  planet4NormalReverse,
+  planet5NormalReverse,
+  planet6NormalReverse,
+  planet7NormalReverse,
+  planet8NormalReverse,
+  planet9NormalReverse,
+  planet10NormalReverse,
+  planet11NormalReverse,
+  reactorNormalReverse
+];
+
 var _starSystemHardPlanets = [
   planet1Hard,
   planet2Hard,
@@ -116,6 +134,21 @@ var _starSystemHardPlanets = [
   planet10Hard,
   planet11Hard,
   reactorHard
+];
+
+var _starSystemHardPlanetsReverse = [
+  planet1HardReverse,
+  planet2HardReverse,
+  planet3HardReverse,
+  planet4HardReverse,
+  planet5HardReverse,
+  planet6HardReverse,
+  planet7HardReverse,
+  planet8HardReverse,
+  planet9HardReverse,
+  planet10HardReverse,
+  planet11HardReverse,
+  reactorHardReverse
 ];
 
 var _starSystemInsanePlanets = [
@@ -184,7 +217,7 @@ StarSystem starSystemEasyReverseGravity = StarSystem(
   gravity: starSystemCenterGravityEasyReverse,
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
-  planets: _starSystemEasyPlanets,
+  planets: _starSystemEasyPlanetsReverse,
   playerProperties: playerEasy,
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
@@ -204,11 +237,35 @@ StarSystem starSystemNormal = StarSystem(
   reactorProperties: reactorPropertiesEasy,
 );
 
+StarSystem starSystemNormalReverse = StarSystem(
+  gravity: starSystemCenterGravityNormalReverse,
+  startWarpInPosition: Vector2(500, 50),
+  starImageFilename: 'star_image.jpeg',
+  planets: _starSystemNormalPlanetsReverse,
+  playerProperties: playerNormal,
+  basicEnemyProperties: enemyBasePropertiesEasy,
+  shipEnemyProperties: basicEnemyShipProperties,
+  fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
+);
+
 StarSystem starSystemHard = StarSystem(
   gravity: starSystemCenterGravityHard,
   startWarpInPosition: Vector2(500, 50),
   starImageFilename: 'star_image.jpeg',
   planets: _starSystemHardPlanets,
+  playerProperties: playerHard,
+  basicEnemyProperties: enemyBasePropertiesEasy,
+  shipEnemyProperties: basicEnemyShipProperties,
+  fuelDepotProperties: fuelDepotPropertiesEasy,
+  reactorProperties: reactorPropertiesEasy,
+);
+
+StarSystem starSystemHardReverse = StarSystem(
+  gravity: starSystemCenterGravityHardReverse,
+  startWarpInPosition: Vector2(500, 50),
+  starImageFilename: 'star_image.jpeg',
+  planets: _starSystemHardPlanetsReverse,
   playerProperties: playerHard,
   basicEnemyProperties: enemyBasePropertiesEasy,
   shipEnemyProperties: basicEnemyShipProperties,
@@ -280,7 +337,7 @@ var gameLevels = [
   GameUniverse(
     level: 4,
     name: 'Beginner - reverse gravity',
-    difficulty: 3,
+    difficulty: 4,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 2000,
@@ -296,7 +353,7 @@ var gameLevels = [
   GameUniverse(
     level: 5,
     name: 'Ensign',
-    difficulty: 4,
+    difficulty: 5,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 4000,
@@ -311,8 +368,24 @@ var gameLevels = [
   ),
   GameUniverse(
     level: 6,
+    name: 'Ensign - reverse gravity',
+    difficulty: 6,
+    cameraZoomedInDimension: 500,
+    playfieldDimension: 1000,
+    extraLifeThreshold: 4000,
+
+    starSystems: [starSystemNormalReverse],
+
+    // TODO: When ready, change these achievement IDs.
+    // You configure this in App Store Connect.
+    achievementIdIOS: 'first_win',
+    // You get this string when you configure an achievement in Play Console.
+    achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+  ),
+  GameUniverse(
+    level: 7,
     name: 'Commander',
-    difficulty: 5,
+    difficulty: 7,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 5000,
@@ -326,9 +399,25 @@ var gameLevels = [
     achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
   ),
   GameUniverse(
-    level: 7,
+    level: 8,
+    name: 'Commander - reverse gravity',
+    difficulty: 8,
+    cameraZoomedInDimension: 500,
+    playfieldDimension: 1000,
+    extraLifeThreshold: 5000,
+
+    starSystems: [starSystemHardReverse],
+
+    // TODO: When ready, change these achievement IDs.
+    // You configure this in App Store Connect.
+    achievementIdIOS: 'first_win',
+    // You get this string when you configure an achievement in Play Console.
+    achievementIdAndroid: 'NhkIwB69ejkMAOOLDb',
+  ),
+  GameUniverse(
+    level: 9,
     name: 'Admiral - insane',
-    difficulty: 6,
+    difficulty: 9,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 5000,
