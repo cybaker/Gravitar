@@ -19,8 +19,7 @@ dependencies:
   logging: ^1.0.2
   provider: ^6.0.2
   shared_preferences: ^2.0.13
-  flame: ^1.1.1
-  flame_audio: ^1.0.2
+  flame: ^1.2.1
   intl: ^0.17.0
 
   # If you don't need one of the following dependencies,
@@ -29,8 +28,6 @@ dependencies:
   firebase_core: ^1.15.0  # Needed for Crashlytics below
   firebase_crashlytics: ^2.6.3  # Error reporting
   games_services: ^2.0.7  # Achievements and leaderboards
-  google_mobile_ads: ^1.1.0  # Ads
-  in_app_purchase: ^3.0.1  # In-app purchases
 
 dev_dependencies:
   flutter_test:
