@@ -152,25 +152,32 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
 
   _handleKeyPresses() {
     // debugPrint('onKeyEvent ${gameRef.pressedKeySet}');
+    _checkTurns();
+    _checkThrust();
+    _checkFiring();
+    _showShield(gameRef.pressedKeySet.contains(LogicalKeyboardKey.space));
+  }
 
+  void _checkTurns() {
     if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.arrowLeft)) {
       angle -= rotationSpeed;
     } else if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.arrowRight)) {
       angle += rotationSpeed;
     }
+  }
 
+  void _checkThrust() {
     if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.arrowUp)) {
       _thrustShip(angle, gameRef.singlePlayer.properties.thrust);
     } else {
       _showThrust(false);
     }
+  }
 
+  void _checkFiring() {
     if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.keyF)) {
       if (_canFireBullet) _fireBullet();
     }
-
-    _showShield(gameRef.pressedKeySet.contains(LogicalKeyboardKey.space));
-
   }
 
   _showShield(bool shield) {
