@@ -33,9 +33,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_launcher_icons: ^0.9.2
+  flutter_launcher_icons: ^0.9.3
   flutter_lints: ^2.0.1
-  test: ^1.19.0
+  test: ^1.21.1
 
 flutter:
   uses-material-design: true
