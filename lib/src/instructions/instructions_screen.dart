@@ -20,7 +20,7 @@ Each level consists of a star system with planets each of which need to be conqu
 In a planet there are ground, enemy bases, and fuel depots.
 Fly your space ship but avoid hitting ground, enemy bases, and the reactor.
 Use your shield / tractor beam to collect fuel and avoid hits by enemies.
-Your space ship consumes fuel when maneuvering, firing, and shielding.
+Your space ship consumes fuel when maneuvering, firing, and shielding. Keep collecting fuel.
 
 Use the arrow keys for movement:
 - turn left (left arrow).
@@ -28,6 +28,8 @@ Use the arrow keys for movement:
 - thrust (up arrow).
 - fire (F)
 - shield and fuel tractor beam (spacebar).
+
+Tap the mouse pointer to pause the game.
 ''';
 
   @override
