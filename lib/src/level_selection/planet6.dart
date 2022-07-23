@@ -7,7 +7,7 @@ import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
-import 'levels.dart';
+import 'level_properties.dart';
 
 List<PlanetSegment> _planet6Segments1 = [
   PlanetSegment(positionEnd: Vector2(296, 0), segmentComponents: []),
@@ -63,29 +63,31 @@ PlanetShape _planet6PlanetShape2 = PlanetShape(offset: _planet6SegmentsOffset2, 
 class _Planet6 extends Planet {
   final Gravity gravity;
 
-  _Planet6(this.gravity)
+  var flicker;
+
+  _Planet6(this.gravity, {this.flicker = false})
       : super(
       gravity: gravity,
       planetShapes: [_planet6PlanetShape1, _planet6PlanetShape2],
       planetExits: [SurroundPlanetExitComponent()],
       starSystemPosition: Vector2(850, 100),
       starSystemSize: Vector2(120, 120),
-      imageFilename: 'mimas1.jpeg'
+      imageFilename: 'mimas1.jpeg',
+      flicker: flicker
   );
 }
 
 var planet6Easy = _Planet6(downGravityEasy,);
-
 var planet6Normal = _Planet6(downGravityNormal,);
-
 var planet6Hard = _Planet6(downGravityHard,);
-
 var planet6Insane = _Planet6(downGravityInsane,);
 
 var planet6EasyReverse = _Planet6(upGravityEasy,);
-
 var planet6NormalReverse = _Planet6(upGravityNormal,);
-
 var planet6HardReverse = _Planet6(upGravityHard,);
-
 var planet6InsaneReverse = _Planet6(upGravityInsane,);
+
+var planet6EasyFlicker = _Planet6(downGravityEasy, flicker: true);
+var planet6NormalFlicker = _Planet6(downGravityNormal, flicker: true);
+var planet6HardFlicker = _Planet6(downGravityHard, flicker: true);
+var planet6InsaneFlicker = _Planet6(downGravityInsane, flicker: true);

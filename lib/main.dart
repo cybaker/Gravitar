@@ -118,7 +118,7 @@ class GravitarApp extends StatelessWidget {
                     path: 'session/:level',
                     pageBuilder: (context, state) {
                       final levelNumber = int.parse(state.params['level']!);
-                      final gameLevel = gameLevels
+                      final gameLevel = gameUniverses
                           .singleWhere((e) => e.level == levelNumber);
                       return buildMyTransition(
                         child: PlanetView(

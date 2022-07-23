@@ -7,7 +7,7 @@ import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
-import 'levels.dart';
+import 'level_properties.dart';
 
 List<PlanetSegment> _planetSegments3part1 = [
   PlanetSegment(positionEnd: Vector2(57, 588), segmentComponents: []),
@@ -64,30 +64,31 @@ PlanetShape _planet3PlanetShape2 = PlanetShape(offset: Vector2(719, 506), segmen
 class _Planet3 extends Planet {
   final Gravity gravity;
 
-  _Planet3(this.gravity)
+  var flicker;
+
+  _Planet3(this.gravity, {this.flicker = false})
       : super(
       gravity: gravity,
       planetShapes: [_planet3PlanetShape1, _planet3PlanetShape2],
       planetExits: [SurroundPlanetExitComponent()],
       starSystemPosition: Vector2(200, 600),
       starSystemSize: Vector2(100, 100),
-      imageFilename: 'jupiter1.jpeg'
+      imageFilename: 'jupiter1.jpeg',
+      flicker: flicker,
   );
 }
 
 var planet3Easy = _Planet3(downGravityEasy,);
-
-
 var planet3Normal = _Planet3(downGravityNormal,);
-
 var planet3Hard = _Planet3(downGravityHard,);
-
 var planet3Insane = _Planet3(downGravityInsane,);
 
 var planet3EasyReverse = _Planet3(upGravityEasy,);
-
 var planet3NormalReverse = _Planet3(upGravityNormal,);
-
 var planet3HardReverse = _Planet3(upGravityHard,);
-
 var planet3InsaneReverse = _Planet3(upGravityInsane,);
+
+var planet3EasyFlicker = _Planet3(downGravityEasy, flicker: true);
+var planet3NormalFlicker = _Planet3(downGravityNormal, flicker: true);
+var planet3HardFlicker = _Planet3(downGravityHard, flicker: true);
+var planet3InsaneFlicker = _Planet3(downGravityInsane, flicker: true);

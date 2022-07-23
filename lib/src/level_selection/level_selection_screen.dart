@@ -28,55 +28,73 @@ class LevelSelectionScreen extends StatelessWidget {
       body: ResponsiveScreen(
         squarishMainArea: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: Center(
-                child: Text(
-                  'Select level',
-                  style: palette.title,
-                ),
-              ),
-            ),
-            const SizedBox(height: 50),
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: Center(
-                child: Text(
-                  'Total Score: ${playerProgress.highestScoreReached}',
-                  style: palette.subtitle,
-                ),
-              ),
-            ),
-            const SizedBox(height: 50),
-            Expanded(
-              child: ListView(
-                children: [
-                  for (final universe in gameLevels)
-                    ListTile(
-                      enabled: playerProgress.highestLevelReached >= universe.level - 1,
-                      onTap: () {
-                        final audioController = context.read<AudioController>();
-                        audioController.playSfx(SfxType.buttonTap);
-
-                        GoRouter.of(context).go('/play/session/${universe.level}');
-                      },
-                      leading: Text(universe.level.toString(), style: enabledDisabledStyle(playerProgress.highestLevelReached, universe.level, palette)),
-                      title: Text('${universe.name}', style: enabledDisabledStyle(playerProgress.highestLevelReached, universe.level, palette)),
-                    )
-                ],
-              ),
-            ),
+            _titleWidget(palette),
+            _gap(),
+            _totalScoreWidget(playerProgress, palette),
+            _gap(),
+            _levelsListWidget(playerProgress, context, palette),
           ],
         ),
-        rectangularMenuArea: ElevatedButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
-          },
-          child: const Text('Back'),
-        ),
+        rectangularMenuArea: _backWidget(context),
       ),
     );
   }
+
+  ElevatedButton _backWidget(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () {
+          GoRouter.of(context).pop();
+        },
+        child: const Text('Back'),
+      );
+  }
+
+  Expanded _levelsListWidget(PlayerProgress playerProgress, BuildContext context, Palette palette) {
+    return Expanded(
+            child: ListView(
+              children: [
+                for (final universe in gameUniverses)
+                  ListTile(
+                    enabled: playerProgress.highestLevelReached >= universe.level - 1,
+                    onTap: () {
+                      final audioController = context.read<AudioController>();
+                      audioController.playSfx(SfxType.buttonTap);
+
+                      GoRouter.of(context).go('/play/session/${universe.level}');
+                    },
+                    leading: Text(universe.level.toString(), style: enabledDisabledStyle(playerProgress.highestLevelReached, universe.level, palette)),
+                    title: Text('${universe.name}', style: enabledDisabledStyle(playerProgress.highestLevelReached, universe.level, palette)),
+                  )
+              ],
+            ),
+          );
+  }
+
+  Padding _totalScoreWidget(PlayerProgress playerProgress, Palette palette) {
+    return Padding(
+            padding: EdgeInsets.all(16),
+            child: Center(
+              child: Text(
+                'Total Score: ${playerProgress.highestScoreReached}',
+                style: palette.subtitle,
+              ),
+            ),
+          );
+  }
+
+  Padding _titleWidget(Palette palette) {
+    return Padding(
+            padding: EdgeInsets.all(16),
+            child: Center(
+              child: Text(
+                'Select level',
+                style: palette.title,
+              ),
+            ),
+          );
+  }
+
+  SizedBox _gap() => const SizedBox(height: 50);
 
   TextStyle enabledDisabledStyle(int highestLevelReached, int level, Palette palette) {
     return highestLevelReached >= level - 1 ? palette.subtitle : palette.subtitleDisabled;

@@ -8,27 +8,29 @@ import 'package:flame/components.dart';
 
 import '../components/segment_component.dart';
 import '../model/planet_shape.dart';
-import 'gravity.dart';
 
 ///
 /// A planet has bases and flying enemies and fuel depots.
 /// A planet has an image and location in a star system.
 ///
 class Planet {
+  bool flicker;
+  var gravity;
+
   Planet({
     required this.imageFilename,
     required this.starSystemPosition,
     required this.starSystemSize,
-    required this.gravity,
     required this.planetShapes,
     required this.planetExits,
+    this.flicker = false,
+    this.gravity,
   });
 
   final String imageFilename;
   final Vector2 starSystemPosition;
   final Vector2 starSystemSize;
 
-  final Gravity gravity;
 
   final List<PlanetShape> planetShapes;
   final List<PlanetExitComponent> planetExits;
@@ -43,7 +45,7 @@ class Planet {
       planetShape.segments.forEach((element) {
         polygonList.add(element.positionEnd);
       });
-      planetPolygons.add(PlanetPolygon(verticesList: polygonList, offset: planetShape.offset));
+      planetPolygons.add(PlanetPolygon(verticesList: polygonList, offset: planetShape.offset, flicker: flicker));
     });
 
     return planetPolygons;

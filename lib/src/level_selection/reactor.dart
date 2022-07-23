@@ -7,7 +7,7 @@ import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
-import 'levels.dart';
+import 'level_properties.dart';
 
 List<PlanetSegment> _planetSegmentsReactor = [
   PlanetSegment(positionEnd: Vector2(0,0), segmentComponents: []),
@@ -42,29 +42,31 @@ PlanetShape _reactorPlanetShape = PlanetShape(offset: Vector2(0, 100), segments:
 class _Reactor extends Planet {
   final Gravity gravity;
 
-  _Reactor(this.gravity)
+  var flicker;
+
+  _Reactor(this.gravity, {this.flicker = false})
       : super(
       gravity: gravity,
       planetShapes: [_reactorPlanetShape],
       planetExits: [SurroundPlanetExitComponent()],
       starSystemPosition: Vector2(200, 900),
       starSystemSize: Vector2(240, 120),
-      imageFilename: 'saturn1.jpeg'
+      imageFilename: 'saturn1.jpeg',
+      flicker: flicker,
   );
 }
 
 var reactorEasy = _Reactor(centerGravityEasy,);
-
 var reactorNormal = _Reactor(centerGravityNormal,);
-
 var reactorHard = _Reactor(centerGravityHard,);
-
 var reactorInsane = _Reactor(centerGravityInsane,);
 
 var reactorEasyReverse = _Reactor(centerGravityEasyReverse,);
-
 var reactorNormalReverse = _Reactor(centerGravityNormalReverse,);
-
 var reactorHardReverse = _Reactor(centerGravityHardReverse,);
-
 var reactorInsaneReverse = _Reactor(centerGravityInsaneReverse,);
+
+var reactorEasyFlicker = _Reactor(centerGravityEasy, flicker: true);
+var reactorNormalFlicker = _Reactor(centerGravityNormal, flicker: true);
+var reactorHardFlicker = _Reactor(centerGravityHard, flicker: true);
+var reactorInsaneFlicker = _Reactor(centerGravityInsane, flicker: true);

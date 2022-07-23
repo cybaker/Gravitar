@@ -7,7 +7,7 @@ import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
-import 'levels.dart';
+import 'level_properties.dart';
 
 Vector2 _planet5SegmentsOffset = Vector2(0, 500);
 
@@ -38,29 +38,31 @@ PlanetShape _planet5PlanetShape = PlanetShape(offset: _planet5SegmentsOffset, se
 class _Planet5 extends Planet {
   final Gravity gravity;
 
-  _Planet5(this.gravity)
+  var flicker;
+
+  _Planet5(this.gravity, {this.flicker = false})
       : super(
       gravity: gravity,
       planetShapes: [_planet5PlanetShape],
       planetExits: [SurroundPlanetExitComponent()],
       starSystemPosition: Vector2(850, 500),
       starSystemSize: Vector2(90, 90),
-      imageFilename: 'planet5.jpeg'
+      imageFilename: 'planet5.jpeg',
+      flicker: flicker,
   );
 }
 
 var planet5Easy = _Planet5(downGravityEasy,);
-
 var planet5Normal = _Planet5(downGravityNormal,);
-
 var planet5Hard = _Planet5(downGravityHard,);
-
 var planet5Insane = _Planet5(downGravityInsane,);
 
 var planet5EasyReverse = _Planet5(upGravityEasy,);
-
 var planet5NormalReverse = _Planet5(upGravityNormal,);
-
 var planet5HardReverse = _Planet5(upGravityHard,);
-
 var planet5InsaneReverse = _Planet5(upGravityInsane,);
+
+var planet5EasyFlicker = _Planet5(downGravityEasy, flicker: true);
+var planet5NormalFlicker = _Planet5(downGravityNormal, flicker: true);
+var planet5HardFlicker = _Planet5(downGravityHard, flicker: true);
+var planet5InsaneFlicker = _Planet5(downGravityInsane, flicker: true);
