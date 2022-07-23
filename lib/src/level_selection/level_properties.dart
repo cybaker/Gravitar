@@ -7,6 +7,7 @@ import '../game/components/reactor.dart';
 import '../game/model/gravity.dart';
 import '../game/player/player.dart';
 
+var playerInvincible = PlayerProperties(bulletFireLifetimeSecs: 4, bulletReloadSecs: 0.1, invincible: true);
 var playerEasy = PlayerProperties(bulletFireLifetimeSecs: 4, bulletReloadSecs: 0.1);
 var playerNormal = PlayerProperties(thrust: 3, bulletFireLifetimeSecs: 3, bulletReloadSecs: 0.18);
 var playerHard = PlayerProperties(thrust: 4, thrustConsumption: 2, bulletFireLifetimeSecs: 2.5, bulletReloadSecs: 0.25);

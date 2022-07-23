@@ -8,7 +8,7 @@ import 'star_systems.dart';
 var gameUniverses = [
   GameUniverse(
     level: 1,
-    name: 'Beginner - training',
+    name: 'Beginner - invincible!',
     difficulty: 1,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,

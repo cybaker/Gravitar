@@ -30,6 +30,7 @@ class PlayerProperties {
     this.bulletSpeed = 150,
     this.bulletReloadSecs = 0.2,
     this.bulletDamageToEnemy = 1,
+    this.invincible = false,
   });
 
   final double thrust;
@@ -40,6 +41,7 @@ class PlayerProperties {
   final double bulletSpeed;
   final double bulletReloadSecs;
   final double bulletDamageToEnemy;
+  bool invincible;
 }
 
 List<Vector2> _playerShape = [
@@ -113,8 +115,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is EnemyBaseComponent ||
         other is PlanetPolygon ||
-        other is StarSprite ||
-        other is SingleChildParticle ) {
+        other is StarSprite) {
       _log.info(() => 'Player destroyed by $other');
       damageShip();
     } else if (other is PlanetExitComponent) {
@@ -128,7 +129,13 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   }
 
   damageShip() {
-    gameRef.playerHit();
+    if (properties.invincible) {
+      var oldVelocity = -velocity;
+      velocity = Vector2(0, 0);
+      position = position + oldVelocity / 10; // step back to avoid ground
+    } else {
+      gameRef.playerHit();
+    }
   }
 
   pushAwayFrom(Vector2 position, double magnitude) {
