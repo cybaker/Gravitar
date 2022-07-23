@@ -60,7 +60,7 @@ class PlayerHudView extends StatelessWidget {
         builder: (context, value, child) {
           return Text(
             'Lives: $value',
-            style: palette.subtitleSmall,
+            style: palette.title,
             textAlign: TextAlign.center,
           );
         },
@@ -73,7 +73,7 @@ class PlayerHudView extends StatelessWidget {
         builder: (context, value, child) {
           return Text(
             'Fuel: ${value.toInt()}',
-            style: palette.subtitleSmall,
+            style: palette.title,
             textAlign: TextAlign.center,
           );
         },
@@ -86,7 +86,7 @@ class PlayerHudView extends StatelessWidget {
         builder: (context, value, child) {
           return Text(
             'Score: $value',
-            style: palette.subtitleSmall,
+            style: palette.title,
             textAlign: TextAlign.center,
           );
         },
