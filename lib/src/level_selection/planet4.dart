@@ -7,7 +7,7 @@ import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
-import 'levels.dart';
+import 'level_properties.dart';
 
 Vector2 _planet4SegmentsOffset = Vector2(0, 300);
 
@@ -59,29 +59,31 @@ PlanetShape _planet4PlanetShape = PlanetShape(offset: _planet4SegmentsOffset, se
 class _Planet4 extends Planet {
   final Gravity gravity;
 
-  _Planet4(this.gravity)
+  var flicker;
+
+  _Planet4(this.gravity, {this.flicker = false})
       : super(
       gravity: gravity,
       planetShapes: [_planet4PlanetShape],
       planetExits: [SurroundPlanetExitComponent()],
       starSystemPosition: Vector2(200, 300),
       starSystemSize: Vector2(60, 60),
-      imageFilename: 'planet4.jpeg'
+      imageFilename: 'planet4.jpeg',
+      flicker: flicker
   );
 }
 
 var planet4Easy = _Planet4(centerGravityEasy,);
-
 var planet4Normal = _Planet4(centerGravityNormal,);
-
 var planet4Hard = _Planet4(centerGravityHard,);
-
 var planet4Insane = _Planet4(centerGravityInsane,);
 
 var planet4EasyReverse = _Planet4(centerGravityEasyReverse,);
-
 var planet4NormalReverse = _Planet4(centerGravityNormalReverse,);
-
 var planet4HardReverse = _Planet4(centerGravityHardReverse,);
-
 var planet4InsaneReverse = _Planet4(centerGravityInsaneReverse,);
+
+var planet4EasyFlicker = _Planet4(centerGravityEasy, flicker: true);
+var planet4NormalFlicker = _Planet4(centerGravityNormal, flicker: true);
+var planet4HardFlicker = _Planet4(centerGravityHard, flicker: true);
+var planet4InsaneFlicker = _Planet4(centerGravityInsane, flicker: true);

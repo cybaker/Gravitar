@@ -13,9 +13,7 @@ void main() {
     await tester.pumpWidget(GravitarApp(
       settingsPersistence: MemoryOnlySettingsPersistence(),
       playerProgressPersistence: MemoryOnlyPlayerProgressPersistence(),
-      adsController: null,
       gamesServicesController: null,
-      inAppPurchaseController: null,
     ));
 
     // Verify that the 'Play' button is shown.

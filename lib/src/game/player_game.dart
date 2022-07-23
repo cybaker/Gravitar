@@ -21,7 +21,7 @@ final Map<LogicalKeyboardKey, LogicalKeyboardKey> playersKeys = {
   LogicalKeyboardKey.space: LogicalKeyboardKey.space,
 };
 
-class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection {
+class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection, TapDetector {
   PlayerGame({required this.universe, required this.gameState, required this.audio});
 
   /// relative to level.playfieldDimension
@@ -177,5 +177,14 @@ class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection {
       pressedKeySet.add(key);
     }
     return KeyEventResult.handled;
+  }
+
+  @override
+  void onTap() {
+    if (paused) {
+      resumeEngine();
+    } else {
+      pauseEngine();
+    }
   }
 }

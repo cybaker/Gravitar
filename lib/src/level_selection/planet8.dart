@@ -7,7 +7,7 @@ import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
-import 'levels.dart';
+import 'level_properties.dart';
 
 Vector2 _planet8SegmentsOffset = Vector2(100, 200);
 
@@ -62,29 +62,31 @@ PlanetShape _planet8PlanetShape = PlanetShape(offset: _planet8SegmentsOffset, se
 class _Planet8 extends Planet {
   final Gravity gravity;
 
-  _Planet8(this.gravity)
+  var flicker;
+
+  _Planet8(this.gravity, {this.flicker = false})
       : super(
       gravity: gravity,
       planetShapes: [_planet8PlanetShape],
       planetExits: [SurroundPlanetExitComponent()],
       starSystemPosition: Vector2(500, 800),
       starSystemSize: Vector2(85, 85),
-      imageFilename: 'jupiter3.jpeg'
+      imageFilename: 'jupiter3.jpeg',
+      flicker: flicker,
   );
 }
 
 var planet8Easy = _Planet8(centerGravityEasy,);
-
 var planet8Normal = _Planet8(centerGravityNormal,);
-
 var planet8Hard = _Planet8(centerGravityHard,);
-
 var planet8Insane = _Planet8(centerGravityInsane,);
 
 var planet8EasyReverse = _Planet8(centerGravityEasyReverse,);
-
 var planet8NormalReverse = _Planet8(centerGravityNormalReverse,);
-
 var planet8HardReverse = _Planet8(centerGravityHardReverse,);
-
 var planet8InsaneReverse = _Planet8(centerGravityInsaneReverse,);
+
+var planet8EasyFlicker = _Planet8(centerGravityEasy, flicker: true);
+var planet8NormalFlicker = _Planet8(centerGravityNormal, flicker: true);
+var planet8HardFlicker = _Planet8(centerGravityHard, flicker: true);
+var planet8InsaneFlicker = _Planet8(centerGravityInsane, flicker: true);

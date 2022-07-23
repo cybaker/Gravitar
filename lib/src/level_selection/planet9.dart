@@ -7,7 +7,7 @@ import '../game/model/gravity.dart';
 import '../game/model/planet.dart';
 import '../game/model/planet_segment.dart';
 import '../game/model/planet_shape.dart';
-import 'levels.dart';
+import 'level_properties.dart';
 
 List<PlanetSegment> _planet9Large1 = [
   PlanetSegment(positionEnd: Vector2(0, 0), segmentComponents: []),
@@ -89,7 +89,9 @@ PlanetShape _planetShape9SmallG = PlanetShape(offset: Vector2(677, 700), segment
 class _Planet9 extends Planet {
   final Gravity gravity;
 
-  _Planet9(this.gravity)
+  var flicker;
+
+  _Planet9(this.gravity, {this.flicker = false})
       : super(
       gravity: gravity,
       planetShapes: [
@@ -100,22 +102,22 @@ class _Planet9 extends Planet {
       planetExits: [SurroundPlanetExitComponent()],
       starSystemPosition: Vector2(100, 100),
       starSystemSize: Vector2(90, 90),
-      imageFilename: 'mercury1.jpeg'
+      imageFilename: 'mercury1.jpeg',
+      flicker: flicker,
   );
 }
 
 var planet9Easy = _Planet9(downGravityEasy,);
-
 var planet9Normal = _Planet9(downGravityNormal,);
-
 var planet9Hard = _Planet9(downGravityHard,);
-
 var planet9Insane = _Planet9(downGravityInsane,);
 
 var planet9EasyReverse = _Planet9(upGravityEasy,);
-
 var planet9NormalReverse = _Planet9(upGravityNormal,);
-
 var planet9HardReverse = _Planet9(upGravityHard,);
-
 var planet9InsaneReverse = _Planet9(upGravityInsane,);
+
+var planet9EasyFlicker = _Planet9(downGravityEasy, flicker: true);
+var planet9NormalFlicker = _Planet9(downGravityNormal, flicker: true);
+var planet9HardFlicker = _Planet9(downGravityHard, flicker: true);
+var planet9InsaneFlicker = _Planet9(downGravityInsane, flicker: true);

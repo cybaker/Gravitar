@@ -24,6 +24,8 @@ Use the arrow keys for movement:
 - fire (F)
 - shield and fuel tractor beam (spacebar).
 
+Tap the mouse pointer to pause the game.
+
 ![Screenshot](https://github.com/cybaker/Gravitar/blob/main/assets/docs/dueling.jpg)
 ![Screenshot](https://github.com/cybaker/Gravitar/blob/main/assets/docs/starsystem.jpg)
 
