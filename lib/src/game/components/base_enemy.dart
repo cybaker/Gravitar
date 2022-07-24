@@ -20,6 +20,7 @@ class EnemyBaseProperties {
     this.bulletLifetimeSecs = 2,
     this.firingRangeToPlayer = 200,
     this.pointsPerEnemy = 250,
+    this.stealthUntilFire = false,
   });
 
   final double averageFireTimeSec;
@@ -27,6 +28,7 @@ class EnemyBaseProperties {
   final double bulletLifetimeSecs;
   final double firingRangeToPlayer;
   final double pointsPerEnemy;
+  final bool stealthUntilFire;
 }
 
 List<Vector2> _basicEnemyBaseShape = [
@@ -51,15 +53,21 @@ class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
 
   late Vector2 firingPosition;
 
+  final paintOn = BasicPalette.red.paint()
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 2;
+
+  final paintOff = BasicPalette.red.withAlpha(0).paint()
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 2;
+
   @override
   Future<void> onLoad() async {
     await super.onLoad();
 
     anchor = Anchor.bottomCenter;
 
-    paint = BasicPalette.red.paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
+    paint = properties.stealthUntilFire ? paintOff : paintOn;
     await add(PolygonHitbox(vertices));
 
     setFiringPosition();
@@ -92,7 +100,10 @@ class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
     fireTimeout -= dt;
     if(fireTimeout <= 0) {
       fireTimeout = this.randomFromTo(0.5*properties.averageFireTimeSec, 2*properties.averageFireTimeSec);
-      if (playerInFiringRange && playerInAngleRange) _fireSomething();
+      if (playerInFiringRange) {
+        if (playerInAngleRange) _fireSomething();
+        paint = paintOn;
+      }
     }
   }
 

@@ -17,6 +17,8 @@ var enemyBasePropertiesEasy = EnemyBaseProperties(averageFireTimeSec: 1.0,);
 var enemyBasePropertiesNormal = EnemyBaseProperties(averageFireTimeSec: 0.5,);
 var enemyBasePropertiesHard = EnemyBaseProperties(averageFireTimeSec: 0.4,);
 var enemyBasePropertiesInsane = EnemyBaseProperties(averageFireTimeSec: 0.2,);
+var enemyBasePropertiesNormalStealth = EnemyBaseProperties(averageFireTimeSec: 0.5, stealthUntilFire: true);
+var enemyBasePropertiesHardStealth = EnemyBaseProperties(averageFireTimeSec: 0.4, stealthUntilFire: true);
 
 var basicEnemyShipProperties = EnemyShipProperties(
   enemyShipAverageSpawnTimeSec: 10,

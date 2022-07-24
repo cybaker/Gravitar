@@ -14,7 +14,7 @@ var gameUniverses = [
     playfieldDimension: 1000,
     extraLifeThreshold: 2000,
 
-    starSystems: [starSystemEasyEasy],
+    starSystems: [starSystemNormalFlicker],
 
     // TODO: When ready, change these achievement IDs.
     // You configure this in App Store Connect.
@@ -54,7 +54,7 @@ var gameUniverses = [
   ),
   GameUniverse(
     level: 5,
-    name: 'Beginner - ground radar failure',
+    name: 'Beginner - stealthy enemy',
     difficulty: 1,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
@@ -84,7 +84,7 @@ var gameUniverses = [
   ),
   GameUniverse(
     level: 8,
-    name: 'Ensign - ground radar failure',
+    name: 'Ensign - stealthy enemy',
     difficulty: 6,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
@@ -114,7 +114,7 @@ var gameUniverses = [
   ),
   GameUniverse(
     level: 11,
-    name: 'Commander - ground radar failure',
+    name: 'Commander - stealthy enemy',
     difficulty: 8,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
