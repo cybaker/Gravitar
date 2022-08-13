@@ -22,7 +22,7 @@ import 'player_thrust.dart';
 class PlayerProperties {
 
   PlayerProperties({
-    this.thrust = 2,
+    this.thrust = 120,
     this.thrustConsumption = 2.5,
     this.fireBulletConsumption = 4,
     this.shieldConsumption = 6,
@@ -74,7 +74,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   double fireTimeout = 0;
 
   static const halfPi = pi / 2;
-  static const rotationSpeed = pi / 30;
+  static const rotationSpeedPerSecond = 2 * pi;
 
   static const maxShipFuel = 100.0;
 
@@ -97,7 +97,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
 
     _updatePosition(dt);
     _updateFireTimeout(dt);
-    _handleKeyPresses();
+    _handleKeyPresses(dt);
     gameRef.cameraZoom();
   }
 
@@ -157,31 +157,31 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
     gameRef.gameState.addFuel(-properties.thrustConsumption);
   }
 
-  _handleKeyPresses() {
+  _handleKeyPresses(double dt) {
     // debugPrint('onKeyEvent ${gameRef.pressedKeySet}');
-    _checkTurns();
-    _checkThrust();
-    _checkFiring();
+    _checkTurns(dt);
+    _checkThrust(dt);
+    _checkFiring(dt);
     _showShield(gameRef.pressedKeySet.contains(LogicalKeyboardKey.space));
   }
 
-  void _checkTurns() {
+  void _checkTurns(double dt) {
     if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.arrowLeft)) {
-      angle -= rotationSpeed;
+      angle -= rotationSpeedPerSecond * dt;
     } else if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.arrowRight)) {
-      angle += rotationSpeed;
+      angle += rotationSpeedPerSecond * dt;
     }
   }
 
-  void _checkThrust() {
+  void _checkThrust(double dt) {
     if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.arrowUp)) {
-      _thrustShip(angle, gameRef.singlePlayer.properties.thrust);
+      _thrustShip(angle, gameRef.singlePlayer.properties.thrust * dt);
     } else {
       _showThrust(false);
     }
   }
 
-  void _checkFiring() {
+  void _checkFiring(double dt) {
     if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.keyF)) {
       if (_canFireBullet) _fireBullet();
     }

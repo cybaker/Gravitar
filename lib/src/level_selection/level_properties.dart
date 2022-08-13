@@ -9,9 +9,9 @@ import '../game/player/player.dart';
 
 var playerInvincible = PlayerProperties(bulletFireLifetimeSecs: 4, bulletReloadSecs: 0.1, invincible: true);
 var playerEasy = PlayerProperties(bulletFireLifetimeSecs: 4, bulletReloadSecs: 0.1);
-var playerNormal = PlayerProperties(thrust: 3, bulletFireLifetimeSecs: 3, bulletReloadSecs: 0.18);
-var playerHard = PlayerProperties(thrust: 4, thrustConsumption: 2, bulletFireLifetimeSecs: 2.5, bulletReloadSecs: 0.25);
-var playerInsane = PlayerProperties(thrust: 8, thrustConsumption: 1.5, bulletFireLifetimeSecs: 2.5, bulletReloadSecs: 0.25);
+var playerNormal = PlayerProperties(thrust: 180, bulletFireLifetimeSecs: 3, bulletReloadSecs: 0.18);
+var playerHard = PlayerProperties(thrust: 240, thrustConsumption: 2, bulletFireLifetimeSecs: 2.5, bulletReloadSecs: 0.25);
+var playerInsane = PlayerProperties(thrust: 480, thrustConsumption: 1.5, bulletFireLifetimeSecs: 2.5, bulletReloadSecs: 0.25);
 
 var enemyBasePropertiesEasy = EnemyBaseProperties(averageFireTimeSec: 1.0,);
 var enemyBasePropertiesNormal = EnemyBaseProperties(averageFireTimeSec: 0.5,);
