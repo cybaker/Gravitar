@@ -12,7 +12,7 @@ class PlanetPolygon extends PolygonComponent with HasGameRef<PlayerGame>, Collis
 
   var flicker;
 
-  PlanetPolygon({priority: 2, required this.offset, required this.verticesList, this.flicker = false})
+  PlanetPolygon({priority = 2, required this.offset, required this.verticesList, this.flicker = false})
       : super(verticesList, position: offset);
 
   final Vector2 offset;

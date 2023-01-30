@@ -7,7 +7,7 @@ import 'package:flame/palette.dart';
 import '../player_game.dart';
 
 class PlayerShield extends CircleComponent with HasGameRef<PlayerGame>, CollisionCallbacks {
-  PlayerShield({priority: 3, required double radius, required Vector2 position})
+  PlayerShield({priority = 3, required double radius, required Vector2 position})
       : super(radius: radius, position: position);
 
   @override
