@@ -9,7 +9,7 @@ import '../player_game.dart';
 
 class ExpandingCircle extends CircleComponent with HasGameRef<PlayerGame>, CollisionCallbacks {
   ExpandingCircle({
-    priority: 4,
+    priority = 4,
     required this.expandSpeed,
     required this.initialPosition,
     required this.secondsToLive,

@@ -14,7 +14,7 @@ var gameUniverses = [
     playfieldDimension: 1000,
     extraLifeThreshold: 2000,
 
-    starSystems: [starSystemNormalFlicker],
+    starSystems: [starSystemEasyEasy],
 
     // TODO: When ready, change these achievement IDs.
     // You configure this in App Store Connect.

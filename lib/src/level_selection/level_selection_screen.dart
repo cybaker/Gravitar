@@ -43,7 +43,7 @@ class LevelSelectionScreen extends StatelessWidget {
   ElevatedButton _backWidget(BuildContext context) {
     return ElevatedButton(
         onPressed: () {
-          GoRouter.of(context).pop();
+          GoRouter.of(context).push('/');
         },
         child: const Text('Back'),
       );
@@ -60,7 +60,7 @@ class LevelSelectionScreen extends StatelessWidget {
                       final audioController = context.read<AudioController>();
                       audioController.playSfx(SfxType.buttonTap);
 
-                      GoRouter.of(context).go('/play/session/${universe.level}');
+                      GoRouter.of(context).push('/play/session/${universe.level}');
                     },
                     leading: Text(universe.level.toString(), style: enabledDisabledStyle(playerProgress.highestLevelReached, universe.level, palette)),
                     title: Text('${universe.name}', style: enabledDisabledStyle(playerProgress.highestLevelReached, universe.level, palette)),

@@ -54,7 +54,6 @@ class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection, T
     final Vector2 resolution = Vector2(universe.playfieldDimension.toDouble(), universe.playfieldDimension.toDouble());
     camera.viewport = FixedResolutionViewport(resolution);
 
-    // loadPlanet();
     loadStarSystem();
   }
 
@@ -68,6 +67,10 @@ class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection, T
     await addStarSystemComponents();
     await addPlayerAndFollow();
     singlePlayer.position = gameState.currentStarSystem.currentWarpInPosition;
+    await checkPlanetConquered();
+  }
+
+  Future<void> checkPlanetConquered() async {
     if (gameState.currentStarSystem.currentWarpInPosition == gameState.currentPlanet.starSystemPosition &&
         gameState.currentPlanet.numEnemies == 0) {
         await add(planetExplosion(gameState.currentStarSystem.currentWarpInPosition));
@@ -76,8 +79,7 @@ class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection, T
   }
 
   Future<void> addStarSystemComponents() async {
-    var currentStarSystem = gameState.currentStarSystem;
-    await addAll(currentStarSystem.unconqueredStarSystemComponents());
+    await addAll(gameState.currentStarSystem.unconqueredStarSystemComponents());
   }
 
   void loadPlanet() async {
@@ -93,10 +95,9 @@ class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection, T
   }
 
   Future<void> addPlanetComponents() async {
-    var currentPlanet = gameState.currentPlanet;
-    await addAll(currentPlanet.planetPolygonShapes());
-    await addAll(currentPlanet.planetComponents());
-    await addAll(currentPlanet.planetExits);
+    await addAll(gameState.currentPlanet.planetPolygonShapes());
+    await addAll(gameState.currentPlanet.planetComponents());
+    await addAll(gameState.currentPlanet.planetExits);
   }
 
   void playerHit() async {

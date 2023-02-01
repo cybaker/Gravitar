@@ -6,20 +6,20 @@ import 'package:flutter/foundation.dart';
 
 import 'persistence/settings_persistence.dart';
 
-/// An class that holds settings like [playerName] or [backgroundMusicOn],
+/// An class that holds settings like [playerName] or [musicOn],
 /// and saves them to an injected persistence store.
 class SettingsController {
   final SettingsPersistence _persistence;
 
   /// Whether or not the sound is on at all. This overrides both music
   /// and sound.
-  ValueNotifier<bool> soundMuted = ValueNotifier(false);
+  ValueNotifier<bool> muted = ValueNotifier(false);
 
   ValueNotifier<String> playerName = ValueNotifier('Player');
 
-  ValueNotifier<bool> sfxOn = ValueNotifier(false);
+  ValueNotifier<bool> soundsOn = ValueNotifier(false);
 
-  ValueNotifier<bool> backgroundMusicOn = ValueNotifier(false);
+  ValueNotifier<bool> musicOn = ValueNotifier(false);
 
   /// Creates a new instance of [SettingsController] backed by [persistence].
   SettingsController({required SettingsPersistence persistence})
@@ -29,10 +29,13 @@ class SettingsController {
   Future<void> loadStateFromPersistence() async {
     await Future.wait([
       _persistence
-          .getMuted(defaultValue: false)
-          .then((value) => soundMuted.value = value),
-      _persistence.getSoundsOn().then((value) => sfxOn.value = value),
-      _persistence.getMusicOn().then((value) => backgroundMusicOn.value = value),
+      // On the web, sound can only start after user interaction, so
+      // we start muted there.
+      // On any other platform, we start unmuted.
+          .getMuted(defaultValue: kIsWeb)
+          .then((value) => muted.value = value),
+      _persistence.getSoundsOn().then((value) => soundsOn.value = value),
+      _persistence.getMusicOn().then((value) => musicOn.value = value),
       _persistence.getPlayerName().then((value) => playerName.value = value),
     ]);
   }
@@ -43,17 +46,17 @@ class SettingsController {
   }
 
   void toggleMusicOn() {
-    backgroundMusicOn.value = !backgroundMusicOn.value;
-    _persistence.saveMusicOn(backgroundMusicOn.value);
+    musicOn.value = !musicOn.value;
+    _persistence.saveMusicOn(musicOn.value);
   }
 
   void toggleMuted() {
-    soundMuted.value = !soundMuted.value;
-    _persistence.saveMuted(soundMuted.value);
+    muted.value = !muted.value;
+    _persistence.saveMuted(muted.value);
   }
 
   void toggleSoundsOn() {
-    sfxOn.value = !sfxOn.value;
-    _persistence.saveSoundsOn(sfxOn.value);
+    soundsOn.value = !soundsOn.value;
+    _persistence.saveSoundsOn(soundsOn.value);
   }
 }

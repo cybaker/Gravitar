@@ -12,7 +12,7 @@ import 'explosion.dart';
 
 class Bullet extends CircleComponent with HasGameRef<PlayerGame>, CollisionCallbacks {
   Bullet({
-    priority: 4,
+    priority = 4,
     required double radius,
     required this.velocityVector,
     required this.initialPosition,
