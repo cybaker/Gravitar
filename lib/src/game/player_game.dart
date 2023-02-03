@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:Gravitar/src/game_internals/game_state.dart';
 import 'package:flame/game.dart';
@@ -128,8 +129,10 @@ class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection, T
   }
 
   Future<void> addPlayerAndFollow() async {
+    var startAngle = (gameState.currentPlanet.gravity.gravityAmount < 0.0) ? pi : 0.0;
+
     await add(singlePlayer
-      ..angle = 0
+      ..angle = startAngle
       ..velocity = Vector2.zero());
     singlePlayer.position = planetPlayerEntryPoint;
 
