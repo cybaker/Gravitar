@@ -55,15 +55,15 @@ class LevelSelectionScreen extends StatelessWidget {
               children: [
                 for (final universe in gameUniverses)
                   ListTile(
-                    enabled: playerProgress.highestLevelReached >= universe.level - 1,
+                    enabled: enabled(playerProgress, universe),
                     onTap: () {
                       final audioController = context.read<AudioController>();
                       audioController.playSfx(SfxType.buttonTap);
 
                       GoRouter.of(context).push('/play/session/${universe.level}');
                     },
-                    leading: Text(universe.level.toString(), style: enabledDisabledStyle(playerProgress.highestLevelReached, universe.level, palette)),
-                    title: Text('${universe.name}', style: enabledDisabledStyle(playerProgress.highestLevelReached, universe.level, palette)),
+                    leading: Text(universe.level.toString(), style: enabledDisabledStyle(playerProgress, universe, palette)),
+                    title: Text('${universe.name}', style: enabledDisabledStyle(playerProgress, universe, palette)),
                   )
               ],
             ),
@@ -96,7 +96,11 @@ class LevelSelectionScreen extends StatelessWidget {
 
   SizedBox _gap() => const SizedBox(height: 50);
 
-  TextStyle enabledDisabledStyle(int highestLevelReached, int level, Palette palette) {
-    return highestLevelReached >= level - 1 ? palette.subtitle : palette.subtitleDisabled;
+  bool enabled(PlayerProgress playerProgress, GameUniverse universe) {
+    return playerProgress.highestLevelReached >= universe.level - 1;
+  }
+
+  TextStyle enabledDisabledStyle(PlayerProgress playerProgress, GameUniverse universe, Palette palette) {
+    return enabled(playerProgress, universe) ? palette.subtitle : palette.subtitleDisabled;
   }
 }
