@@ -16,7 +16,8 @@ class PlayerShield extends CircleComponent with HasGameRef<PlayerGame>, Collisio
     paint = BasicPalette.blue.withAlpha(0x80).paint()
       ..style = PaintingStyle.fill
       ..strokeWidth = 4;
-    var radii = List.generate(8, (index) => CircleHitbox.relative(1 - index/10, parentSize: this.size));
-    await addAll(radii);
+    var hitbox = CircleHitbox.relative(1, parentSize: this.size);
+    hitbox.isSolid = true;
+    await add(hitbox);
   }
 }
