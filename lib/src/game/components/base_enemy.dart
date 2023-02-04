@@ -42,11 +42,32 @@ List<Vector2> _basicEnemyBaseShape = [
   Vector2(10, 0),
 ];
 
+List<Vector2> _mediumEnemyBaseShape = [
+  Vector2(0, 0),
+  Vector2(-6, 0),
+  Vector2(-6, -6),
+  Vector2(-3, -6),
+  Vector2(0, -9),
+  Vector2(3, -6),
+  Vector2(6, -6),
+  Vector2(6, 0),
+];
+
+List<Vector2> _advancedEnemyBaseShape = [
+  Vector2(0, 0),
+  Vector2(-3, -3),
+  Vector2(0, -6),
+  Vector2(3, -3),
+];
+
+var _shapes = [_basicEnemyBaseShape, _mediumEnemyBaseShape, _advancedEnemyBaseShape];
+
 class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
-  EnemyBaseComponent({this.anchorLength = 0.5})
-      : super(shapeVertices: _basicEnemyBaseShape, relativeAnchorLength: anchorLength);
+  EnemyBaseComponent({this.anchorLength = 0.5, this.difficulty = 1})
+      : super(shapeVertices: _shapes[difficulty], relativeAnchorLength: anchorLength);
 
   final double anchorLength;
+  final int difficulty;
 
   double fireTimeout = 0;
   double playerAngle = 0;

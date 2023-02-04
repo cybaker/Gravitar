@@ -64,30 +64,56 @@ class _Planet6 extends Planet {
   final Gravity gravity;
 
   var flicker;
+  int difficulty;
 
-  _Planet6(this.gravity, {this.flicker = false})
+  _Planet6(this.gravity, {this.flicker = false, this.difficulty = 1})
       : super(
-      gravity: gravity,
-      planetShapes: [_planet6PlanetShape1, _planet6PlanetShape2],
-      planetExits: [SurroundPlanetExitComponent()],
-      starSystemPosition: Vector2(850, 100),
-      starSystemSize: Vector2(120, 120),
-      imageFilename: 'mimas1.jpeg',
-      flicker: flicker
-  );
+          gravity: gravity,
+          planetShapes: [_planet6PlanetShape1, _planet6PlanetShape2],
+          planetExits: [SurroundPlanetExitComponent()],
+          starSystemPosition: Vector2(850, 100),
+          starSystemSize: Vector2(120, 120),
+          imageFilename: 'mimas1.jpeg',
+          flicker: flicker,
+          difficulty: difficulty,
+        );
 }
 
-var planet6Easy = _Planet6(downGravityEasy,);
-var planet6Normal = _Planet6(downGravityNormal,);
-var planet6Hard = _Planet6(downGravityHard,);
-var planet6Insane = _Planet6(downGravityInsane,);
+var planet6Easy = _Planet6(
+  downGravityEasy,
+  difficulty: 1,
+);
+var planet6Normal = _Planet6(
+  downGravityNormal,
+  difficulty: 1,
+);
+var planet6Hard = _Planet6(
+  downGravityHard,
+  difficulty: 2,
+);
+var planet6Insane = _Planet6(
+  downGravityInsane,
+  difficulty: 3,
+);
 
-var planet6EasyReverse = _Planet6(upGravityEasy,);
-var planet6NormalReverse = _Planet6(upGravityNormal,);
-var planet6HardReverse = _Planet6(upGravityHard,);
-var planet6InsaneReverse = _Planet6(upGravityInsane,);
+var planet6EasyReverse = _Planet6(
+  upGravityEasy,
+  difficulty: 1,
+);
+var planet6NormalReverse = _Planet6(
+  upGravityNormal,
+  difficulty: 1,
+);
+var planet6HardReverse = _Planet6(
+  upGravityHard,
+  difficulty: 2,
+);
+var planet6InsaneReverse = _Planet6(
+  upGravityInsane,
+  difficulty: 3,
+);
 
-var planet6EasyFlicker = _Planet6(downGravityEasy, flicker: true);
-var planet6NormalFlicker = _Planet6(downGravityNormal, flicker: true);
-var planet6HardFlicker = _Planet6(downGravityHard, flicker: true);
-var planet6InsaneFlicker = _Planet6(downGravityInsane, flicker: true);
+var planet6EasyFlicker = _Planet6(downGravityEasy, flicker: true, difficulty: 1);
+var planet6NormalFlicker = _Planet6(downGravityNormal, flicker: true, difficulty: 1);
+var planet6HardFlicker = _Planet6(downGravityHard, flicker: true, difficulty: 2);
+var planet6InsaneFlicker = _Planet6(downGravityInsane, flicker: true, difficulty: 3);

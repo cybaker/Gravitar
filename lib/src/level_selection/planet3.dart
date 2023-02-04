@@ -65,8 +65,9 @@ class _Planet3 extends Planet {
   final Gravity gravity;
 
   var flicker;
+  int difficulty;
 
-  _Planet3(this.gravity, {this.flicker = false})
+  _Planet3(this.gravity, {this.flicker = false, this.difficulty = 1, })
       : super(
       gravity: gravity,
       planetShapes: [_planet3PlanetShape1, _planet3PlanetShape2],
@@ -75,20 +76,21 @@ class _Planet3 extends Planet {
       starSystemSize: Vector2(100, 100),
       imageFilename: 'jupiter1.jpeg',
       flicker: flicker,
+      difficulty: difficulty,
   );
 }
 
-var planet3Easy = _Planet3(downGravityEasy,);
-var planet3Normal = _Planet3(downGravityNormal,);
-var planet3Hard = _Planet3(downGravityHard,);
-var planet3Insane = _Planet3(downGravityInsane,);
+var planet3Easy = _Planet3(downGravityEasy, difficulty: 1);
+var planet3Normal = _Planet3(downGravityNormal, difficulty: 1);
+var planet3Hard = _Planet3(downGravityHard, difficulty: 2);
+var planet3Insane = _Planet3(downGravityInsane, difficulty: 3);
 
-var planet3EasyReverse = _Planet3(upGravityEasy,);
-var planet3NormalReverse = _Planet3(upGravityNormal,);
-var planet3HardReverse = _Planet3(upGravityHard,);
-var planet3InsaneReverse = _Planet3(upGravityInsane,);
+var planet3EasyReverse = _Planet3(upGravityEasy, difficulty: 1);
+var planet3NormalReverse = _Planet3(upGravityNormal, difficulty: 1);
+var planet3HardReverse = _Planet3(upGravityHard, difficulty: 2);
+var planet3InsaneReverse = _Planet3(upGravityInsane, difficulty: 3);
 
-var planet3EasyFlicker = _Planet3(downGravityEasy, flicker: true);
-var planet3NormalFlicker = _Planet3(downGravityNormal, flicker: true);
-var planet3HardFlicker = _Planet3(downGravityHard, flicker: true);
-var planet3InsaneFlicker = _Planet3(downGravityInsane, flicker: true);
+var planet3EasyFlicker = _Planet3(downGravityEasy, flicker: true, difficulty: 1);
+var planet3NormalFlicker = _Planet3(downGravityNormal, flicker: true, difficulty: 1);
+var planet3HardFlicker = _Planet3(downGravityHard, flicker: true, difficulty: 2);
+var planet3InsaneFlicker = _Planet3(downGravityInsane, flicker: true, difficulty: 3);

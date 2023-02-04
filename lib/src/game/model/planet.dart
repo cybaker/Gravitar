@@ -23,6 +23,7 @@ class Planet {
     required this.starSystemSize,
     required this.planetShapes,
     required this.planetExits,
+    required this.difficulty,
     this.flicker = false,
     this.gravity,
   });
@@ -30,7 +31,7 @@ class Planet {
   final String imageFilename;
   final Vector2 starSystemPosition;
   final Vector2 starSystemSize;
-
+  final int difficulty;
 
   final List<PlanetShape> planetShapes;
   final List<PlanetExitComponent> planetExits;
@@ -58,9 +59,16 @@ class Planet {
       Vector2 startOfLine = Vector2.zero();
       planetShape.segments.forEach((segment) {
         segment.segmentComponents.forEach((component) {
-          // angle and position from last point to the end point.
-          setComponentPosition(startOfLine, segment.positionEnd, planetShape.offset, component);
-          components.add(component);
+          if (component is EnemyBaseComponent) {
+            var newComponent = EnemyBaseComponent(difficulty: difficulty);
+            // angle and position from last point to the end point.
+            setComponentPosition(startOfLine, segment.positionEnd, planetShape.offset, newComponent);
+            components.add(newComponent);
+          } else {
+            // angle and position from last point to the end point.
+            setComponentPosition(startOfLine, segment.positionEnd, planetShape.offset, component);
+            components.add(component);
+          }
           if (component is EnemyBaseComponent || component is ReactorComponent) numberEnemies++;
         });
         startOfLine = segment.positionEnd; // track last position

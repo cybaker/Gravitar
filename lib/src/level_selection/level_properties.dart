@@ -27,36 +27,36 @@ var basicEnemyShipProperties = EnemyShipProperties(
 );
 
 var fuelDepotPropertiesEasy = FuelDepotProperties(fuelIncreasePerDepot: 2000);
-var fuelDepotPropertiesNormal = FuelDepotProperties(fuelIncreasePerDepot: 3000);
-var fuelDepotPropertiesHard = FuelDepotProperties(fuelIncreasePerDepot: 4000);
-var fuelDepotPropertiesInsane = FuelDepotProperties(fuelIncreasePerDepot: 5000);
+var fuelDepotPropertiesNormal = FuelDepotProperties(fuelIncreasePerDepot: 4000);
+var fuelDepotPropertiesHard = FuelDepotProperties(fuelIncreasePerDepot: 6000);
+var fuelDepotPropertiesInsane = FuelDepotProperties(fuelIncreasePerDepot: 10000);
 
-var downGravityNormal = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.3);
 var downGravityEasy = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.1);
-var downGravityHard = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.7);
-var downGravityInsane = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 1.2);
-var upGravityNormal = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: -0.3);
+var downGravityNormal = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.3);
+var downGravityHard = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.5);
+var downGravityInsane = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: 0.8);
 var upGravityEasy = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: -0.1);
-var upGravityHard = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: -0.7);
-var upGravityInsane = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: -1.2);
+var upGravityNormal = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: -0.3);
+var upGravityHard = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: -0.5);
+var upGravityInsane = Gravity(gravityCenter: Vector2(500, 100000), gravityAmount: -0.8);
 
 var centerGravityEasy = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.1);
 var centerGravityNormal = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.3);
-var centerGravityHard = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.7);
-var centerGravityInsane = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 1.2);
+var centerGravityHard = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.5);
+var centerGravityInsane = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: 0.8);
 var centerGravityEasyReverse = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: -0.1);
 var centerGravityNormalReverse = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: -0.3);
-var centerGravityHardReverse = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: -0.7);
-var centerGravityInsaneReverse = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: -1.2);
+var centerGravityHardReverse = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: -0.5);
+var centerGravityInsaneReverse = Gravity(gravityCenter: Vector2(500, 650), gravityAmount: -0.8);
 
 var starSystemCenterGravityEasy = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.1);
 var starSystemCenterGravityNormal = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.3);
-var starSystemCenterGravityHard = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.7);
-var starSystemCenterGravityInsane = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 1.2);
+var starSystemCenterGravityHard = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.5);
+var starSystemCenterGravityInsane = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: 0.8);
 
 var starSystemCenterGravityEasyReverse = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: -0.1);
 var starSystemCenterGravityNormalReverse = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: -0.3);
-var starSystemCenterGravityHardReverse = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: -0.7);
-var starSystemCenterGravityInsaneReverse = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: -1.2);
+var starSystemCenterGravityHardReverse = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: -0.5);
+var starSystemCenterGravityInsaneReverse = Gravity(gravityCenter: Vector2(500, 500), gravityAmount: -0.8);
 
 var reactorPropertiesEasy = ReactorProperties();

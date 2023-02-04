@@ -102,34 +102,40 @@ class _Planet2 extends Planet {
   final Gravity gravity;
 
   var flicker;
+  int difficulty;
 
-  _Planet2(this.gravity, {this.flicker = false})
-      : super(
-    gravity: gravity,
-    planetShapes: [_planet2PlanetShape1, _planet2PlanetShape2, _planet2PlanetShape3, _planet2PlanetShape4,],
-    planetExits: [SurroundPlanetExitComponent()],
-    starSystemPosition: Vector2(700, 200),
-    starSystemSize: Vector2(80, 80),
-    imageFilename: 'planet2.png',
-    flicker: flicker,
-  );
+  _Planet2(
+    this.gravity, {
+    this.flicker = false,
+    this.difficulty = 1,
+  }) : super(
+          gravity: gravity,
+          planetShapes: [
+            _planet2PlanetShape1,
+            _planet2PlanetShape2,
+            _planet2PlanetShape3,
+            _planet2PlanetShape4,
+          ],
+          planetExits: [SurroundPlanetExitComponent()],
+          starSystemPosition: Vector2(700, 200),
+          starSystemSize: Vector2(80, 80),
+          imageFilename: 'planet2.png',
+          flicker: flicker,
+          difficulty: difficulty,
+        );
 }
 
-var planet2Easy = _Planet2(downGravityEasy,);
-var planet2Normal = _Planet2(downGravityNormal,);
-var planet2Hard = _Planet2(downGravityHard,);
-var planet2Insane = _Planet2(downGravityInsane,);
+var planet2Easy = _Planet2(downGravityEasy, difficulty: 1);
+var planet2Normal = _Planet2(downGravityNormal, difficulty: 1);
+var planet2Hard = _Planet2(downGravityHard, difficulty: 2);
+var planet2Insane = _Planet2(downGravityInsane, difficulty: 3);
 
-var planet2EasyReverse = _Planet2(upGravityEasy,);
+var planet2EasyReverse = _Planet2(upGravityEasy, difficulty: 1);
+var planet2NormalReverse = _Planet2(upGravityNormal, difficulty: 1);
+var planet2HardReverse = _Planet2(upGravityHard, difficulty: 2);
+var planet2InsaneReverse = _Planet2(upGravityInsane, difficulty: 3);
 
-var planet2NormalReverse = _Planet2(upGravityNormal,);
-
-var planet2HardReverse = _Planet2(upGravityHard,);
-
-var planet2InsaneReverse = _Planet2(upGravityInsane,);
-
-var planet2EasyFlicker = _Planet2(downGravityEasy, flicker: true);
-var planet2NormalFlicker = _Planet2(downGravityNormal, flicker: true);
-var planet2HardFlicker = _Planet2(downGravityHard, flicker: true);
-var planet2InsaneFlicker = _Planet2(downGravityInsane, flicker: true);
-
+var planet2EasyFlicker = _Planet2(downGravityEasy, flicker: true, difficulty: 1);
+var planet2NormalFlicker = _Planet2(downGravityNormal, flicker: true, difficulty: 1);
+var planet2HardFlicker = _Planet2(downGravityHard, flicker: true, difficulty: 2);
+var planet2InsaneFlicker = _Planet2(downGravityInsane, flicker: true, difficulty: 3);

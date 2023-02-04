@@ -27,7 +27,9 @@ List<PlanetSegment> _planet9Large2 = [
 
 List<PlanetSegment> _planet9Large3 = [
   PlanetSegment(positionEnd: Vector2(0, 0), segmentComponents: []),
-  PlanetSegment(positionEnd: Vector2(150, 0), segmentComponents: [EnemyBaseComponent(anchorLength: 0.25), FuelDepotComponent(anchorLength: 0.75)]),
+  PlanetSegment(
+      positionEnd: Vector2(150, 0),
+      segmentComponents: [EnemyBaseComponent(anchorLength: 0.25), FuelDepotComponent(anchorLength: 0.75)]),
   PlanetSegment(positionEnd: Vector2(100, 50), segmentComponents: [EnemyBaseComponent()]),
   PlanetSegment(positionEnd: Vector2(75, 128), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(50, 50), segmentComponents: []),
@@ -90,34 +92,68 @@ class _Planet9 extends Planet {
   final Gravity gravity;
 
   var flicker;
+  int difficulty;
 
-  _Planet9(this.gravity, {this.flicker = false})
+  _Planet9(this.gravity, {this.flicker = false, this.difficulty = 1})
       : super(
-      gravity: gravity,
-      planetShapes: [
-        _planetShape9LargeA, _planetShape9LargeB, _planetShape9LargeC, _planetShape9LargeD,
-        _planetShape9SmallA, _planetShape9SmallB, _planetShape9SmallC, _planetShape9SmallD,
-        _planetShape9SmallE, _planetShape9SmallF, _planetShape9SmallG,
-      ],
-      planetExits: [SurroundPlanetExitComponent()],
-      starSystemPosition: Vector2(100, 100),
-      starSystemSize: Vector2(90, 90),
-      imageFilename: 'mercury1.jpeg',
-      flicker: flicker,
-  );
+          gravity: gravity,
+          planetShapes: [
+            _planetShape9LargeA,
+            _planetShape9LargeB,
+            _planetShape9LargeC,
+            _planetShape9LargeD,
+            _planetShape9SmallA,
+            _planetShape9SmallB,
+            _planetShape9SmallC,
+            _planetShape9SmallD,
+            _planetShape9SmallE,
+            _planetShape9SmallF,
+            _planetShape9SmallG,
+          ],
+          planetExits: [SurroundPlanetExitComponent()],
+          starSystemPosition: Vector2(100, 100),
+          starSystemSize: Vector2(90, 90),
+          imageFilename: 'mercury1.jpeg',
+          flicker: flicker,
+          difficulty: difficulty,
+        );
 }
 
-var planet9Easy = _Planet9(downGravityEasy,);
-var planet9Normal = _Planet9(downGravityNormal,);
-var planet9Hard = _Planet9(downGravityHard,);
-var planet9Insane = _Planet9(downGravityInsane,);
+var planet9Easy = _Planet9(
+  downGravityEasy,
+  difficulty: 1,
+);
+var planet9Normal = _Planet9(
+  downGravityNormal,
+  difficulty: 1,
+);
+var planet9Hard = _Planet9(
+  downGravityHard,
+  difficulty: 2,
+);
+var planet9Insane = _Planet9(
+  downGravityInsane,
+  difficulty: 3,
+);
 
-var planet9EasyReverse = _Planet9(upGravityEasy,);
-var planet9NormalReverse = _Planet9(upGravityNormal,);
-var planet9HardReverse = _Planet9(upGravityHard,);
-var planet9InsaneReverse = _Planet9(upGravityInsane,);
+var planet9EasyReverse = _Planet9(
+  upGravityEasy,
+  difficulty: 1,
+);
+var planet9NormalReverse = _Planet9(
+  upGravityNormal,
+  difficulty: 1,
+);
+var planet9HardReverse = _Planet9(
+  upGravityHard,
+  difficulty: 2,
+);
+var planet9InsaneReverse = _Planet9(
+  upGravityInsane,
+  difficulty: 3,
+);
 
-var planet9EasyFlicker = _Planet9(downGravityEasy, flicker: true);
-var planet9NormalFlicker = _Planet9(downGravityNormal, flicker: true);
-var planet9HardFlicker = _Planet9(downGravityHard, flicker: true);
-var planet9InsaneFlicker = _Planet9(downGravityInsane, flicker: true);
+var planet9EasyFlicker = _Planet9(downGravityEasy, flicker: true, difficulty: 1);
+var planet9NormalFlicker = _Planet9(downGravityNormal, flicker: true, difficulty: 1);
+var planet9HardFlicker = _Planet9(downGravityHard, flicker: true, difficulty: 2);
+var planet9InsaneFlicker = _Planet9(downGravityInsane, flicker: true, difficulty: 3);

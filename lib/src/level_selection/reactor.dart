@@ -43,8 +43,9 @@ class _Reactor extends Planet {
   final Gravity gravity;
 
   var flicker;
+  int difficulty;
 
-  _Reactor(this.gravity, {this.flicker = false})
+  _Reactor(this.gravity, {this.flicker = false, this.difficulty = 1})
       : super(
       gravity: gravity,
       planetShapes: [_reactorPlanetShape],
@@ -53,6 +54,7 @@ class _Reactor extends Planet {
       starSystemSize: Vector2(240, 120),
       imageFilename: 'saturn1.jpeg',
       flicker: flicker,
+    difficulty: difficulty,
   );
 }
 
