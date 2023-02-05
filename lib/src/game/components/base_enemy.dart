@@ -63,13 +63,15 @@ List<Vector2> _advancedEnemyBaseShape = [
 var _shapes = [_basicEnemyBaseShape, _mediumEnemyBaseShape, _advancedEnemyBaseShape];
 
 class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
-  EnemyBaseComponent({this.anchorLength = 0.5, this.difficulty = 1})
+  EnemyBaseComponent({this.anchorLength = 0.5, this.difficulty = 1, this.flickerSeconds = 0.0})
       : super(shapeVertices: _shapes[difficulty], relativeAnchorLength: anchorLength);
 
   final double anchorLength;
+  final double flickerSeconds;
   final int difficulty;
 
   double fireTimeout = 0;
+  double paintTimeout = 0;
   double playerAngle = 0;
 
   late Vector2 firingPosition;
@@ -78,7 +80,7 @@ class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
     ..style = PaintingStyle.stroke
     ..strokeWidth = 2;
 
-  final paintOff = BasicPalette.red.withAlpha(0).paint()
+  final paintOff = BasicPalette.red.withAlpha(2).paint()
     ..style = PaintingStyle.stroke
     ..strokeWidth = 2;
 
@@ -99,6 +101,7 @@ class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
     super.update(dt);
     playerAngle = angleToPlayer;
     _fireTimerTick(dt);
+    if(flickerSeconds > 0.0) _paintTimerTick(dt);
   }
 
   @override
@@ -119,8 +122,8 @@ class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
 
   _fireTimerTick(double dt) {
     fireTimeout -= dt;
-    if(fireTimeout <= 0) {
-      fireTimeout = this.randomFromTo(0.5*properties.averageFireTimeSec, 2*properties.averageFireTimeSec);
+    if (fireTimeout <= 0) {
+      fireTimeout = this.randomFromTo(0.5 * properties.averageFireTimeSec, 2 * properties.averageFireTimeSec);
       if (playerInFiringRange) {
         if (playerInAngleRange) _fireSomething();
         paint = paintOn;
@@ -129,6 +132,7 @@ class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
   }
 
   void _fireSomething() {
+    paintTimeout = flickerSeconds;
     if (this.randomPercentOfTime(10)) {
       _fireTimeBurst();
     } else if (this.randomPercentOfTime(10)) {
@@ -142,13 +146,13 @@ class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
 
   void _fireRandomAngle() {
     var randomAngle = this.randomFromTo(0, pi);
-    _fireBullet((randomAngle + angle - pi/2) % 2*pi);
+    _fireBullet((randomAngle + angle - pi / 2) % 2 * pi);
   }
 
   void _fireAngleSpread() {
-    _fireBullet(playerAngle - pi/30);
+    _fireBullet(playerAngle - pi / 30);
     _fireBullet(playerAngle);
-    _fireBullet(playerAngle + pi/30);
+    _fireBullet(playerAngle + pi / 30);
   }
 
   void _fireTimeBurst() {
@@ -186,15 +190,19 @@ class EnemyBaseComponent extends SegmentComponent with CollisionCallbacks {
   ///   angle is 0 to 2*pi from N clockwise
   ///   playerAngle is -pi to pi, 0 pointing S counterclockwise
   bool get playerInAngleRange {
-    var relativeAngle = (angle + (playerAngle-pi)) % (2*pi);
-    return relativeAngle < pi/2 || relativeAngle > pi*3/2;
+    var relativeAngle = (angle + (playerAngle - pi)) % (2 * pi);
+    return relativeAngle < pi / 2 || relativeAngle > pi * 3 / 2;
   }
 
   double get angleToPlayer =>
-      atan2(gameRef.singlePlayer.position.x - firingPosition.x,
-        gameRef.singlePlayer.position.y - firingPosition.y);
+      atan2(gameRef.singlePlayer.position.x - firingPosition.x, gameRef.singlePlayer.position.y - firingPosition.y);
 
   Vector2 vectorAtAngle(double angle, double length) {
-    return Vector2(length*sin(angle), length*cos(angle));
+    return Vector2(length * sin(angle), length * cos(angle));
+  }
+
+  _paintTimerTick(double dt) {
+    paintTimeout -= dt;
+    paint = paintTimeout > 0 ? paintOn : paintOff;
   }
 }

@@ -45,7 +45,7 @@ class _Reactor extends Planet {
   var flicker;
   int difficulty;
 
-  _Reactor(this.gravity, {this.flicker = false, this.difficulty = 1})
+  _Reactor(this.gravity, {this.flicker = 0.0, this.difficulty = 1})
       : super(
       gravity: gravity,
       planetShapes: [_reactorPlanetShape],
@@ -68,7 +68,7 @@ var reactorNormalReverse = _Reactor(centerGravityNormalReverse,);
 var reactorHardReverse = _Reactor(centerGravityHardReverse,);
 var reactorInsaneReverse = _Reactor(centerGravityInsaneReverse,);
 
-var reactorEasyFlicker = _Reactor(centerGravityEasy, flicker: true);
-var reactorNormalFlicker = _Reactor(centerGravityNormal, flicker: true);
-var reactorHardFlicker = _Reactor(centerGravityHard, flicker: true);
-var reactorInsaneFlicker = _Reactor(centerGravityInsane, flicker: true);
+var reactorEasyFlicker = _Reactor(centerGravityEasy, flicker: 0.05);
+var reactorNormalFlicker = _Reactor(centerGravityNormal, flicker: 0.05);
+var reactorHardFlicker = _Reactor(centerGravityHard, flicker: 0.05);
+var reactorInsaneFlicker = _Reactor(centerGravityInsane, flicker: 0.05);

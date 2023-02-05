@@ -10,9 +10,9 @@ import '../player_game.dart';
 class PlanetPolygon extends PolygonComponent with HasGameRef<PlayerGame>, CollisionCallbacks {
   final List<Vector2> verticesList;
 
-  var flicker;
+  double flickerSeconds;
 
-  PlanetPolygon({priority = 2, required this.offset, required this.verticesList, this.flicker = false})
+  PlanetPolygon({priority = 2, required this.offset, required this.verticesList, this.flickerSeconds = 0.0})
       : super(verticesList, position: offset);
 
   final Vector2 offset;
@@ -33,19 +33,19 @@ class PlanetPolygon extends PolygonComponent with HasGameRef<PlayerGame>, Collis
   @override
   void update(double dt) {
     super.update(dt);
-    if(flicker) _paintTimerTick(dt);
+    if(flickerSeconds > 0.0) _paintTimerTick(dt);
   }
 
-  double fireTimeout = 0;
+  double paintTimeout = 0;
 
   _paintTimerTick(double dt) {
-    fireTimeout -= dt;
-    if(fireTimeout <= 0) {
-      debugPrint("Painting off");
-      fireTimeout = this.randomFromTo(1, 5);
+    paintTimeout -= dt;
+    if(paintTimeout <= 0) {
+      // debugPrint("Painting off");
+      paintTimeout = this.randomFromTo(1, 5);
       paint = paintOff;
-    } else if (fireTimeout < 0.04) {
-      debugPrint("Painting on");
+    } else if (paintTimeout < flickerSeconds) {
+      // debugPrint("Painting on");
       paint = paintOn;
     }
   }

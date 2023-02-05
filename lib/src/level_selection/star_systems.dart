@@ -190,7 +190,7 @@ StarSystem starSystemEasyFlicker = StarSystem(
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
   reactorProperties: reactorPropertiesEasy,
-  planetFlicker: true,
+  flickerSeconds: 0.5,
 );
 
 StarSystem starSystemNormal = StarSystem(
@@ -227,7 +227,7 @@ StarSystem starSystemNormalFlicker = StarSystem(
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
   reactorProperties: reactorPropertiesEasy,
-  planetFlicker: true,
+  flickerSeconds: 0.2,
 );
 
 
@@ -265,7 +265,7 @@ StarSystem starSystemHardFlicker = StarSystem(
   shipEnemyProperties: basicEnemyShipProperties,
   fuelDepotProperties: fuelDepotPropertiesEasy,
   reactorProperties: reactorPropertiesEasy,
-  planetFlicker: true,
+  flickerSeconds: 0.1,
 );
 
 StarSystem starSystemInsane = StarSystem(

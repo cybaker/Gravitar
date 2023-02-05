@@ -69,7 +69,7 @@ class _Planet1 extends Planet {
   var flicker;
   int difficulty;
 
-  _Planet1(this.gravity, {this.flicker = false, this.difficulty = 1})
+  _Planet1(this.gravity, {this.flicker = 0.0, this.difficulty = 1})
       : super(
           gravity: gravity,
           planetShapes: [_planet1PlanetShape],
@@ -92,7 +92,7 @@ var planet1NormalReverse = _Planet1(centerGravityNormalReverse, difficulty: 1);
 var planet1HardReverse = _Planet1(centerGravityHardReverse, difficulty: 2);
 var planet1InsaneReverse = _Planet1(centerGravityInsaneReverse, difficulty: 3);
 
-var planet1EasyFlicker = _Planet1(centerGravityEasy, flicker: true, difficulty: 1);
-var planet1NormalFlicker = _Planet1(centerGravityNormal, flicker: true, difficulty: 1);
-var planet1HardFlicker = _Planet1(centerGravityHard, flicker: true, difficulty: 2);
-var planet1InsaneFlicker = _Planet1(centerGravityInsane, flicker: true, difficulty: 3);
+var planet1EasyFlicker = _Planet1(centerGravityEasy, flicker: 0.05, difficulty: 1);
+var planet1NormalFlicker = _Planet1(centerGravityNormal, flicker: 0.05, difficulty: 1);
+var planet1HardFlicker = _Planet1(centerGravityHard, flicker: 0.05, difficulty: 2);
+var planet1InsaneFlicker = _Planet1(centerGravityInsane, flicker: 0.05, difficulty: 3);

@@ -27,11 +27,11 @@ class StarSystem {
     required this.shipEnemyProperties,
     required this.fuelDepotProperties,
     required this.reactorProperties,
-    this.planetFlicker = false,
+    this.flickerSeconds = 0.0,
   });
 
   final Gravity gravity;
-  final bool planetFlicker;
+  final double flickerSeconds;
   final String starImageFilename;
   final Vector2 startWarpInPosition;
   final List<Planet> planets;
@@ -48,7 +48,7 @@ class StarSystem {
     planets.forEach((planet) {
       if (planet.numEnemies != 0) {
         components.add(PlanetSprite(planet: planet));
-        planet.flicker = planetFlicker;
+        planet.flicker = flickerSeconds;
       }
     });
     components.add(StarSprite(imageFilename: starImageFilename, starPosition: gravity.gravityCenter, size: Vector2(400, 400)));

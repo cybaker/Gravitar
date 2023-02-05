@@ -14,7 +14,7 @@ import '../model/planet_shape.dart';
 /// A planet has an image and location in a star system.
 ///
 class Planet {
-  bool flicker;
+  double flicker;
   var gravity;
 
   Planet({
@@ -24,7 +24,7 @@ class Planet {
     required this.planetShapes,
     required this.planetExits,
     required this.difficulty,
-    this.flicker = false,
+    this.flicker = 0.0,
     this.gravity,
   });
 
@@ -46,7 +46,7 @@ class Planet {
       planetShape.segments.forEach((element) {
         polygonList.add(element.positionEnd);
       });
-      planetPolygons.add(PlanetPolygon(verticesList: polygonList, offset: planetShape.offset, flicker: flicker));
+      planetPolygons.add(PlanetPolygon(verticesList: polygonList, offset: planetShape.offset, flickerSeconds: flicker));
     });
 
     return planetPolygons;
@@ -60,7 +60,7 @@ class Planet {
       planetShape.segments.forEach((segment) {
         segment.segmentComponents.forEach((component) {
           if (component is EnemyBaseComponent) {
-            var newComponent = EnemyBaseComponent(difficulty: difficulty);
+            var newComponent = EnemyBaseComponent(difficulty: difficulty, flickerSeconds: flicker);
             // angle and position from last point to the end point.
             setComponentPosition(startOfLine, segment.positionEnd, planetShape.offset, newComponent);
             components.add(newComponent);

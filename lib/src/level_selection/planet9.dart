@@ -94,7 +94,7 @@ class _Planet9 extends Planet {
   var flicker;
   int difficulty;
 
-  _Planet9(this.gravity, {this.flicker = false, this.difficulty = 1})
+  _Planet9(this.gravity, {this.flicker = 0.0, this.difficulty = 1})
       : super(
           gravity: gravity,
           planetShapes: [
@@ -153,7 +153,7 @@ var planet9InsaneReverse = _Planet9(
   difficulty: 3,
 );
 
-var planet9EasyFlicker = _Planet9(downGravityEasy, flicker: true, difficulty: 1);
-var planet9NormalFlicker = _Planet9(downGravityNormal, flicker: true, difficulty: 1);
-var planet9HardFlicker = _Planet9(downGravityHard, flicker: true, difficulty: 2);
-var planet9InsaneFlicker = _Planet9(downGravityInsane, flicker: true, difficulty: 3);
+var planet9EasyFlicker = _Planet9(downGravityEasy, flicker: 0.05, difficulty: 1);
+var planet9NormalFlicker = _Planet9(downGravityNormal, flicker: 0.05, difficulty: 1);
+var planet9HardFlicker = _Planet9(downGravityHard, flicker: 0.05, difficulty: 2);
+var planet9InsaneFlicker = _Planet9(downGravityInsane, flicker: 0.05, difficulty: 3);
