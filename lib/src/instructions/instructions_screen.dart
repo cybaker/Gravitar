@@ -26,7 +26,8 @@ Use the arrow keys for movement:
 - turn left (left arrow).
 - turn right (right arrow).
 - thrust (up arrow).
-- fire (F)
+- fire bullets (F).
+- fire laser (D). This consumes more fuel than bullets.
 - shield and fuel tractor beam (spacebar).
 
 Tap the mouse pointer to pause the game.

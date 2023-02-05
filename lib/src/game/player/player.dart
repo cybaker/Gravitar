@@ -186,6 +186,9 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
     if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.keyF)) {
       if (_canFireBullet) _fireBullet();
     }
+    if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.keyD)) {
+      if (_canFireBullet) _fireLaser();
+    }
   }
 
   _showShield(bool shield) {
