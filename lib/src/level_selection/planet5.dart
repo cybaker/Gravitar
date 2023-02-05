@@ -15,7 +15,9 @@ List<PlanetSegment> _planetSegments5 = [
   PlanetSegment(positionEnd: Vector2(166, 0), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(228, 56), segmentComponents: [EnemyBaseComponent()]),
   PlanetSegment(positionEnd: Vector2(108, 206), segmentComponents: [EnemyBaseComponent(anchorLength: 0.8)]),
-  PlanetSegment(positionEnd: Vector2(408, 206), segmentComponents: [FuelDepotComponent(anchorLength: 0.2), FuelDepotComponent(anchorLength: 0.8)]),
+  PlanetSegment(
+      positionEnd: Vector2(408, 206),
+      segmentComponents: [FuelDepotComponent(anchorLength: 0.2), FuelDepotComponent(anchorLength: 0.8)]),
   PlanetSegment(positionEnd: Vector2(294, 56), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(350, 0), segmentComponents: [EnemyBaseComponent()]),
   PlanetSegment(positionEnd: Vector2(457, 136), segmentComponents: [EnemyBaseComponent(anchorLength: 0.7)]),
@@ -39,30 +41,56 @@ class _Planet5 extends Planet {
   final Gravity gravity;
 
   var flicker;
+  int difficulty;
 
-  _Planet5(this.gravity, {this.flicker = false})
+  _Planet5(this.gravity, {this.flicker = 0.0, this.difficulty = 1})
       : super(
-      gravity: gravity,
-      planetShapes: [_planet5PlanetShape],
-      planetExits: [SurroundPlanetExitComponent()],
-      starSystemPosition: Vector2(850, 500),
-      starSystemSize: Vector2(90, 90),
-      imageFilename: 'planet5.jpeg',
-      flicker: flicker,
-  );
+          gravity: gravity,
+          planetShapes: [_planet5PlanetShape],
+          planetExits: [SurroundPlanetExitComponent()],
+          starSystemPosition: Vector2(850, 500),
+          starSystemSize: Vector2(90, 90),
+          imageFilename: 'planet5.jpeg',
+          flicker: flicker,
+          difficulty: difficulty,
+        );
 }
 
-var planet5Easy = _Planet5(downGravityEasy,);
-var planet5Normal = _Planet5(downGravityNormal,);
-var planet5Hard = _Planet5(downGravityHard,);
-var planet5Insane = _Planet5(downGravityInsane,);
+var planet5Easy = _Planet5(
+  downGravityEasy,
+  difficulty: 1,
+);
+var planet5Normal = _Planet5(
+  downGravityNormal,
+  difficulty: 1,
+);
+var planet5Hard = _Planet5(
+  downGravityHard,
+  difficulty: 2,
+);
+var planet5Insane = _Planet5(
+  downGravityInsane,
+  difficulty: 3,
+);
 
-var planet5EasyReverse = _Planet5(upGravityEasy,);
-var planet5NormalReverse = _Planet5(upGravityNormal,);
-var planet5HardReverse = _Planet5(upGravityHard,);
-var planet5InsaneReverse = _Planet5(upGravityInsane,);
+var planet5EasyReverse = _Planet5(
+  upGravityEasy,
+  difficulty: 1,
+);
+var planet5NormalReverse = _Planet5(
+  upGravityNormal,
+  difficulty: 1,
+);
+var planet5HardReverse = _Planet5(
+  upGravityHard,
+  difficulty: 2,
+);
+var planet5InsaneReverse = _Planet5(
+  upGravityInsane,
+  difficulty: 3,
+);
 
-var planet5EasyFlicker = _Planet5(downGravityEasy, flicker: true);
-var planet5NormalFlicker = _Planet5(downGravityNormal, flicker: true);
-var planet5HardFlicker = _Planet5(downGravityHard, flicker: true);
-var planet5InsaneFlicker = _Planet5(downGravityInsane, flicker: true);
+var planet5EasyFlicker = _Planet5(downGravityEasy, flicker: 0.05, difficulty: 1);
+var planet5NormalFlicker = _Planet5(downGravityNormal, flicker: 0.05, difficulty: 1);
+var planet5HardFlicker = _Planet5(downGravityHard, flicker: 0.05, difficulty: 2);
+var planet5InsaneFlicker = _Planet5(downGravityInsane, flicker: 0.05, difficulty: 3);

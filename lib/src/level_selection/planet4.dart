@@ -29,7 +29,9 @@ List<PlanetSegment> _planetSegments4 = [
   PlanetSegment(positionEnd: Vector2(370, 581), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(304, 506), segmentComponents: [EnemyBaseComponent(anchorLength: 0.8)]),
   PlanetSegment(positionEnd: Vector2(442, 506), segmentComponents: []),
-  PlanetSegment(positionEnd: Vector2(675, 209), segmentComponents: [EnemyBaseComponent(anchorLength: 0.4), EnemyBaseComponent(anchorLength: 0.9)]),
+  PlanetSegment(
+      positionEnd: Vector2(675, 209),
+      segmentComponents: [EnemyBaseComponent(anchorLength: 0.4), EnemyBaseComponent(anchorLength: 0.9)]),
   PlanetSegment(positionEnd: Vector2(733, 209), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(684, 281), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(749, 358), segmentComponents: [EnemyBaseComponent(anchorLength: 0.3)]),
@@ -60,30 +62,56 @@ class _Planet4 extends Planet {
   final Gravity gravity;
 
   var flicker;
+  int difficulty;
 
-  _Planet4(this.gravity, {this.flicker = false})
+  _Planet4(this.gravity, {this.flicker = 0.0, this.difficulty = 1})
       : super(
-      gravity: gravity,
-      planetShapes: [_planet4PlanetShape],
-      planetExits: [SurroundPlanetExitComponent()],
-      starSystemPosition: Vector2(200, 300),
-      starSystemSize: Vector2(60, 60),
-      imageFilename: 'planet4.jpeg',
-      flicker: flicker
-  );
+          gravity: gravity,
+          planetShapes: [_planet4PlanetShape],
+          planetExits: [SurroundPlanetExitComponent()],
+          starSystemPosition: Vector2(200, 300),
+          starSystemSize: Vector2(60, 60),
+          imageFilename: 'planet4.jpeg',
+          flicker: flicker,
+          difficulty: difficulty,
+        );
 }
 
-var planet4Easy = _Planet4(centerGravityEasy,);
-var planet4Normal = _Planet4(centerGravityNormal,);
-var planet4Hard = _Planet4(centerGravityHard,);
-var planet4Insane = _Planet4(centerGravityInsane,);
+var planet4Easy = _Planet4(
+  centerGravityEasy,
+  difficulty: 1,
+);
+var planet4Normal = _Planet4(
+  centerGravityNormal,
+  difficulty: 1,
+);
+var planet4Hard = _Planet4(
+  centerGravityHard,
+  difficulty: 2,
+);
+var planet4Insane = _Planet4(
+  centerGravityInsane,
+  difficulty: 3,
+);
 
-var planet4EasyReverse = _Planet4(centerGravityEasyReverse,);
-var planet4NormalReverse = _Planet4(centerGravityNormalReverse,);
-var planet4HardReverse = _Planet4(centerGravityHardReverse,);
-var planet4InsaneReverse = _Planet4(centerGravityInsaneReverse,);
+var planet4EasyReverse = _Planet4(
+  centerGravityEasyReverse,
+  difficulty: 1,
+);
+var planet4NormalReverse = _Planet4(
+  centerGravityNormalReverse,
+  difficulty: 1,
+);
+var planet4HardReverse = _Planet4(
+  centerGravityHardReverse,
+  difficulty: 2,
+);
+var planet4InsaneReverse = _Planet4(
+  centerGravityInsaneReverse,
+  difficulty: 3,
+);
 
-var planet4EasyFlicker = _Planet4(centerGravityEasy, flicker: true);
-var planet4NormalFlicker = _Planet4(centerGravityNormal, flicker: true);
-var planet4HardFlicker = _Planet4(centerGravityHard, flicker: true);
-var planet4InsaneFlicker = _Planet4(centerGravityInsane, flicker: true);
+var planet4EasyFlicker = _Planet4(centerGravityEasy, flicker: 0.05, difficulty: 1);
+var planet4NormalFlicker = _Planet4(centerGravityNormal, flicker: 0.05, difficulty: 1);
+var planet4HardFlicker = _Planet4(centerGravityHard, flicker: 0.05, difficulty: 2);
+var planet4InsaneFlicker = _Planet4(centerGravityInsane, flicker: 0.05, difficulty: 3);

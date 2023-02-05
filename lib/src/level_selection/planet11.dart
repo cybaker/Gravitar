@@ -10,8 +10,8 @@ import '../game/model/planet_shape.dart';
 import 'level_properties.dart';
 
 List<PlanetSegment> _planetSegments11 = [
-  PlanetSegment(positionEnd: Vector2(0,0), segmentComponents: []),
-  PlanetSegment(positionEnd: Vector2(80,0), segmentComponents: []),
+  PlanetSegment(positionEnd: Vector2(0, 0), segmentComponents: []),
+  PlanetSegment(positionEnd: Vector2(80, 0), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(37, 65), segmentComponents: [EnemyBaseComponent()]),
   PlanetSegment(positionEnd: Vector2(130, 205), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(242, 205), segmentComponents: []),
@@ -79,30 +79,56 @@ class _Planet11 extends Planet {
   final Gravity gravity;
 
   var flicker;
+  var difficulty;
 
-  _Planet11(this.gravity, {this.flicker = false})
+  _Planet11(this.gravity, {this.flicker = 0.0, this.difficulty = 1})
       : super(
-      gravity: gravity,
-      planetShapes: [_planet11PlanetShape],
-      planetExits: [SurroundPlanetExitComponent()],
-      starSystemPosition: Vector2(800, 900),
-      starSystemSize: Vector2(120, 120),
-      imageFilename: 'neptune1.jpeg',
-      flicker: flicker,
-  );
+          gravity: gravity,
+          planetShapes: [_planet11PlanetShape],
+          planetExits: [SurroundPlanetExitComponent()],
+          starSystemPosition: Vector2(800, 900),
+          starSystemSize: Vector2(120, 120),
+          imageFilename: 'neptune1.jpeg',
+          flicker: flicker,
+          difficulty: difficulty,
+        );
 }
 
-var planet11Easy = _Planet11(downGravityEasy,);
-var planet11Normal = _Planet11(downGravityNormal,);
-var planet11Hard = _Planet11(downGravityHard,);
-var planet11Insane = _Planet11(downGravityInsane,);
+var planet11Easy = _Planet11(
+  downGravityEasy,
+  difficulty: 1,
+);
+var planet11Normal = _Planet11(
+  downGravityNormal,
+    difficulty: 1,
+);
+var planet11Hard = _Planet11(
+  downGravityHard,
+    difficulty: 2,
+);
+var planet11Insane = _Planet11(
+  downGravityInsane,
+    difficulty: 3,
+);
 
-var planet11EasyReverse = _Planet11(upGravityEasy,);
-var planet11NormalReverse = _Planet11(upGravityNormal,);
-var planet11HardReverse = _Planet11(upGravityHard,);
-var planet11InsaneReverse = _Planet11(upGravityInsane,);
+var planet11EasyReverse = _Planet11(
+  upGravityEasy,
+    difficulty: 1,
+);
+var planet11NormalReverse = _Planet11(
+  upGravityNormal,
+    difficulty: 1,
+);
+var planet11HardReverse = _Planet11(
+  upGravityHard,
+    difficulty: 2,
+);
+var planet11InsaneReverse = _Planet11(
+  upGravityInsane,
+    difficulty: 3,
+);
 
-var planet11EasyFlicker = _Planet11(downGravityEasy, flicker: true);
-var planet11NormalFlicker = _Planet11(downGravityNormal, flicker: true);
-var planet11HardFlicker = _Planet11(downGravityHard, flicker: true);
-var planet11InsaneFlicker = _Planet11(downGravityInsane, flicker: true);
+var planet11EasyFlicker = _Planet11(downGravityEasy, flicker: 0.05, difficulty: 1);
+var planet11NormalFlicker = _Planet11(downGravityNormal, flicker: 0.05, difficulty: 1);
+var planet11HardFlicker = _Planet11(downGravityHard, flicker: 0.05, difficulty: 2);
+var planet11InsaneFlicker = _Planet11(downGravityInsane, flicker: 0.05, difficulty: 3);

@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
 
 import '../../audio/sounds.dart';
+import '../components/laser.dart';
 import '../components/planet_exit.dart';
 import '../components/planet_sprite.dart';
 import '../components/star_sprite.dart';
@@ -185,6 +186,9 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
     if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.keyF)) {
       if (_canFireBullet) _fireBullet();
     }
+    if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.keyD)) {
+      if (_canFireBullet) _fireLaser();
+    }
   }
 
   _showShield(bool shield) {
@@ -250,6 +254,15 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
     _fireConsumePower();
 
     gameRef.audio.playSfx(SfxType.bullet);
+  }
+
+  int laserThrottleCount = 0;
+  _fireLaser() {
+    gameRef.add(Laser(initialPosition: this.position, angle: angle - pi / 2));
+    _fireConsumePower();
+    if (laserThrottleCount++ % 9 == 0) {
+      gameRef.audio.playSfx(SfxType.bullet);
+    }
   }
 
   _fireConsumePower() {

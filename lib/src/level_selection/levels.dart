@@ -25,7 +25,7 @@ var gameUniverses = [
   GameUniverse(
     level: 2,
     name: 'Beginner - normal',
-    difficulty: 2,
+    difficulty: 1,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 2000,
@@ -35,7 +35,7 @@ var gameUniverses = [
   GameUniverse(
     level: 3,
     name: 'Beginner - harder',
-    difficulty: 3,
+    difficulty: 1,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 2000,
@@ -45,7 +45,7 @@ var gameUniverses = [
   GameUniverse(
     level: 4,
     name: 'Beginner - reverse gravity',
-    difficulty: 4,
+    difficulty: 1,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 2000,
@@ -65,7 +65,7 @@ var gameUniverses = [
   GameUniverse(
     level: 6,
     name: 'Ensign',
-    difficulty: 5,
+    difficulty: 2,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 4000,
@@ -75,7 +75,7 @@ var gameUniverses = [
   GameUniverse(
     level: 7,
     name: 'Ensign - reverse gravity',
-    difficulty: 6,
+    difficulty: 2,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 4000,
@@ -85,7 +85,7 @@ var gameUniverses = [
   GameUniverse(
     level: 8,
     name: 'Ensign - stealthy enemy',
-    difficulty: 6,
+    difficulty: 2,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 4000,
@@ -95,7 +95,7 @@ var gameUniverses = [
   GameUniverse(
     level: 9,
     name: 'Commander',
-    difficulty: 7,
+    difficulty: 3,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 5000,
@@ -105,7 +105,7 @@ var gameUniverses = [
   GameUniverse(
     level: 10,
     name: 'Commander - reverse gravity',
-    difficulty: 8,
+    difficulty: 3,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 5000,
@@ -115,7 +115,7 @@ var gameUniverses = [
   GameUniverse(
     level: 11,
     name: 'Commander - stealthy enemy',
-    difficulty: 8,
+    difficulty: 3,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 5000,
@@ -125,7 +125,7 @@ var gameUniverses = [
   GameUniverse(
     level: 12,
     name: 'Admiral - insane',
-    difficulty: 9,
+    difficulty: 3,
     cameraZoomedInDimension: 500,
     playfieldDimension: 1000,
     extraLifeThreshold: 5000,

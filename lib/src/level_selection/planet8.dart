@@ -63,30 +63,56 @@ class _Planet8 extends Planet {
   final Gravity gravity;
 
   var flicker;
+  int difficulty;
 
-  _Planet8(this.gravity, {this.flicker = false})
+  _Planet8(this.gravity, {this.flicker = 0.0, this.difficulty = 1})
       : super(
-      gravity: gravity,
-      planetShapes: [_planet8PlanetShape],
-      planetExits: [SurroundPlanetExitComponent()],
-      starSystemPosition: Vector2(500, 800),
-      starSystemSize: Vector2(85, 85),
-      imageFilename: 'jupiter3.jpeg',
-      flicker: flicker,
-  );
+          gravity: gravity,
+          planetShapes: [_planet8PlanetShape],
+          planetExits: [SurroundPlanetExitComponent()],
+          starSystemPosition: Vector2(500, 800),
+          starSystemSize: Vector2(85, 85),
+          imageFilename: 'jupiter3.jpeg',
+          flicker: flicker,
+          difficulty: difficulty,
+        );
 }
 
-var planet8Easy = _Planet8(centerGravityEasy,);
-var planet8Normal = _Planet8(centerGravityNormal,);
-var planet8Hard = _Planet8(centerGravityHard,);
-var planet8Insane = _Planet8(centerGravityInsane,);
+var planet8Easy = _Planet8(
+  centerGravityEasy,
+  difficulty: 1,
+);
+var planet8Normal = _Planet8(
+  centerGravityNormal,
+  difficulty: 1,
+);
+var planet8Hard = _Planet8(
+  centerGravityHard,
+  difficulty: 2,
+);
+var planet8Insane = _Planet8(
+  centerGravityInsane,
+  difficulty: 3,
+);
 
-var planet8EasyReverse = _Planet8(centerGravityEasyReverse,);
-var planet8NormalReverse = _Planet8(centerGravityNormalReverse,);
-var planet8HardReverse = _Planet8(centerGravityHardReverse,);
-var planet8InsaneReverse = _Planet8(centerGravityInsaneReverse,);
+var planet8EasyReverse = _Planet8(
+  centerGravityEasyReverse,
+  difficulty: 1,
+);
+var planet8NormalReverse = _Planet8(
+  centerGravityNormalReverse,
+  difficulty: 1,
+);
+var planet8HardReverse = _Planet8(
+  centerGravityHardReverse,
+  difficulty: 2,
+);
+var planet8InsaneReverse = _Planet8(
+  centerGravityInsaneReverse,
+  difficulty: 3,
+);
 
-var planet8EasyFlicker = _Planet8(centerGravityEasy, flicker: true);
-var planet8NormalFlicker = _Planet8(centerGravityNormal, flicker: true);
-var planet8HardFlicker = _Planet8(centerGravityHard, flicker: true);
-var planet8InsaneFlicker = _Planet8(centerGravityInsane, flicker: true);
+var planet8EasyFlicker = _Planet8(centerGravityEasy, flicker: 0.05, difficulty: 1);
+var planet8NormalFlicker = _Planet8(centerGravityNormal, flicker: 0.05, difficulty: 1);
+var planet8HardFlicker = _Planet8(centerGravityHard, flicker: 0.05, difficulty: 2);
+var planet8InsaneFlicker = _Planet8(centerGravityInsane, flicker: 0.05, difficulty: 3);

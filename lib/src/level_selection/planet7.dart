@@ -27,7 +27,9 @@ List<PlanetSegment> _planet7Segments1 = [
   PlanetSegment(positionEnd: Vector2(588, 146), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(645, 146), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(709, 222), segmentComponents: []),
-  PlanetSegment(positionEnd: Vector2(800, 222), segmentComponents: [FuelDepotComponent(anchorLength: 0.2), FuelDepotComponent(anchorLength: 0.8)]),
+  PlanetSegment(
+      positionEnd: Vector2(800, 222),
+      segmentComponents: [FuelDepotComponent(anchorLength: 0.2), FuelDepotComponent(anchorLength: 0.8)]),
   PlanetSegment(positionEnd: Vector2(831, 256), segmentComponents: []),
   PlanetSegment(positionEnd: Vector2(866, 210), segmentComponents: [EnemyBaseComponent()]),
   PlanetSegment(positionEnd: Vector2(885, 210), segmentComponents: []),
@@ -74,30 +76,56 @@ class _Planet7 extends Planet {
   final Gravity gravity;
 
   var flicker;
+  int difficulty;
 
-  _Planet7(this.gravity, {this.flicker = false})
-    : super(
-      gravity: gravity,
-      planetShapes: [_planet7PlanetShape1, _planet7PlanetShape2],
-      planetExits: [SurroundPlanetExitComponent()],
-      starSystemPosition: Vector2(500, 900),
-      starSystemSize: Vector2(50, 50),
-      imageFilename: 'io1.jpeg',
-      flicker: flicker,
-  );
+  _Planet7(this.gravity, {this.flicker = 0.0, this.difficulty = 1})
+      : super(
+          gravity: gravity,
+          planetShapes: [_planet7PlanetShape1, _planet7PlanetShape2],
+          planetExits: [SurroundPlanetExitComponent()],
+          starSystemPosition: Vector2(500, 900),
+          starSystemSize: Vector2(50, 50),
+          imageFilename: 'io1.jpeg',
+          flicker: flicker,
+          difficulty: difficulty,
+        );
 }
 
-var planet7Easy = _Planet7(downGravityEasy,);
-var planet7Normal = _Planet7(downGravityNormal,);
-var planet7Hard = _Planet7(downGravityHard,);
-var planet7Insane = _Planet7(downGravityInsane,);
+var planet7Easy = _Planet7(
+  downGravityEasy,
+  difficulty: 1,
+);
+var planet7Normal = _Planet7(
+  downGravityNormal,
+  difficulty: 1,
+);
+var planet7Hard = _Planet7(
+  downGravityHard,
+  difficulty: 2,
+);
+var planet7Insane = _Planet7(
+  downGravityInsane,
+  difficulty: 3,
+);
 
-var planet7EasyReverse = _Planet7(upGravityEasy,);
-var planet7NormalReverse = _Planet7(upGravityNormal,);
-var planet7HardReverse = _Planet7(upGravityHard,);
-var planet7InsaneReverse = _Planet7(upGravityInsane,);
+var planet7EasyReverse = _Planet7(
+  upGravityEasy,
+  difficulty: 1,
+);
+var planet7NormalReverse = _Planet7(
+  upGravityNormal,
+  difficulty: 1,
+);
+var planet7HardReverse = _Planet7(
+  upGravityHard,
+  difficulty: 2,
+);
+var planet7InsaneReverse = _Planet7(
+  upGravityInsane,
+  difficulty: 3,
+);
 
-var planet7EasyFlicker = _Planet7(downGravityEasy, flicker: true);
-var planet7NormalFlicker = _Planet7(downGravityNormal, flicker: true);
-var planet7HardFlicker = _Planet7(downGravityHard, flicker: true);
-var planet7InsaneFlicker = _Planet7(downGravityInsane, flicker: true);
+var planet7EasyFlicker = _Planet7(downGravityEasy, flicker: 0.05, difficulty: 1);
+var planet7NormalFlicker = _Planet7(downGravityNormal, flicker: 0.05, difficulty: 1);
+var planet7HardFlicker = _Planet7(downGravityHard, flicker: 0.05, difficulty: 2);
+var planet7InsaneFlicker = _Planet7(downGravityInsane, flicker: 0.05, difficulty: 3);

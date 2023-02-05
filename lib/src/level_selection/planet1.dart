@@ -67,31 +67,32 @@ class _Planet1 extends Planet {
   final Gravity gravity;
 
   var flicker;
+  int difficulty;
 
-  _Planet1(this.gravity, {this.flicker = false})
+  _Planet1(this.gravity, {this.flicker = 0.0, this.difficulty = 1})
       : super(
-      gravity: gravity,
-      planetShapes: [_planet1PlanetShape],
-      planetExits: [SurroundPlanetExitComponent()],
-      starSystemPosition: Vector2(300, 100),
-      starSystemSize: Vector2(60, 60),
-      imageFilename: 'planet1.png',
-      flicker: flicker,
-  );
+          gravity: gravity,
+          planetShapes: [_planet1PlanetShape],
+          planetExits: [SurroundPlanetExitComponent()],
+          starSystemPosition: Vector2(300, 100),
+          starSystemSize: Vector2(60, 60),
+          imageFilename: 'planet1.png',
+          flicker: flicker,
+          difficulty: difficulty,
+        );
 }
 
-var planet1Easy = _Planet1(centerGravityEasy,);
-var planet1Normal = _Planet1(centerGravityNormal,);
-var planet1Hard = _Planet1(centerGravityHard,);
-var planet1Insane = _Planet1(centerGravityInsane,);
+var planet1Easy = _Planet1(centerGravityEasy, difficulty: 1);
+var planet1Normal = _Planet1(centerGravityNormal, difficulty: 1);
+var planet1Hard = _Planet1(centerGravityHard, difficulty: 2);
+var planet1Insane = _Planet1(centerGravityInsane, difficulty: 3);
 
-var planet1EasyReverse = _Planet1(centerGravityEasyReverse,);
-var planet1NormalReverse = _Planet1(centerGravityNormalReverse,);
-var planet1HardReverse = _Planet1(centerGravityHardReverse,);
-var planet1InsaneReverse = _Planet1(centerGravityInsaneReverse,);
+var planet1EasyReverse = _Planet1(centerGravityEasyReverse, difficulty: 1);
+var planet1NormalReverse = _Planet1(centerGravityNormalReverse, difficulty: 1);
+var planet1HardReverse = _Planet1(centerGravityHardReverse, difficulty: 2);
+var planet1InsaneReverse = _Planet1(centerGravityInsaneReverse, difficulty: 3);
 
-var planet1EasyFlicker = _Planet1(centerGravityEasy, flicker: true);
-var planet1NormalFlicker = _Planet1(centerGravityNormal, flicker: true);
-var planet1HardFlicker = _Planet1(centerGravityHard, flicker: true);
-var planet1InsaneFlicker = _Planet1(centerGravityInsane, flicker: true);
-
+var planet1EasyFlicker = _Planet1(centerGravityEasy, flicker: 0.05, difficulty: 1);
+var planet1NormalFlicker = _Planet1(centerGravityNormal, flicker: 0.05, difficulty: 1);
+var planet1HardFlicker = _Planet1(centerGravityHard, flicker: 0.05, difficulty: 2);
+var planet1InsaneFlicker = _Planet1(centerGravityInsane, flicker: 0.05, difficulty: 3);
