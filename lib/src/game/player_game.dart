@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:Gravitar/src/game_internals/game_state.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -136,20 +137,21 @@ class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection, T
   }
 
   cameraZoom() {
+    var zoomFactor = kIsWeb ? 1.0 : 2.0;
     if (isGameStarSystem) {
-      camera.zoom = 1.0;
+      camera.zoom = 1.0 * zoomFactor;
     } else {
       var playerNormalizedHeight = singlePlayer.position.y / universe.playfieldDimension;
       if (playerNormalizedHeight > zoomInFullyY) {
         // zoom in maximum
-        return camera.zoom = zoomIn;
+        return camera.zoom = zoomIn * zoomFactor;
       } else if (playerNormalizedHeight < zoomOutFullyY) {
         // zoom out maximum
-        camera.zoom = zoomOut;
+        camera.zoom = zoomOut * zoomFactor;
       } else {
         var zoom =
             zoomOut + (zoomIn - zoomOut) * (playerNormalizedHeight - zoomOutFullyY) / (zoomInFullyY - zoomOutFullyY);
-        camera.zoom = zoom;
+        camera.zoom = zoom * zoomFactor;
       }
     }
     // debugPrint('Camera zoom: ${camera.zoom}');
