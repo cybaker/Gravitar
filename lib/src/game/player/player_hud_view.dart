@@ -54,9 +54,9 @@ class PlayerHudView extends StatelessWidget {
               playerGame.singlePlayer.setJoystickVector(details.x, details.y);
             }
         ),
-        Spacer(flex: 19),
+        Spacer(flex: 10),
         InkWell(
-          child: Icon(Icons.radio_button_checked, color: Colors.blue, size: 80,),
+          child: Icon(Icons.radio_button_checked, color: Colors.red, size: 80,),
           onTapDown: (_) => playerGame.singlePlayer.setContinuousFiring(true),
           onTapCancel: () => playerGame.singlePlayer.setContinuousFiring(false),
           onTap: () => playerGame.singlePlayer.setContinuousFiring(false),

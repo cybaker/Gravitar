@@ -2,6 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -30,12 +31,16 @@ class LevelSelectionScreen extends StatelessWidget {
           children: [
             _titleWidget(palette),
             _gap(),
-            _totalScoreWidget(playerProgress, palette),
-            _gap(),
             _levelsListWidget(playerProgress, context, palette),
           ],
         ),
-        rectangularMenuArea: _backWidget(context),
+        rectangularMenuArea: Column(
+          children: [
+            _totalScoreWidget(playerProgress, palette),
+            _gap(),
+            kIsWeb ? _backWidget(context) : Container(),
+          ],
+        ),
       ),
     );
   }
@@ -94,7 +99,7 @@ class LevelSelectionScreen extends StatelessWidget {
           );
   }
 
-  SizedBox _gap() => const SizedBox(height: 50);
+  SizedBox _gap() => kIsWeb ? SizedBox(height: 50) : SizedBox(height: 0,);
 
   bool enabled(PlayerProgress playerProgress, GameUniverse universe) {
     return playerProgress.highestLevelReached >= universe.level - 1;

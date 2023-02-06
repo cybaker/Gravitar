@@ -2,6 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -24,15 +25,17 @@ class SettingsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: palette.backgroundMain,
-      body: ResponsiveScreen(
-        squarishMainArea: ListView(
+      body: ListView(
+        padding: EdgeInsets.fromLTRB(32, 16, 16, 32),
           children: [
             _gap,
-            Text(
-              'Settings',
-              textAlign: TextAlign.center,
-              style: palette.title,
+            Row(
+              children: [
+                Text('Settings', textAlign: TextAlign.center, style: palette.title,),
+                kIsWeb ? _backWidget(context) : Container(),
+              ],
             ),
+
             _gap,
             const _NameChangeLine(
               'Name',
@@ -69,14 +72,16 @@ class SettingsScreen extends StatelessWidget {
             _gap,
           ],
         ),
-        rectangularMenuArea: ElevatedButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
-          },
-          child: const Text('Back'),
-        ),
-      ),
-    );
+      );
+  }
+
+  ElevatedButton _backWidget(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () {
+          GoRouter.of(context).pop();
+        },
+        child: const Text('Back'),
+      );
   }
 }
 

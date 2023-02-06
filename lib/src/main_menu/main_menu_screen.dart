@@ -2,6 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,7 @@ class MainMenuScreen extends StatelessWidget {
               child: Text(
                 'Gravitar',
                 textAlign: TextAlign.center,
-                style: palette.mainTitle,
+                style: kIsWeb ? palette.mainTitle : palette.mainTitleMobile,
               ),
             ),
           ),
@@ -77,24 +78,28 @@ class MainMenuScreen extends StatelessWidget {
                 child: const Text('instructions'),
               ),
               _gap,
-              Padding(
-                padding: const EdgeInsets.only(top: 32),
-                child: ValueListenableBuilder<bool>(
-                  valueListenable: settingsController.muted,
-                  builder: (context, muted, child) {
-                    return IconButton(
-                      onPressed: () => settingsController.toggleMuted(),
-                      icon: Icon(muted ? Icons.volume_off : Icons.volume_up, color: palette.pen,),
-                    );
-                  },
-                ),
-              ),
+              soundWidget(settingsController, palette),
               _gap,
             ],
           ),
         ),
       ),
     );
+  }
+
+  Padding soundWidget(SettingsController settingsController, Palette palette) {
+    return Padding(
+              padding: const EdgeInsets.only(top: 32),
+              child: ValueListenableBuilder<bool>(
+                valueListenable: settingsController.muted,
+                builder: (context, muted, child) {
+                  return IconButton(
+                    onPressed: () => settingsController.toggleMuted(),
+                    icon: Icon(muted ? Icons.volume_off : Icons.volume_up, color: palette.pen,),
+                  );
+                },
+              ),
+            );
   }
 
   /// Prevents the game from showing game-services-related menu items

@@ -48,8 +48,10 @@ class Palette {
   Color get trueWhite => const Color(0xffffffff);
 
   TextStyle get mainTitle => TextStyle( fontFamily: 'AstroSpace', fontSize: 78, color: pen,);
+  TextStyle get mainTitleMobile => TextStyle( fontFamily: 'AstroSpace', fontSize: 40, color: pen,);
 
   TextStyle get missionAccomplished => TextStyle( fontFamily: 'AstroSpace', fontSize: 54, color: greenPen,);
+  TextStyle get missionAccomplishedMobile => TextStyle( fontFamily: 'AstroSpace', fontSize: 36, color: greenPen,);
 
   TextStyle get title => TextStyle(fontFamily: 'AstroSpace', fontSize: 30, color: pen,);
 
