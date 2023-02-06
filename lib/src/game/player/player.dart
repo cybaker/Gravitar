@@ -74,6 +74,8 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   Vector2 velocity = Vector2.zero();
   double fireTimeout = 0;
 
+  Vector2 _joystickVector = Vector2.zero();
+
   static const halfPi = pi / 2;
   static const rotationSpeedPerSecond = 2 * pi;
 
@@ -163,7 +165,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
     _checkTurns(dt);
     _checkThrust(dt);
     _checkFiring(dt);
-    _showShield(gameRef.pressedKeySet.contains(LogicalKeyboardKey.space));
+    _showShield(gameRef.pressedKeySet.contains(LogicalKeyboardKey.space) || _shieldContinuous);
   }
 
   void _checkTurns(double dt) {
@@ -172,10 +174,26 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
     } else if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.arrowRight)) {
       angle += rotationSpeedPerSecond * dt;
     }
+
+    if (_joystickVector != Vector2.zero()) {
+      angle = atan2(-_joystickVector.x, _joystickVector.y) - pi;
+    }
+  }
+
+  /// Joystick control inputs here, no listener required
+  void setJoystickVector(double x, double y) {
+    _joystickVector.x = x;
+    _joystickVector.y = y;
+  }
+
+  bool _shieldContinuous = false;
+  void setContinuousShielding(bool shieldsOn) {
+    _shieldContinuous = shieldsOn;
   }
 
   void _checkThrust(double dt) {
-    if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.arrowUp)) {
+    if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.arrowUp) ||
+      _joystickVector != Vector2.zero()) {
       _thrustShip(angle, gameRef.singlePlayer.properties.thrust * dt);
     } else {
       _showThrust(false);
@@ -183,27 +201,40 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   }
 
   void _checkFiring(double dt) {
-    if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.keyF)) {
-      if (_canFireBullet) _fireBullet();
+    if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.keyF) ||
+      _bulletContinuousFire) {
+      checkFireBullet();
     }
     if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.keyD)) {
-      if (_canFireBullet) _fireLaser();
+      checkFireLaser();
     }
+  }
+
+  bool _bulletContinuousFire = false;
+  void setContinuousFiring(bool firing) {
+    _bulletContinuousFire = firing;
+  }
+
+  void checkFireBullet() {
+    if (_canFireBullet) _fireBullet();
+  }
+
+  void checkFireLaser() {
+    if (_canFireBullet) _fireLaser();
   }
 
   _showShield(bool shield) {
     if (shield) {
       _makeShieldSound();
       _shieldConsumePower();
-      if (!_isShielding) {
-        // debugPrint('Showing shields');
+      if (!_isShielding ) {
         add(_shieldComponent);
         _isShielding = true;
       }
     } else {
       shieldSoundThrottleCount = 0;
-      if (_isShielding) {
-        // debugPrint('Hiding shields');
+      if (_isShielding ) {
+        debugPrint('Shields hiding');
         remove(_shieldComponent);
         _isShielding = false;
       }

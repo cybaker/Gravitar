@@ -14,14 +14,6 @@ import 'components/explosion.dart';
 import 'model/gravity.dart';
 import 'player/player.dart';
 
-final Map<LogicalKeyboardKey, LogicalKeyboardKey> playersKeys = {
-  LogicalKeyboardKey.keyA: LogicalKeyboardKey.keyA,
-  LogicalKeyboardKey.keyS: LogicalKeyboardKey.keyS,
-  LogicalKeyboardKey.keyL: LogicalKeyboardKey.keyL,
-  LogicalKeyboardKey.keyK: LogicalKeyboardKey.keyK,
-  LogicalKeyboardKey.space: LogicalKeyboardKey.space,
-};
-
 class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection, TapDetector {
   PlayerGame({required this.universe, required this.gameState, required this.audio});
 
