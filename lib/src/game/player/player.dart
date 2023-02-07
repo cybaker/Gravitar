@@ -21,7 +21,6 @@ import 'player_shield.dart';
 import 'player_thrust.dart';
 
 class PlayerProperties {
-
   PlayerProperties({
     this.thrust = 120,
     this.thrustConsumption = 2.5,
@@ -116,9 +115,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is EnemyBaseComponent ||
-        other is PlanetPolygon ||
-        other is StarSprite) {
+    if (other is EnemyBaseComponent || other is PlanetPolygon || other is StarSprite) {
       _log.info(() => 'Player destroyed by $other');
       damageShip();
     } else if (other is PlanetExitComponent) {
@@ -146,18 +143,23 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   }
 
   _thrustShip(double rotation, double thrust) {
-      final newThrust = Vector2(cos(rotation - halfPi) * thrust, sin(rotation - halfPi) * thrust);
-      final total = velocity + newThrust;
-      if (total.x * total.x + total.y * total.y < 200 * 200) {
-        // maximum speed
-        velocity = total;
-      }
-      _thrustConsumePower();
-      _showThrust(true);
+    final newThrust = Vector2(cos(rotation - halfPi) * thrust, sin(rotation - halfPi) * thrust);
+    final total = velocity + newThrust;
+    if (total.x * total.x + total.y * total.y < 200 * 200) {
+      // maximum speed
+      velocity = total;
+    }
+    _thrustConsumePower();
+    _showThrust(true);
+    _makeThrustSound();
   }
 
   _thrustConsumePower() {
-    gameRef.gameState.addFuel(-properties.thrustConsumption);
+    var consumed = -properties.thrustConsumption;
+    if (_joystickVector.length > 0.0) {
+      consumed *= _joystickVector.length;
+    }
+    gameRef.gameState.addFuel(consumed);
   }
 
   _handleKeyPresses(double dt) {
@@ -187,22 +189,24 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   }
 
   bool _shieldContinuous = false;
+
   void setContinuousShielding(bool shieldsOn) {
     _shieldContinuous = shieldsOn;
   }
 
   void _checkThrust(double dt) {
-    if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.arrowUp) ||
-      _joystickVector.length > 0.0) {
+    if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.arrowUp) || _joystickVector.length > 0.0) {
       _thrustShip(angle, gameRef.singlePlayer.properties.thrust * _joystickVector.length * dt);
+      if (_joystickVector.length > 0.0) {
+        _thrustComponent.scale = Vector2(_joystickVector.length, _joystickVector.length);
+      }
     } else {
       _showThrust(false);
     }
   }
 
   void _checkFiring(double dt) {
-    if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.keyF) ||
-      _bulletContinuousFire) {
+    if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.keyF) || _bulletContinuousFire) {
       checkFireBullet();
     }
     if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.keyD)) {
@@ -211,6 +215,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   }
 
   bool _bulletContinuousFire = false;
+
   void setContinuousFiring(bool firing) {
     _bulletContinuousFire = firing;
   }
@@ -227,13 +232,13 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
     if (shield) {
       _makeShieldSound();
       _shieldConsumePower();
-      if (!_isShielding ) {
+      if (!_isShielding) {
         add(_shieldComponent);
         _isShielding = true;
       }
     } else {
       shieldSoundThrottleCount = 0;
-      if (_isShielding ) {
+      if (_isShielding) {
         debugPrint('Shields hiding');
         remove(_shieldComponent);
         _isShielding = false;
@@ -255,7 +260,6 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
 
   _showThrust(bool thrust) {
     if (thrust) {
-      _makeThrustSound();
       if (!_isThrusting) {
         add(_thrustComponent);
         _isThrusting = true;
@@ -288,6 +292,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   }
 
   int laserThrottleCount = 0;
+
   _fireLaser() {
     gameRef.add(Laser(initialPosition: this.position, angle: angle - pi / 2));
     _fireConsumePower();
@@ -303,7 +308,7 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
   int thrustThrottleCount = 0; // just throttling the thrust playing not every frame
   _makeThrustSound() {
     if (thrustThrottleCount++ % 9 == 0) {
-      gameRef.audio.playSfx(SfxType.thrust);
+      if (_joystickVector.length == 0.0 || _joystickVector.length > 0.2) gameRef.audio.playSfx(SfxType.thrust);
     }
   }
 
