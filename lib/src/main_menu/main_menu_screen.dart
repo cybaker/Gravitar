@@ -2,6 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -34,12 +35,12 @@ class MainMenuScreen extends StatelessWidget {
               child: Text(
                 'Gravitar',
                 textAlign: TextAlign.center,
-                style: palette.mainTitle,
+                style: kIsWeb ? palette.mainTitle : palette.mainTitleMobile,
               ),
             ),
           ),
           rectangularMenuArea: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
                 onPressed: () {
@@ -48,7 +49,7 @@ class MainMenuScreen extends StatelessWidget {
                 },
                 child: const Text('Play'),
               ),
-              _gap,
+              responsiveGap(),
               if (gamesServicesController != null) ...[
                 _hideUntilReady(
                   ready: gamesServicesController.signedIn,
@@ -57,7 +58,7 @@ class MainMenuScreen extends StatelessWidget {
                     child: const Text('Achievements'),
                   ),
                 ),
-                _gap,
+                responsiveGap(),
                 _hideUntilReady(
                   ready: gamesServicesController.signedIn,
                   child: ElevatedButton(
@@ -65,36 +66,40 @@ class MainMenuScreen extends StatelessWidget {
                     child: const Text('Leaderboard'),
                   ),
                 ),
-                _gap,
+                responsiveGap(),
               ],
+              responsiveGap(),
               ElevatedButton(
                 onPressed: () => GoRouter.of(context).push('/settings'),
                 child: const Text('Settings'),
               ),
-              _gap,
+              responsiveGap(),
               ElevatedButton(
                 onPressed: () => GoRouter.of(context).push('/instructions'),
                 child: const Text('instructions'),
               ),
-              _gap,
-              Padding(
-                padding: const EdgeInsets.only(top: 32),
-                child: ValueListenableBuilder<bool>(
-                  valueListenable: settingsController.muted,
-                  builder: (context, muted, child) {
-                    return IconButton(
-                      onPressed: () => settingsController.toggleMuted(),
-                      icon: Icon(muted ? Icons.volume_off : Icons.volume_up, color: palette.pen,),
-                    );
-                  },
-                ),
-              ),
-              _gap,
+              responsiveGap(),
+              soundWidget(settingsController, palette),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Padding soundWidget(SettingsController settingsController, Palette palette) {
+    return Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: ValueListenableBuilder<bool>(
+                valueListenable: settingsController.muted,
+                builder: (context, muted, child) {
+                  return IconButton(
+                    onPressed: () => settingsController.toggleMuted(),
+                    icon: Icon(muted ? Icons.volume_off : Icons.volume_up, color: palette.pen,),
+                  );
+                },
+              ),
+            );
   }
 
   /// Prevents the game from showing game-services-related menu items
@@ -118,6 +123,10 @@ class MainMenuScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  Widget responsiveGap() {
+    return kIsWeb ? _gap : Container();
   }
 
   static const _gap = SizedBox(height: 20);

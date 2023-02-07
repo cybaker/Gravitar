@@ -2,6 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,7 @@ class InstructionsScreen extends StatelessWidget {
   const InstructionsScreen({super.key});
 
   static const _gap = SizedBox(height: 60);
+  static const _gapMobile = SizedBox(height: 10);
 
   final String instructions = '''
 The game has some levels of increasingly challenging play.
@@ -39,12 +41,17 @@ Tap the mouse pointer to pause the game.
 
     return Scaffold(
       backgroundColor: palette.backgroundMain,
-      body: ResponsiveScreen(
-        squarishMainArea: ListView(
+      body: ListView(
           children: [
-            _gap,
-            Text('Instructions', textAlign: TextAlign.center, style: palette.title,),
-            _gap,
+            kIsWeb ? _gap : _gapMobile,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text('Instructions', textAlign: TextAlign.center, style: palette.title,),
+                  kIsWeb ? _backWidget(context) : Container(),
+                ],
+              ),
+            kIsWeb ? _gap : Container(),
             Padding(
               padding: const EdgeInsets.all(24.0),
               child: Text(instructions, style: palette.subtitle,),
@@ -52,13 +59,15 @@ Tap the mouse pointer to pause the game.
             _gap,
           ],
         ),
-        rectangularMenuArea: ElevatedButton(
-          child: const Text('Back'),
-          onPressed: () {
-            GoRouter.of(context).pop();
-          },
-        ),
-      ),
-    );
+      );
+  }
+
+  Widget _backWidget(BuildContext context) {
+    return ElevatedButton(
+        child: const Text('Back'),
+        onPressed: () {
+          GoRouter.of(context).pop();
+        },
+      );
   }
 }

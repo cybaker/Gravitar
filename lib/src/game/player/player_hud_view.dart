@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_joystick/flutter_joystick.dart';
 import 'package:provider/provider.dart';
 
 import '../../style/palette.dart';
@@ -18,6 +20,7 @@ class PlayerHudView extends StatelessWidget {
     final palette = context.watch<Palette>();
 
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
@@ -34,6 +37,36 @@ class PlayerHudView extends StatelessWidget {
             missionStatusWidget(palette),
           ],
         ),
+        if ((defaultTargetPlatform == TargetPlatform.iOS ||
+          defaultTargetPlatform == TargetPlatform.android)) touchControls(),
+      ],
+    );
+  }
+
+  Widget touchControls() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Joystick(
+            mode: JoystickMode.all,
+            listener: (details) {
+              // debugPrint("Joystick details = ${details.x}");
+              playerGame.singlePlayer.setJoystickVector(details.x, details.y);
+            }
+        ),
+        Spacer(flex: 10),
+        InkWell(
+          child: Icon(Icons.radio_button_checked, color: Colors.red, size: 80,),
+          onTapDown: (_) => playerGame.singlePlayer.setContinuousFiring(true),
+          onTapCancel: () => playerGame.singlePlayer.setContinuousFiring(false),
+          onTap: () => playerGame.singlePlayer.setContinuousFiring(false),
+        ),
+        InkWell(
+          child: Icon(Icons.radio_button_checked, color: Colors.blue, size: 80,),
+          onTapDown: (_) => playerGame.singlePlayer.setContinuousShielding(true),
+          onTapCancel: () => playerGame.singlePlayer.setContinuousShielding(false),
+          onTap: () => playerGame.singlePlayer.setContinuousShielding(false),
+        ),
       ],
     );
   }
@@ -46,7 +79,7 @@ class PlayerHudView extends StatelessWidget {
       builder: (context, value, child) {
         if (value) return Text(
           'Mission Accomplished',
-          style: palette.missionAccomplished,
+          style: kIsWeb ? palette.missionAccomplished : palette.missionAccomplishedMobile,
           textAlign: TextAlign.center,
         );
         return const Text('');
@@ -60,7 +93,7 @@ class PlayerHudView extends StatelessWidget {
         builder: (context, value, child) {
           return Text(
             'Lives: $value',
-            style: palette.title,
+            style: kIsWeb ? palette.title : palette.titleMobile,
             textAlign: TextAlign.center,
           );
         },
@@ -73,7 +106,7 @@ class PlayerHudView extends StatelessWidget {
         builder: (context, value, child) {
           return Text(
             'Fuel: ${value.toInt()}',
-            style: palette.title,
+            style: kIsWeb ? palette.title : palette.titleMobile,
             textAlign: TextAlign.center,
           );
         },
@@ -86,7 +119,7 @@ class PlayerHudView extends StatelessWidget {
         builder: (context, value, child) {
           return Text(
             'Score: $value',
-            style: palette.title,
+            style: kIsWeb ? palette.title : palette.titleMobile,
             textAlign: TextAlign.center,
           );
         },
