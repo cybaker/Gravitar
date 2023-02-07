@@ -60,7 +60,7 @@ class LevelSelectionScreen extends StatelessWidget {
               children: [
                 for (final universe in gameUniverses)
                   ListTile(
-                    enabled: enabled(playerProgress, universe),
+                    enabled: kDebugMode ? true : enabled(playerProgress, universe),
                     onTap: () {
                       final audioController = context.read<AudioController>();
                       audioController.playSfx(SfxType.buttonTap);
@@ -109,6 +109,6 @@ class LevelSelectionScreen extends StatelessWidget {
   TextStyle enabledDisabledStyle(PlayerProgress playerProgress, GameUniverse universe, Palette palette) {
     TextStyle responsiveTitle = kIsWeb ? palette.subtitle : palette.subtitleMobile;
     TextStyle responsiveTitleDisabled = kIsWeb ? palette.subtitleDisabled : palette.subtitleMobileDisabled;
-    return enabled(playerProgress, universe) ? responsiveTitle : responsiveTitleDisabled;
+    return enabled(playerProgress, universe) | kDebugMode ? responsiveTitle : responsiveTitleDisabled;
   }
 }
