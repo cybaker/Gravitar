@@ -193,8 +193,8 @@ class Player extends PolygonComponent with KeyboardHandler, HasGameRef<PlayerGam
 
   void _checkThrust(double dt) {
     if (gameRef.pressedKeySet.contains(LogicalKeyboardKey.arrowUp) ||
-      _joystickVector.length > 0.4) {
-      _thrustShip(angle, gameRef.singlePlayer.properties.thrust * dt);
+      _joystickVector.length > 0.0) {
+      _thrustShip(angle, gameRef.singlePlayer.properties.thrust * _joystickVector.length * dt);
     } else {
       _showThrust(false);
     }
