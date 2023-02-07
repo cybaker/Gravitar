@@ -40,7 +40,7 @@ class MainMenuScreen extends StatelessWidget {
             ),
           ),
           rectangularMenuArea: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
                 onPressed: () {
@@ -49,7 +49,7 @@ class MainMenuScreen extends StatelessWidget {
                 },
                 child: const Text('Play'),
               ),
-              _gap,
+              responsiveGap(),
               if (gamesServicesController != null) ...[
                 _hideUntilReady(
                   ready: gamesServicesController.signedIn,
@@ -58,7 +58,7 @@ class MainMenuScreen extends StatelessWidget {
                     child: const Text('Achievements'),
                   ),
                 ),
-                _gap,
+                responsiveGap(),
                 _hideUntilReady(
                   ready: gamesServicesController.signedIn,
                   child: ElevatedButton(
@@ -66,20 +66,20 @@ class MainMenuScreen extends StatelessWidget {
                     child: const Text('Leaderboard'),
                   ),
                 ),
-                _gap,
+                responsiveGap(),
               ],
+              responsiveGap(),
               ElevatedButton(
                 onPressed: () => GoRouter.of(context).push('/settings'),
                 child: const Text('Settings'),
               ),
-              _gap,
+              responsiveGap(),
               ElevatedButton(
                 onPressed: () => GoRouter.of(context).push('/instructions'),
                 child: const Text('instructions'),
               ),
-              _gap,
+              responsiveGap(),
               soundWidget(settingsController, palette),
-              _gap,
             ],
           ),
         ),
@@ -89,7 +89,7 @@ class MainMenuScreen extends StatelessWidget {
 
   Padding soundWidget(SettingsController settingsController, Palette palette) {
     return Padding(
-              padding: const EdgeInsets.only(top: 32),
+              padding: const EdgeInsets.only(top: 16),
               child: ValueListenableBuilder<bool>(
                 valueListenable: settingsController.muted,
                 builder: (context, muted, child) {
@@ -123,6 +123,10 @@ class MainMenuScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  Widget responsiveGap() {
+    return kIsWeb ? _gap : Container();
   }
 
   static const _gap = SizedBox(height: 20);

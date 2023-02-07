@@ -158,7 +158,7 @@ class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection, T
   }
 
   /*
-    This allows continuous key pressing for a real keyboard
+    This allows continuous key pressing for a physical keyboard
    */
   @override
   KeyEventResult onKeyEvent(

@@ -101,11 +101,14 @@ class LevelSelectionScreen extends StatelessWidget {
 
   SizedBox _gap() => kIsWeb ? SizedBox(height: 50) : SizedBox(height: 0,);
 
+
   bool enabled(PlayerProgress playerProgress, GameUniverse universe) {
     return playerProgress.highestLevelReached >= universe.level - 1;
   }
 
   TextStyle enabledDisabledStyle(PlayerProgress playerProgress, GameUniverse universe, Palette palette) {
-    return enabled(playerProgress, universe) ? palette.subtitle : palette.subtitleDisabled;
+    TextStyle responsiveTitle = kIsWeb ? palette.subtitle : palette.subtitleMobile;
+    TextStyle responsiveTitleDisabled = kIsWeb ? palette.subtitleDisabled : palette.subtitleMobileDisabled;
+    return enabled(playerProgress, universe) ? responsiveTitle : responsiveTitleDisabled;
   }
 }

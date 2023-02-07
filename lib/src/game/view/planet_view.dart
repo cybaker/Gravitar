@@ -1,4 +1,5 @@
 import 'package:flame/game.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart';
@@ -46,7 +47,11 @@ class PlanetViewState extends State<PlanetView> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    _gameState = GameState(onUniverseExit: _playerExitedUniverse, onStarSystemExit: _playerExitedStarSystem, onPlanetExit: _playerExitedPlanet, universe: widget.universe);
+    _gameState = GameState(
+        onUniverseExit: _playerExitedUniverse,
+        onStarSystemExit: _playerExitedStarSystem,
+        onPlanetExit: _playerExitedPlanet,
+        universe: widget.universe);
 
     _playerGame = PlayerGame(universe: widget.universe, gameState: _gameState, audio: context.read<AudioController>());
 
@@ -77,14 +82,7 @@ class PlanetViewState extends State<PlanetView> {
         child: Scaffold(
           body: Stack(
             children: [
-              MouseRegion(
-                  onHover: (_) {
-                    if (!_gameFocusNode.hasFocus) {
-                      _gameFocusNode.requestFocus();
-                    }
-                  },
-                  child: _gameWidget,
-                ),
+              kIsWeb ? webWidget() : _gameWidget,
               Padding(
                 padding: EdgeInsets.all(16),
                 child: PlayerHudView(
@@ -94,6 +92,17 @@ class PlanetViewState extends State<PlanetView> {
             ],
           ),
         ));
+  }
+
+  Widget webWidget() {
+    return MouseRegion(
+      onHover: (_) {
+        if (!_gameFocusNode.hasFocus) {
+          _gameFocusNode.requestFocus();
+        }
+      },
+      child: _gameWidget,
+    );
   }
 
   // TBD
@@ -197,8 +206,9 @@ class PlanetViewState extends State<PlanetView> {
 
   void playerReenterExistingStarSystem() {
     _playerGame.gameState.missionAccomplished.value = false;
-    _gameState.currentStarSystem.currentWarpInPosition = _gameState.currentPlanet.numEnemies == 0 ?
-      _gameState.currentPlanet.starSystemPosition : _gameState.currentStarSystem.startWarpInPosition;
+    _gameState.currentStarSystem.currentWarpInPosition = _gameState.currentPlanet.numEnemies == 0
+        ? _gameState.currentPlanet.starSystemPosition
+        : _gameState.currentStarSystem.startWarpInPosition;
     _playerGame.loadStarSystem();
   }
 

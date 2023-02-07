@@ -79,7 +79,7 @@ class PlayerHudView extends StatelessWidget {
       builder: (context, value, child) {
         if (value) return Text(
           'Mission Accomplished',
-          style: palette.missionAccomplished,
+          style: kIsWeb ? palette.missionAccomplished : palette.missionAccomplishedMobile,
           textAlign: TextAlign.center,
         );
         return const Text('');
@@ -93,7 +93,7 @@ class PlayerHudView extends StatelessWidget {
         builder: (context, value, child) {
           return Text(
             'Lives: $value',
-            style: palette.title,
+            style: kIsWeb ? palette.title : palette.titleMobile,
             textAlign: TextAlign.center,
           );
         },
@@ -106,7 +106,7 @@ class PlayerHudView extends StatelessWidget {
         builder: (context, value, child) {
           return Text(
             'Fuel: ${value.toInt()}',
-            style: palette.title,
+            style: kIsWeb ? palette.title : palette.titleMobile,
             textAlign: TextAlign.center,
           );
         },
@@ -119,7 +119,7 @@ class PlayerHudView extends StatelessWidget {
         builder: (context, value, child) {
           return Text(
             'Score: $value',
-            style: palette.title,
+            style: kIsWeb ? palette.title : palette.titleMobile,
             textAlign: TextAlign.center,
           );
         },
