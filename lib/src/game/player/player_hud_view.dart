@@ -15,6 +15,8 @@ class PlayerHudView extends StatelessWidget {
 
   final PlayerGame playerGame;
 
+  final fireShieldHeight = 150.0;
+
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
@@ -44,22 +46,65 @@ class PlayerHudView extends StatelessWidget {
   }
 
   Widget touchControls() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        joystickWidget(),
-        Spacer(flex: 10),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            fireButton(),
-            Container(height: 20,),
-            shieldButton(),
-          ],
-        ),
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          joystickWidget(),
+          Spacer(flex: 10),
+          GestureDetector(
+            onPanStart: (updateDetails) {
+              fireShieldInput(updateDetails.localPosition);
+            },
+            onPanUpdate: (updateDetails) {
+              fireShieldInput(updateDetails.localPosition);
+            },
+            onPanEnd: (updateDetails) {
+              fireShieldInput(Offset.zero);
+            },
+            child: fireShieldWidget(),
+          ),
+        ],
+      );
+  }
 
-      ],
-    );
+  Container fireShieldWidget() {
+    return Container(
+            height: fireShieldHeight,
+            width:100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(fireShieldHeight/2)),
+              gradient:LinearGradient(
+                  colors: [
+                    Colors.green,
+                    Colors.greenAccent,
+                    Colors.lightBlue,
+                    Colors.blue,
+                    //add more colors for gradient
+                  ],
+                  begin: Alignment.topCenter, //begin of the gradient color
+                  end: Alignment.bottomCenter, //end of the gradient color
+                  stops: [0, 0.4, 0.6, 1.0] //stops for individual color
+                //set the stops number equal to numbers of color
+              ),
+            ),
+          );
+  }
+
+  void fireShieldInput(Offset offset) {
+    if (offset == Offset.zero || offset.dx < 0.0 || offset.dx > fireShieldHeight ||
+        offset.dy < 0.0 || offset.dy > fireShieldHeight) {
+      playerGame.singlePlayer.setContinuousFiring(false);
+      playerGame.singlePlayer.setContinuousShielding(false);
+    } else if (offset.dy < fireShieldHeight/3) {
+      playerGame.singlePlayer.setContinuousFiring(true);
+      playerGame.singlePlayer.setContinuousShielding(false);
+    } else if (offset.dy > 2*fireShieldHeight/3){
+      playerGame.singlePlayer.setContinuousFiring(false);
+      playerGame.singlePlayer.setContinuousShielding(true);
+    } else {
+      playerGame.singlePlayer.setContinuousFiring(true);
+      playerGame.singlePlayer.setContinuousShielding(true);
+    }
   }
 
   Joystick joystickWidget() {
@@ -70,24 +115,6 @@ class PlayerHudView extends StatelessWidget {
             playerGame.singlePlayer.setJoystickVector(details.x, details.y);
           }
       );
-  }
-
-  InkWell fireButton() {
-    return InkWell(
-            child: Text("Fire", style: TextStyle(color: Colors.green, fontSize: 50),),
-            onTapDown: (_) => playerGame.singlePlayer.setContinuousFiring(true),
-            onTapCancel: () => playerGame.singlePlayer.setContinuousFiring(false),
-            onTap: () => playerGame.singlePlayer.setContinuousFiring(false),
-          );
-  }
-
-  InkWell shieldButton() {
-    return InkWell(
-            child: Text("Shield", style: TextStyle(color: Colors.blue, fontSize: 50),),
-            onTapDown: (_) => playerGame.singlePlayer.setContinuousShielding(true),
-            onTapCancel: () => playerGame.singlePlayer.setContinuousShielding(false),
-            onTap: () => playerGame.singlePlayer.setContinuousShielding(false),
-          );
   }
 
   Widget spacer() => Expanded(child: SizedBox(width: 20, height: 10,));
