@@ -47,28 +47,47 @@ class PlayerHudView extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Joystick(
-            mode: JoystickMode.all,
-            listener: (details) {
-              // debugPrint("Joystick details = ${details.x}");
-              playerGame.singlePlayer.setJoystickVector(details.x, details.y);
-            }
-        ),
+        joystickWidget(),
         Spacer(flex: 10),
-        InkWell(
-          child: Icon(Icons.radio_button_checked, color: Colors.red, size: 80,),
-          onTapDown: (_) => playerGame.singlePlayer.setContinuousFiring(true),
-          onTapCancel: () => playerGame.singlePlayer.setContinuousFiring(false),
-          onTap: () => playerGame.singlePlayer.setContinuousFiring(false),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            fireButton(),
+            Container(height: 20,),
+            shieldButton(),
+          ],
         ),
-        InkWell(
-          child: Icon(Icons.radio_button_checked, color: Colors.blue, size: 80,),
-          onTapDown: (_) => playerGame.singlePlayer.setContinuousShielding(true),
-          onTapCancel: () => playerGame.singlePlayer.setContinuousShielding(false),
-          onTap: () => playerGame.singlePlayer.setContinuousShielding(false),
-        ),
+
       ],
     );
+  }
+
+  Joystick joystickWidget() {
+    return Joystick(
+          mode: JoystickMode.all,
+          listener: (details) {
+            // debugPrint("Joystick details = ${details.x}");
+            playerGame.singlePlayer.setJoystickVector(details.x, details.y);
+          }
+      );
+  }
+
+  InkWell fireButton() {
+    return InkWell(
+            child: Text("Fire", style: TextStyle(color: Colors.green, fontSize: 50),),
+            onTapDown: (_) => playerGame.singlePlayer.setContinuousFiring(true),
+            onTapCancel: () => playerGame.singlePlayer.setContinuousFiring(false),
+            onTap: () => playerGame.singlePlayer.setContinuousFiring(false),
+          );
+  }
+
+  InkWell shieldButton() {
+    return InkWell(
+            child: Text("Shield", style: TextStyle(color: Colors.blue, fontSize: 50),),
+            onTapDown: (_) => playerGame.singlePlayer.setContinuousShielding(true),
+            onTapCancel: () => playerGame.singlePlayer.setContinuousShielding(false),
+            onTap: () => playerGame.singlePlayer.setContinuousShielding(false),
+          );
   }
 
   Widget spacer() => Expanded(child: SizedBox(width: 20, height: 10,));
