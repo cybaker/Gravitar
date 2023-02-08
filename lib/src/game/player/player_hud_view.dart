@@ -67,27 +67,46 @@ class PlayerHudView extends StatelessWidget {
       );
   }
 
-  Container fireShieldWidget() {
-    return Container(
-            height: fireShieldHeight,
-            width:100,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(fireShieldHeight/2)),
-              gradient:LinearGradient(
-                  colors: [
-                    Colors.green,
-                    Colors.greenAccent,
-                    Colors.lightBlue,
-                    Colors.blue,
-                    //add more colors for gradient
-                  ],
-                  begin: Alignment.topCenter, //begin of the gradient color
-                  end: Alignment.bottomCenter, //end of the gradient color
-                  stops: [0, 0.4, 0.6, 1.0] //stops for individual color
-                //set the stops number equal to numbers of color
-              ),
+  Widget fireShieldWidget() {
+    return Stack(
+      children: [
+        Container(
+          height: fireShieldHeight,
+          width:100,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(fireShieldHeight/2)),
+            gradient:LinearGradient(
+                colors: [
+                  Colors.green,
+                  Colors.greenAccent,
+                  Colors.lightBlue,
+                  Colors.blue,
+                  //add more colors for gradient
+                ],
+                begin: Alignment.topCenter, //begin of the gradient color
+                end: Alignment.bottomCenter, //end of the gradient color
+                stops: [0, 0.4, 0.6, 1.0] //stops for individual color
+              //set the stops number equal to numbers of color
             ),
-          );
+          ),
+        ),
+        Positioned.fill(
+            child: Align(
+              alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: EdgeInsets.all(16),
+                    child: Text("FIRE")))
+        ),
+        Positioned.fill(
+            child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text("SHIELD")))
+        ),
+      ]
+
+    );
   }
 
   void fireShieldInput(Offset offset) {
