@@ -53,13 +53,13 @@ class PlayerHudView extends StatelessWidget {
           Spacer(flex: 10),
           GestureDetector(
             onPanStart: (updateDetails) {
-              fireShieldInput(updateDetails.localPosition);
+              fireShieldUpdate(updateDetails.localPosition);
             },
             onPanUpdate: (updateDetails) {
-              fireShieldInput(updateDetails.localPosition);
+              fireShieldUpdate(updateDetails.localPosition);
             },
             onPanEnd: (updateDetails) {
-              fireShieldInput(Offset.zero);
+              fireShieldUpdate(Offset.zero);
             },
             child: fireShieldWidget(),
           ),
@@ -90,28 +90,25 @@ class PlayerHudView extends StatelessWidget {
             ),
           ),
         ),
-        Positioned.fill(
-            child: Align(
-              alignment: Alignment.topCenter,
-                child: Padding(
-                  padding: EdgeInsets.all(16),
-                    child: Text("FIRE", style: fireShieldTextStyle,)))
-        ),
-        Positioned.fill(
-            child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Text("SHIELD", style: fireShieldTextStyle,)))
-        ),
+        positionedTextLabel("FIRE", Alignment.topCenter),
+        positionedTextLabel("SHIELD", Alignment.bottomCenter),
       ]
-
     );
+  }
+
+  Positioned positionedTextLabel(String text, Alignment alignment) {
+    return Positioned.fill(
+          child: Align(
+              alignment: alignment,
+              child: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Text(text, style: fireShieldTextStyle,)))
+      );
   }
 
   final fireShieldTextStyle = const TextStyle( fontFamily: 'AstroSpace', fontSize: 12, color: Colors.black,);
 
-  void fireShieldInput(Offset offset) {
+  void fireShieldUpdate(Offset offset) {
     if (offset == Offset.zero || offset.dx < 0.0 || offset.dx > fireShieldHeight ||
         offset.dy < 0.0 || offset.dy > fireShieldHeight) {
       playerGame.singlePlayer.setContinuousFiring(false);
