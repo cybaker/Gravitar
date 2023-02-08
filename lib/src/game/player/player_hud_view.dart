@@ -95,19 +95,21 @@ class PlayerHudView extends StatelessWidget {
               alignment: Alignment.topCenter,
                 child: Padding(
                   padding: EdgeInsets.all(16),
-                    child: Text("FIRE")))
+                    child: Text("FIRE", style: fireShieldTextStyle,)))
         ),
         Positioned.fill(
             child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                     padding: EdgeInsets.all(16),
-                    child: Text("SHIELD")))
+                    child: Text("SHIELD", style: fireShieldTextStyle,)))
         ),
       ]
 
     );
   }
+
+  final fireShieldTextStyle = const TextStyle( fontFamily: 'AstroSpace', fontSize: 12, color: Colors.black,);
 
   void fireShieldInput(Offset offset) {
     if (offset == Offset.zero || offset.dx < 0.0 || offset.dx > fireShieldHeight ||
