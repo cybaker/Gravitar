@@ -22,49 +22,67 @@ class PlayerHudView extends StatelessWidget {
     final palette = context.watch<Palette>();
 
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Row(
-          children: [
-            livesWidget(palette),
-            spacer(),
-            fuelWidget(palette),
-            spacer(),
-            scoreWidget(palette),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            missionStatusWidget(palette),
-          ],
-        ),
+        shipStatus(palette),
+        missionAccomplished(palette),
         if ((defaultTargetPlatform == TargetPlatform.iOS ||
           defaultTargetPlatform == TargetPlatform.android)) touchControls(),
       ],
     );
   }
 
+  Widget missionAccomplished(Palette palette) {
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          missionStatusWidget(palette),
+        ],
+      );
+  }
+
+  Widget shipStatus(Palette palette) {
+    return Row(
+        children: [
+          livesWidget(palette),
+          spacer(),
+          fuelWidget(palette),
+          spacer(),
+          scoreWidget(palette),
+        ],
+      );
+  }
+
   Widget touchControls() {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           joystickWidget(),
-          Spacer(flex: 10),
-          GestureDetector(
-            onPanStart: (updateDetails) {
-              fireShieldUpdate(updateDetails.localPosition);
-            },
-            onPanUpdate: (updateDetails) {
-              fireShieldUpdate(updateDetails.localPosition);
-            },
-            onPanEnd: (updateDetails) {
-              fireShieldUpdate(Offset.zero);
-            },
-            child: fireShieldWidget(),
-          ),
+          Spacer(flex: 1),
+          fireShieldControls(),
         ],
       );
+  }
+
+  Positioned fireShieldControls() {
+    return Positioned.fill(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: GestureDetector(
+              onPanStart: (updateDetails) {
+                fireShieldUpdate(updateDetails.localPosition);
+              },
+              onPanUpdate: (updateDetails) {
+                fireShieldUpdate(updateDetails.localPosition);
+              },
+              onPanEnd: (updateDetails) {
+                fireShieldUpdate(Offset.zero);
+              },
+              child: fireShieldWidget(),
+            ),
+          ),
+        );
   }
 
   Widget fireShieldWidget() {
@@ -72,7 +90,7 @@ class PlayerHudView extends StatelessWidget {
       children: [
         Container(
           height: fireShieldHeight,
-          width:100,
+          width:80,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(fireShieldHeight/2)),
             gradient:LinearGradient(
@@ -85,7 +103,7 @@ class PlayerHudView extends StatelessWidget {
                 ],
                 begin: Alignment.topCenter, //begin of the gradient color
                 end: Alignment.bottomCenter, //end of the gradient color
-                stops: [0, 0.4, 0.6, 1.0] //stops for individual color
+                stops: [0, 0.35, 0.65, 1.0] //stops for individual color
               //set the stops number equal to numbers of color
             ),
           ),
@@ -101,12 +119,12 @@ class PlayerHudView extends StatelessWidget {
           child: Align(
               alignment: alignment,
               child: Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: EdgeInsets.fromLTRB(0, 24, 0, 24),
                   child: Text(text, style: fireShieldTextStyle,)))
       );
   }
 
-  final fireShieldTextStyle = const TextStyle( fontFamily: 'AstroSpace', fontSize: 12, color: Colors.black,);
+  final fireShieldTextStyle = const TextStyle( fontFamily: 'AstroSpace', fontSize: 10, color: Colors.black,);
 
   void fireShieldUpdate(Offset offset) {
     if (offset == Offset.zero || offset.dx < 0.0 || offset.dx > fireShieldHeight ||
@@ -127,8 +145,8 @@ class PlayerHudView extends StatelessWidget {
 
   Widget joystickWidget() {
     return Container(
-      width: 250,
-      height: 250,
+      width: 220,
+      height: 220,
       child: JoystickArea(
             mode: JoystickMode.all,
             listener: (details) {
@@ -145,14 +163,26 @@ class PlayerHudView extends StatelessWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: playerGame.gameState.missionAccomplished,
       builder: (context, value, child) {
-        if (value) return Text(
-          'Mission Accomplished',
-          style: kIsWeb ? palette.missionAccomplished : palette.missionAccomplishedMobile,
-          textAlign: TextAlign.center,
-        );
-        return const Text('');
+        if (value) {
+          return Text(
+            'Mission Accomplished',
+            style: kIsWeb ? palette.missionAccomplished : palette.missionAccomplishedMobile,
+            textAlign: TextAlign.center,
+          );
+        } else {
+          return Container();
+        };
       },
     );
+  }
+
+  TextStyle getTextStyle(BuildContext context, Palette palette) {
+    var orientation = MediaQuery.of(context).orientation;
+    var style = palette.title;
+    if (!kIsWeb) {
+      style = orientation == Orientation.portrait ? palette.titleMobilePortrait : palette.titleMobile;
+    }
+    return style;
   }
 
   ValueListenableBuilder<int> livesWidget(Palette palette) {
@@ -161,7 +191,7 @@ class PlayerHudView extends StatelessWidget {
         builder: (context, value, child) {
           return Text(
             'Lives: $value',
-            style: kIsWeb ? palette.title : palette.titleMobile,
+            style: getTextStyle(context, palette),
             textAlign: TextAlign.center,
           );
         },
@@ -174,7 +204,7 @@ class PlayerHudView extends StatelessWidget {
         builder: (context, value, child) {
           return Text(
             'Fuel: ${value.toInt()}',
-            style: kIsWeb ? palette.title : palette.titleMobile,
+            style: getTextStyle(context, palette),
             textAlign: TextAlign.center,
           );
         },
@@ -187,7 +217,7 @@ class PlayerHudView extends StatelessWidget {
         builder: (context, value, child) {
           return Text(
             'Score: $value',
-            style: kIsWeb ? palette.title : palette.titleMobile,
+            style: getTextStyle(context, palette),
             textAlign: TextAlign.center,
           );
         },

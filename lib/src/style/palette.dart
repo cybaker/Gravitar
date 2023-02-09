@@ -51,10 +51,11 @@ class Palette {
   TextStyle get mainTitleMobile => TextStyle( fontFamily: 'AstroSpace', fontSize: 40, color: pen,);
 
   TextStyle get missionAccomplished => TextStyle( fontFamily: 'AstroSpace', fontSize: 54, color: greenPen,);
-  TextStyle get missionAccomplishedMobile => TextStyle( fontFamily: 'AstroSpace', fontSize: 36, color: greenPen,);
+  TextStyle get missionAccomplishedMobile => TextStyle( fontFamily: 'AstroSpace', fontSize: 24, color: greenPen,);
 
   TextStyle get title => TextStyle(fontFamily: 'AstroSpace', fontSize: 30, color: pen,);
   TextStyle get titleMobile => TextStyle(fontFamily: 'AstroSpace', fontSize: 21, color: pen,);
+  TextStyle get titleMobilePortrait => TextStyle(fontFamily: 'AstroSpace', fontSize: 8, color: pen,);
 
   TextStyle get subtitle => TextStyle(fontFamily: 'AstroSpace', fontSize: 24, color: pen,);
   TextStyle get subtitleMobile => TextStyle(fontFamily: 'AstroSpace', fontSize: 16, color: pen,);
