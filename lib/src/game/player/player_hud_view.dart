@@ -125,14 +125,18 @@ class PlayerHudView extends StatelessWidget {
     }
   }
 
-  Joystick joystickWidget() {
-    return Joystick(
-          mode: JoystickMode.all,
-          listener: (details) {
-            // debugPrint("Joystick details = ${details.x}");
-            playerGame.singlePlayer.setJoystickVector(details.x, details.y);
-          }
-      );
+  Widget joystickWidget() {
+    return Container(
+      width: 250,
+      height: 250,
+      child: JoystickArea(
+            mode: JoystickMode.all,
+            listener: (details) {
+              // debugPrint("Joystick details = ${details.x}");
+              playerGame.singlePlayer.setJoystickVector(details.x, details.y);
+            }
+        ),
+    );
   }
 
   Widget spacer() => Expanded(child: SizedBox(width: 20, height: 10,));
