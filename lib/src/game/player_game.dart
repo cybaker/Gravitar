@@ -179,10 +179,12 @@ class PlayerGame extends FlameGame with KeyboardEvents, HasCollisionDetection, T
 
   @override
   void onTap() {
-    if (paused) {
-      resumeEngine();
-    } else {
-      pauseEngine();
+    if (kIsWeb) {
+      if (paused) {
+        resumeEngine();
+      } else {
+        pauseEngine();
+      }
     }
   }
 }
