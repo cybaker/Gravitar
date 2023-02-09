@@ -65,24 +65,19 @@ class PlayerHudView extends StatelessWidget {
       );
   }
 
-  Positioned fireShieldControls() {
-    return Positioned.fill(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: GestureDetector(
-              onPanStart: (updateDetails) {
-                fireShieldUpdate(updateDetails.localPosition);
-              },
-              onPanUpdate: (updateDetails) {
-                fireShieldUpdate(updateDetails.localPosition);
-              },
-              onPanEnd: (updateDetails) {
-                fireShieldUpdate(Offset.zero);
-              },
-              child: fireShieldWidget(),
-            ),
-          ),
-        );
+  Widget fireShieldControls() {
+    return GestureDetector(
+      onPanStart: (updateDetails) {
+        fireShieldUpdate(updateDetails.localPosition);
+      },
+      onPanUpdate: (updateDetails) {
+        fireShieldUpdate(updateDetails.localPosition);
+      },
+      onPanEnd: (updateDetails) {
+        fireShieldUpdate(Offset.zero);
+      },
+      child: fireShieldWidget(),
+    );
   }
 
   Widget fireShieldWidget() {
