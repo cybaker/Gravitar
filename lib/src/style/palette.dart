@@ -55,7 +55,7 @@ class Palette {
 
   TextStyle get title => TextStyle(fontFamily: 'AstroSpace', fontSize: 30, color: pen,);
   TextStyle get titleMobile => TextStyle(fontFamily: 'AstroSpace', fontSize: 21, color: pen,);
-  TextStyle get titleMobilePortrait => TextStyle(fontFamily: 'AstroSpace', fontSize: 8, color: pen,);
+  TextStyle get titleMobilePortrait => TextStyle(fontFamily: 'AstroSpace', fontSize: 16, color: pen,);
 
   TextStyle get subtitle => TextStyle(fontFamily: 'AstroSpace', fontSize: 24, color: pen,);
   TextStyle get subtitleMobile => TextStyle(fontFamily: 'AstroSpace', fontSize: 16, color: pen,);
