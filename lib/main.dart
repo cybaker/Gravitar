@@ -34,6 +34,8 @@ import 'src/style/snack_bar.dart';
 import 'src/win_game/lose_level_screen.dart';
 import 'src/win_game/win_level_screen.dart';
 
+bool kIsMobile = (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android);
+
 Future<void> main() async {
   // Uncomment the following lines to enable Firebase Crashlytics.
   // See lib/src/crashlytics/README.md for details.
