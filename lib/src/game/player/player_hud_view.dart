@@ -1,3 +1,4 @@
+import 'package:Gravitar/main.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_joystick/flutter_joystick.dart';
@@ -85,7 +86,7 @@ class PlayerHudView extends StatelessWidget {
       children: [
         Container(
           height: fireShieldHeight,
-          width:80,
+          width:100,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(fireShieldHeight/2)),
             gradient:LinearGradient(
@@ -161,7 +162,7 @@ class PlayerHudView extends StatelessWidget {
         if (value) {
           return Text(
             'Mission Accomplished',
-            style: kIsWeb ? palette.missionAccomplished : palette.missionAccomplishedMobile,
+            style: kIsMobile ? palette.missionAccomplishedMobile : palette.missionAccomplished,
             textAlign: TextAlign.center,
           );
         } else {
@@ -174,7 +175,7 @@ class PlayerHudView extends StatelessWidget {
   TextStyle getTextStyle(BuildContext context, Palette palette) {
     var orientation = MediaQuery.of(context).orientation;
     var style = palette.title;
-    if (!kIsWeb) {
+    if (kIsMobile) {
       style = orientation == Orientation.portrait ? palette.titleMobilePortrait : palette.titleMobile;
     }
     return style;
