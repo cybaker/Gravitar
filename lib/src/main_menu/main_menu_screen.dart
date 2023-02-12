@@ -2,11 +2,11 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../../main.dart';
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../games_services/games_services.dart';
@@ -35,7 +35,7 @@ class MainMenuScreen extends StatelessWidget {
               child: Text(
                 'Gravitar',
                 textAlign: TextAlign.center,
-                style: kIsWeb ? palette.mainTitle : palette.mainTitleMobile,
+                style: kIsMobile ? palette.mainTitleMobile : palette.mainTitle,
               ),
             ),
           ),
@@ -126,7 +126,7 @@ class MainMenuScreen extends StatelessWidget {
   }
 
   Widget responsiveGap() {
-    return kIsWeb ? _gap : Container();
+    return kIsMobile ? Container() : _gap;
   }
 
   static const _gap = SizedBox(height: 20);

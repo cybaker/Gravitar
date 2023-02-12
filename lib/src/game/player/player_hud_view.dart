@@ -166,7 +166,7 @@ class PlayerHudView extends StatelessWidget {
           );
         } else {
           return Container();
-        };
+        }
       },
     );
   }

@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../style/palette.dart';
-import '../style/responsive_screen.dart';
 
 class InstructionsScreen extends StatelessWidget {
   const InstructionsScreen({super.key});
